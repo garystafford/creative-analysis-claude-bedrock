@@ -9,7 +9,7 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 Sonnet mu
 ### Well-engineered Prompt
 
 ```text
-Analyze these advertisements for Mercedes-Benz C-Class Sedan, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+Analyze these advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
@@ -22,7 +22,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 ### Prompt Optimization Example
 
 ```text
-You are an expert at optimizing large langauge model positive prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
+You are an expert at optimizing large language model positive prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
 
 Analyze these advertisements and find some common creative elements. Some are in English and some are in German.
 ```
