@@ -2,6 +2,8 @@
 
 Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 Sonnet foundational AI model.
 
+![Screenshot](screenshot.png)
+
 ## Samples Prompts
 
 ### Well-engineered Prompt
