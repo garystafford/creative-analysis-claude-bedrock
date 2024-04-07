@@ -219,7 +219,7 @@ def main():
         st.markdown(
             "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 Sonnet foundational AI model."
         )
-        default_prompt = """Analyze these advertisements for Mercedes-Benz C-Class Sedan, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+        default_prompt = """Analyze these advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
@@ -229,9 +229,11 @@ def main():
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz digital ads compelling and effective."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
-        img_file_buffer = st.file_uploader("Upload a JPG image:", type="jpg")
+        img_file_buffer = st.file_uploader(
+            "Upload a JPG, PNG, GIF, or WEBP image:", type=["jpg", "png", "webp", "gif"]
+        )
         epoch_time = int(time.time())
-        image_name = f"image_{epoch_time}.jpg"
+        image_name = f"image_{epoch_time}.png"
         if img_file_buffer is not None:
             image = Image.open(img_file_buffer)
             image_path = f"_temp_images/{image_name}"
@@ -273,6 +275,7 @@ For each element, describe how it is effectively utilized across the ads and exp
         st.session_state.top_k = st.slider(
             "top_k", min_value=0, max_value=500, value=250, step=1
         )
+
 
 if __name__ == "__main__":
     main()
