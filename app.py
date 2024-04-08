@@ -254,7 +254,7 @@ For each element, describe how it is effectively utilized across the ads and exp
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         img_file_buffer = st.file_uploader(
-            "Upload a JPG, PNG, GIF, or WEBP image:", type=["jpg", "png", "webp", "gif"]
+            "Upload a JPG, PNG, GIF, or WEBP file:", type=["jpg", "png", "webp", "gif"]
         )
 
         if img_file_buffer is not None:
