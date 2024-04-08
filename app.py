@@ -244,11 +244,10 @@ For each element, describe how it is effectively utilized across the ads and exp
         img_file_buffer = st.file_uploader(
             "Upload a JPG, PNG, GIF, or WEBP image:", type=["jpg", "png", "webp", "gif"]
         )
-        epoch_time = int(time.time())
-        image_name = f"image_{epoch_time}.jpg"
+
         if img_file_buffer is not None:
             image = Image.open(img_file_buffer)
-            image_path = f"_temp_images/{image_name}"
+            image_path = f"_temp_images/{img_file_buffer.name}"
             image.save(image_path)
 
         # Every form must have a submit button.
