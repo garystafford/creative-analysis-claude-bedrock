@@ -1,6 +1,6 @@
 # Generative AI-powered Creative Analysis
 
-Simple Streamlit application used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Oriented toward AdTech, MarTech, Advertising Agencies. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model.
+Simple Streamlit application used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Oriented toward AdTech, MarTech, Advertising Agencies. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to that link for all inference parameters.
 
 ![Screenshot](screengrab5.png)
 
@@ -62,7 +62,7 @@ https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 Have the model optimize the prompt.
 
 ```text
-You are an expert at optimizing large language model positive prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
+You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
 
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
