@@ -263,7 +263,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
-        if submitted:
+        if submitted and img_file_buffer:
             st.markdown("---")
             st.image(image_path, caption="")
             with st.spinner(text="Analyzing..."):
@@ -271,6 +271,11 @@ For each element, describe how it is effectively utilized across the ads and exp
                 st.text_area(
                     label="Analysis:", value=response["content"][0]["text"], height=800
                 )
+        else:
+            st.markdown(
+                "<p style='color: red'> Please upload an image before continuing.</p>",
+                unsafe_allow_html=True,
+            )
     st.markdown(
         "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
         unsafe_allow_html=True,
