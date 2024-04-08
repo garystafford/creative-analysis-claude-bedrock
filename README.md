@@ -1,6 +1,6 @@
 # Generative AI-powered Creative Analysis
 
-Simple Streamlit application used for demonstrating Anthropic Claude 3 Sonnet multimodal prompting on Amazon Bedrock. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 Sonnet foundational AI model.
+Simple Streamlit application used for demonstrating Anthropic Claude 3 multimodal prompting on Amazon Bedrock. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 Sonnet foundational AI model.
 
 ![Screenshot](screengrab4.png)
 
