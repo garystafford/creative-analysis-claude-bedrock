@@ -67,7 +67,7 @@ You are an expert at optimizing large language model prompts for marketing analy
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
-### 4. Generate Creative Concepts from Creative Analysis
+### 4. Generate New Creative Concepts from Analysis
 
 Using the resulting analysis to design new advertising. Includes an external link to digitial ad specs as a reference for new layout.
 
