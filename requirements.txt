@@ -1,4 +1,5 @@
-streamlit
 boto3
 botocore
+pillow
+streamlit
 watchdog
