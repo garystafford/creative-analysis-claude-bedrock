@@ -132,7 +132,7 @@ def main():
                     padding-right: 0;
                 }
                 textarea[class^="st-"] {
-                    height: 325px;
+                    height: 350px;
                     font-family: 'Inter', sans-serif;
                     background-color: #777777;
                     color: #ffffff;
@@ -140,17 +140,17 @@ def main():
                 section[aria-label="Upload a JPG image:"] {
                     background-color: #777777;
                 }
-                textarea[aria-label="Analysis:"] {
+                textarea[aria-label="Analysis:"] { # llm response
                     height: 600px;
                 }
-                .element-container img {
+                .element-container img { # uploaded image preview
                     background-color: #ffffff;
                 }
-                h2 {
+                h2 { # main headline
                     color: white;
                 }
-                #MainMenu {
-                    visibility: visible;
+                MainMenu {
+                    visibility: hidden;
                 }
                 footer {
                     visibility: hidden;
@@ -180,6 +180,9 @@ def main():
                 }
                 div[class^="stSlider"] label {
                     background-color: #777777;
+                }
+                div[data-testid="stSidebarUserContent"] {
+                    padding-top: 50px;
                 }
                 div[class="row-widget stSelectbox"] label {
                     background-color: #777777;
@@ -229,16 +232,16 @@ def main():
 
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
         st.markdown(
-            "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 Sonnet foundational AI model."
+            "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
-        default_prompt = """Analyze these advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+        default_prompt = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
     4. Interactivity or multimedia components
     5. Alignment with Mercedes-Benz's brand identity and positioning
 
-For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz digital ads compelling and effective."""
+For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         img_file_buffer = st.file_uploader(
