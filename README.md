@@ -8,6 +8,20 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 Sonnet mu
 
 ![Mercedes-Benz Ads](Mercedes-Benz_advertisements.jpg)
 
+## Start Application
+
+```sh
+streamlit run app.py \
+    --server.runOnSave true \
+    --theme.base "light" \
+    --theme.backgroundColor "#333333" \
+    --theme.primaryColor "#CCC8AA" \
+    --theme.secondaryBackgroundColor "#777777" \
+    --ui.hideTopBar "true" \
+    --client.toolbarMode "minimal"
+```
+
+
 ## Samples Prompts
 
 ### Well-engineered Prompt
