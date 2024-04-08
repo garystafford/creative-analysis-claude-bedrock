@@ -17,7 +17,7 @@ python3 -m venv claude-streamlit-venv
 
 source claude-streamlit-venv/bin/activate
 
-pip install streamlit boto3 watchdog -Uq
+pip install -r requirements.txt -Uq
 
 streamlit run app.py \
     --server.runOnSave true \
