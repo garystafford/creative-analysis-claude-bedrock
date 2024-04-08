@@ -21,13 +21,13 @@ logging.basicConfig(level=logging.INFO)
 
 
 def run_multi_modal_prompt(
-        bedrock_runtime,
-        model_id,
-        messages,
-        max_tokens,
-        temperature,
-        top_p,
-        top_k,
+    bedrock_runtime,
+    model_id,
+    messages,
+    max_tokens,
+    temperature,
+    top_p,
+    top_k,
 ):
     """
     Invokes a model with a multimodal prompt.
@@ -291,6 +291,15 @@ For each element, describe how it is effectively utilized across the ads and exp
 
         st.session_state.top_k = st.slider(
             "top_k", min_value=0, max_value=500, value=250, step=1
+        )
+        st.markdown("---")
+
+        st.text(
+            f"""• model_id: {st.session_state.model_id}
+• max_tokens: {st.session_state.max_tokens}
+• temperature: {st.session_state.temperature}
+• top_p: {st.session_state.top_p}
+• top_k: {st.session_state.top_k}"""
         )
 
 
