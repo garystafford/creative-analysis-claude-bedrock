@@ -4,6 +4,10 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 Sonnet mu
 
 ![Screenshot](screengrab3.png)
 
+## Samples Advertisements
+
+![Mercedes-Benz Ads](Mercedes-Benz_advertisements.jpg)
+
 ## Samples Prompts
 
 ### Well-engineered Prompt
