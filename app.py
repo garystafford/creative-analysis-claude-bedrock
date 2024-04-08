@@ -12,24 +12,22 @@ import base64
 import time
 import boto3
 import streamlit as st
-import numpy as np
 from PIL import Image
 
 from botocore.exceptions import ClientError
-
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 
 def run_multi_modal_prompt(
-    bedrock_runtime,
-    model_id,
-    messages,
-    max_tokens,
-    temperature,
-    top_p,
-    top_k,
+        bedrock_runtime,
+        model_id,
+        messages,
+        max_tokens,
+        temperature,
+        top_p,
+        top_k,
 ):
     """
     Invokes a model with a multimodal prompt.
@@ -247,7 +245,7 @@ For each element, describe how it is effectively utilized across the ads and exp
             "Upload a JPG, PNG, GIF, or WEBP image:", type=["jpg", "png", "webp", "gif"]
         )
         epoch_time = int(time.time())
-        image_name = f"image_{epoch_time}.png"
+        image_name = f"image_{epoch_time}.jpg"
         if img_file_buffer is not None:
             image = Image.open(img_file_buffer)
             image_path = f"_temp_images/{image_name}"
