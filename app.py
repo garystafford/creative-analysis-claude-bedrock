@@ -35,8 +35,11 @@ def run_multi_modal_prompt(
         model_id (str): The model ID to use.
         messages (JSON) : The messages to send to the model.
         max_tokens (int) : The maximum  number of tokens to generate.
+        temperature (float): The amount of randomness injected into the response.
+        top_p (float): Use nucleus sampling.
+        top_k (int): Only sample from the top K options for each subsequent token.
     Returns:
-        None.
+        response_body (string): Response from foundation model.
     """
 
     body = json.dumps(
@@ -59,6 +62,11 @@ def run_multi_modal_prompt(
 def build_request(prompt, image):
     """
     Entrypoint for Anthropic Claude multimodal prompt example.
+    Args:
+        prompt (str): The prompt to use.
+        image (str): The image to use.
+    Returns:
+        response_body (string): Response from foundation model.
     """
 
     try:
@@ -106,6 +114,7 @@ def build_request(prompt, image):
         message = err.response["Error"]["Message"]
         logger.error("A client error occurred: %s", message)
         print("A client error occurred: " + format(message))
+        return None
 
 
 def main():
