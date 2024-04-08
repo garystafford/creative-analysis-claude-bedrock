@@ -47,6 +47,12 @@ Analyze these advertisements for Mercedes-Benz C-Class Sedans, two in English an
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz digital ads compelling and effective.
 ```
 
+### Referring to an External Source of Information
+
+```text
+Analyze these four print advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German, based only on the Mercedes-Benz's design philosophy found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html
+```
+
 ### Prompt Optimization Example
 
 Have the model optimize the prompt.
