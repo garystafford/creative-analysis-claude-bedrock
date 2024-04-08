@@ -49,7 +49,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 ### Referring to an External Source of Information
 
-Using the Mercedes-Benz "Our design philosophy." website content as a basis of the analysis.
+Using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis.
 
 ```text
 Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
@@ -57,9 +57,9 @@ Analyze these four successful print advertisements for Mercedes-Benz sedans, two
 https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 ```
 
-### Prompt Optimization Example
+### Prompt Optimization
 
-Have the model optimize the prompt.
+Asking the model to optimize the user's initial prompt.
 
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
@@ -69,7 +69,7 @@ Analyze these print advertisements and find some common creative elements. Some 
 
 ### Generate Creative Concepts from Creative Analysis
 
-Using the analysis to design new advertising. Includes external link to ad specs for reference.
+Using the resulting analysis to design new advertising. Includes an external link to digitial ad specs as a reference for new layout.
 
 ```text
 Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs found here as a reference for the layout: https://mlmanhattan.com/online-ad-specs.
