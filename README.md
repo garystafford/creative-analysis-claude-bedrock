@@ -69,7 +69,7 @@ Analyze these advertisements and find some common creative elements. Some are in
 
 ### Generate Creative Concepts from Creative Analysis
 
-Using the analysis to design new advertising.
+Using the analysis to design new advertising. Includes external link to ad specs for reference.
 
 ```text
 Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs found here as a reference for the layout: https://mlmanhattan.com/online-ad-specs.
