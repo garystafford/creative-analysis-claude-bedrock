@@ -64,7 +64,7 @@ Have the model optimize the prompt.
 ```text
 You are an expert at optimizing large language model positive prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
 
-Analyze these advertisements and find some common creative elements. Some are in English and some are in German.
+Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
 ### Generate Creative Concepts from Creative Analysis
