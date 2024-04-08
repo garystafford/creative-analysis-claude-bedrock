@@ -115,7 +115,7 @@ def main():
     """
 
     st.set_page_config(
-        page_title="Advertising Analysis",
+        page_title="Creative Analysis",
         page_icon="paint.png",
     )
 
@@ -292,6 +292,7 @@ For each element, describe how it is effectively utilized across the ads and exp
         st.session_state.top_k = st.slider(
             "top_k", min_value=0, max_value=500, value=250, step=1
         )
+
         st.markdown("---")
 
         st.text(
