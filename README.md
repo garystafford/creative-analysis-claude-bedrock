@@ -11,6 +11,14 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 Sonnet mu
 ## Start Application
 
 ```sh
+python3 -m pip install virtualenv -Uq
+virtualenv claude-streamlit-venv
+python3 -m venv claude-streamlit-venv
+
+source claude-streamlit-venv/bin/activate
+
+pip install streamlit boto3 watchdog -Uq
+
 streamlit run app.py \
     --server.runOnSave true \
     --theme.base "light" \
