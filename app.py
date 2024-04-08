@@ -7,6 +7,7 @@ Shows how to run a multimodal prompt with Anthropic Claude (on demand) and Invok
 """
 
 import base64
+import datetime
 import json
 import logging
 
@@ -267,13 +268,19 @@ For each element, describe how it is effectively utilized across the ads and exp
             st.markdown("---")
             st.image(image_path, caption="")
             with st.spinner(text="Analyzing..."):
+                current_time1 = datetime.datetime.now()
                 response = build_request(prompt, image_path)
                 st.text_area(
                     label="Analysis:", value=response["content"][0]["text"], height=800
                 )
+                current_time2 = datetime.datetime.now()
+                st.markdown(
+                    f"Analysis time: {current_time2 - current_time1}",
+                    unsafe_allow_html=True,
+                )
         else:
             st.markdown(
-                "<p style='color: red'> Please upload an image before continuing.</p>",
+                "<p style='color: red'>Please upload an image before continuing.</p>",
                 unsafe_allow_html=True,
             )
     st.markdown(
