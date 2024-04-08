@@ -118,7 +118,7 @@ def main():
 
     st.set_page_config(
         page_title="Advertising Analysis",
-        # page_icon="",
+        page_icon="paint.png",
     )
 
     custom_css = """
