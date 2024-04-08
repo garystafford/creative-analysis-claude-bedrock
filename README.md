@@ -49,6 +49,8 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 ### Referring to an External Source of Information
 
+Using the Mercedes-Benz "Our design philosophy." website content as a basis of the analysis.
+
 ```text
 Analyze these four print advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German, based only on the Mercedes-Benz's design philosophy found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 ```
