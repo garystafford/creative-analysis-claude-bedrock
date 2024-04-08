@@ -88,3 +88,28 @@ These Mercedes-Benz print advertisements showcase several compelling creative el
 
 Overall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings.
 ```
+
+## Example Response from Foundation Model
+
+Example response body from Claude 3 Sonnet model on Bedrock.
+
+```json
+{
+    "id": "msg_017ntpirxuSGXfJMN1afGAXR",
+    "type": "message",
+    "role": "assistant",
+    "content": [
+        {
+            "type": "text",
+            "text": "Here is a concise and effective positive prompt for analyzing the common creative elements across these Mercedes-Benz print advertisements, some in English and some in German:\n\n\"Examine the visual design, messaging, and marketing approaches used across these Mercedes-Benz vehicle print ads. Identify recurring creative strategies, themes, and techniques employed to promote the brand's luxury automotive offerings to potential customers. Discuss how the ads aim to create desire and appeal through their imagery, copy, and overall artistic execution, while being mindful to objectively analyze the marketing without subjective judgement or bias.\""
+        }
+    ],
+    "model": "claude-3-sonnet-28k-20240229",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "usage": {
+        "input_tokens": 1662,
+        "output_tokens": 124
+    }
+}
+```
