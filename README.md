@@ -2,7 +2,7 @@
 
 Simple Streamlit application used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Oriented toward AdTech, MarTech, Advertising Agencies. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model.
 
-![Screenshot](screengrab4.png)
+![Screenshot](screengrab5.png)
 
 ## Samples Advertisements
 
@@ -34,17 +34,17 @@ streamlit run app.py \
 
 ### Using a well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance.
+Prompt optimized by model in advance. No external source of knowledge used.
 
 ```text
-Analyze these advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
     4. Interactivity or multimedia components
     5. Alignment with Mercedes-Benz's brand identity and positioning
 
-For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz digital ads compelling and effective.
+For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 ```
 
 ### Referring to an External Source of Information
@@ -52,7 +52,9 @@ For each element, describe how it is effectively utilized across the ads and exp
 Using the Mercedes-Benz "Our design philosophy." website content as a basis of the analysis.
 
 ```text
-Analyze these four print advertisements for Mercedes-Benz C-Class Sedans, two in English and two in German, based only on the Mercedes-Benz's design philosophy found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
+
+https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 ```
 
 ### Prompt Optimization Example
@@ -70,7 +72,7 @@ Analyze these advertisements and find some common creative elements. Some are in
 Using the analysis to design new advertising.
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a digital advertisement targeting young affluent urban couples from 25-35 years old:
+Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a digital advertisement for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old:
 
 These Mercedes-Benz C-Class Sedan advertisements showcase several creative elements that contribute to their effectiveness and alignment with the brand's identity:
 
