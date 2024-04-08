@@ -32,7 +32,7 @@ streamlit run app.py \
 
 ## Samples Prompts
 
-### Using a well-engineered Prompt for Analysis
+### 1. Using a well-engineered Prompt for Analysis
 
 Prompt optimized by model in advance. No external source of knowledge used.
 
@@ -47,7 +47,7 @@ Analyze these four print advertisements for Mercedes-Benz sedans, two in English
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 ```
 
-### Referring to an External Source of Information
+### 2. Referring to an External Source of Information
 
 Using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis.
 
@@ -57,7 +57,7 @@ Analyze these four successful print advertisements for Mercedes-Benz sedans, two
 https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 ```
 
-### Prompt Optimization
+### 3. Prompt Optimization
 
 Asking the model to optimize the user's initial prompt.
 
@@ -67,7 +67,7 @@ You are an expert at optimizing large language model prompts for marketing analy
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
-### Generate Creative Concepts from Creative Analysis
+### 4. Generate Creative Concepts from Creative Analysis
 
 Using the resulting analysis to design new advertising. Includes an external link to digitial ad specs as a reference for new layout.
 
