@@ -1,20 +1,19 @@
-# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-# SPDX-License-Identifier: Apache-2.0
-# Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
+# Author: Gary A. Stafford
+# Modified: 2024-04-08
+# AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
 
 """
 Shows how to run a multimodal prompt with Anthropic Claude (on demand) and InvokeModel.
 """
 
+import base64
 import json
 import logging
-import base64
-import time
+
 import boto3
 import streamlit as st
-from PIL import Image
-
 from botocore.exceptions import ClientError
+from PIL import Image
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
