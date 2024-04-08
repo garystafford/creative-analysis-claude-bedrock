@@ -26,10 +26,10 @@ def run_multi_modal_prompt(
     bedrock_runtime,
     model_id,
     messages,
-    max_tokens=2000,
-    temperature=0.25,
-    top_p=0.999,
-    top_k=250,
+    max_tokens,
+    temperature,
+    top_p,
+    top_k,
 ):
     """
     Invokes a model with a multimodal prompt.
@@ -68,7 +68,6 @@ def build_request(prompt, image):
 
         bedrock_runtime = boto3.client(service_name="bedrock-runtime")
 
-        model_id = "anthropic.claude-3-sonnet-20240229-v1:0"
         input_image = image
         input_text = prompt
 
@@ -95,7 +94,7 @@ def build_request(prompt, image):
 
         response = run_multi_modal_prompt(
             bedrock_runtime,
-            model_id,
+            st.session_state.model_id,
             messages,
             st.session_state.max_tokens,
             st.session_state.temperature,
@@ -144,7 +143,7 @@ def main():
                     background-color: #777777;
                 }
                 textarea[aria-label="Analysis:"] {
-                    height: 800px;
+                    height: 600px;
                 }
                 .element-container img {
                     background-color: #ffffff;
@@ -176,13 +175,25 @@ def main():
                     color: #ffffff;
                 }
                 div[class^="st-"] {
-                    color: #CCC8AA;
+                    color: #ccc8aa;
                 }
                 div[class^="stSlider"] p {
-                    color: #CCC8AA;
+                    color: #ccc8aa;
                 }
                 div[class^="stSlider"] label {
                     background-color: #777777;
+                }
+                div[class="row-widget stSelectbox"] label {
+                    background-color: #777777;
+                }
+                label[data-testid="stWidgetLabel"] p {
+                    color: #ccc8aa;
+                }
+                div[data-baseweb="select"] div {
+                    font-size: 14px;
+                }
+                div[data-baseweb="select"] li {
+                    font-size: 12px;
                 }
                 [data-testid="stForm"] {
                     border-color: #777777;
@@ -200,6 +211,9 @@ def main():
         custom_css,
         unsafe_allow_html=True,
     )
+
+    if "model_id" not in st.session_state:
+        st.session_state["model_id"] = "anthropic.claude-3-sonnet-20240229-v1:0"
 
     if "max_tokens" not in st.session_state:
         st.session_state["max_tokens"] = 1000
@@ -256,21 +270,27 @@ For each element, describe how it is effectively utilized across the ads and exp
 
     with st.sidebar:
         st.markdown("### Inference Parameters")
+        st.session_state["model_id"] = "anthropic.claude-3-sonnet-20240229-v1:0"
+
+        st.session_state.model_id = st.selectbox(
+            "model_id",
+            options=[
+                "anthropic.claude-3-sonnet-20240229-v1:0",
+                "anthropic.claude-3-haiku-20240307-v1:0",
+            ],
+        )
 
         st.session_state.max_tokens = st.slider(
             "max_tokens", min_value=0, max_value=5000, value=2000, step=10
         )
-        st.markdown("---")
 
         st.session_state.temperature = st.slider(
             "temperature", min_value=0.0, max_value=1.0, value=0.5, step=0.01
         )
-        st.markdown("---")
 
         st.session_state.top_p = st.slider(
             "top_p", min_value=0.0, max_value=1.0, value=0.999, step=0.001
         )
-        st.markdown("---")
 
         st.session_state.top_k = st.slider(
             "top_k", min_value=0, max_value=500, value=250, step=1
