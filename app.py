@@ -113,10 +113,10 @@ def build_request(prompt, file_path):
             st.session_state.top_p,
             st.session_state.top_k,
         )
+
         print(json.dumps(response, indent=4))
 
         return response
-
     except ClientError as err:
         message = err.response["Error"]["Message"]
         logger.error("A client error occurred: %s", message)
@@ -267,7 +267,7 @@ For each element, describe how it is effectively utilized across the ads and exp
             type=["jpg", "png", "webp", "gif", "csv", "txt"],
         )
 
-        file_path = None
+        file_path = None  # only used for images, else none
 
         if file_buffer is not None:
             st.session_state.media_type = file_buffer.type
@@ -284,17 +284,18 @@ For each element, describe how it is effectively utilized across the ads and exp
                 file_path = f"_temp_images/{file_buffer.name}"
                 image.save(file_path)
 
+            print(f"Prompt: {prompt}")
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.markdown("---")
-            if file_buffer and file_path: # image
+            if file_buffer and file_path:  # image media-type
                 st.image(file_path, caption="")
-            elif file_buffer: # non-image
+            elif file_buffer:  # non-image media-type
                 st.markdown(
                     f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
                 )
-            
+
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
                 response = build_request(prompt, file_path)
