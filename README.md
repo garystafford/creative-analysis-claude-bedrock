@@ -55,6 +55,12 @@ Test the model's ability to access an external URL.
 Please summarize Mercedes-Benz's design philosophy, found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html. Base you response only on the information found at this link.
 ```
 
+Negative Check using the wrong website
+
+```text
+Please summarize Mercedes-Benz's design philosophy, found here: https:https://www.google.com/. Base you response only on the information found at this link.
+```
+
 Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the print advertisements.
 
 ```text
