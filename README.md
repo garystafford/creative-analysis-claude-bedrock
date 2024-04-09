@@ -34,7 +34,7 @@ streamlit run app.py \
 
 ### 1. Using a well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. No external source of knowledge used.
+Prompt optimized by model in advance. No external source of knowledge used. Provide an nalysis of the print advertisements.
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -49,7 +49,13 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 ### 2. Referring to an External Source of Information
 
-Using the Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis.
+Test the model's ability to access an external URL.
+
+```text
+Please summarize Mercedes-Benz's design philosophy, found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html. Base you response only on the information found at this link.
+```
+
+Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the print advertisements.
 
 ```text
 Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
