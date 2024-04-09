@@ -10,12 +10,12 @@ import base64
 import datetime
 import json
 import logging
+from io import StringIO
 
 import boto3
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
-from io import StringIO
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -76,7 +76,7 @@ def build_request(prompt, file_path):
         bedrock_runtime = boto3.client(service_name="bedrock-runtime")
 
         # Read reference image from file and encode as base64 strings.
-        if file_path == None:
+        if file_path is None:
             message = {
                 "role": "user",
                 "content": [
