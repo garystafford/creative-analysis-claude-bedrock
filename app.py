@@ -15,6 +15,7 @@ import boto3
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
+from io import StringIO
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -60,7 +61,7 @@ def run_multi_modal_prompt(
     return response_body
 
 
-def build_request(prompt, image):
+def build_request(prompt, file_path):
     """
     Entrypoint for Anthropic Claude multimodal prompt example.
     Args:
@@ -74,27 +75,32 @@ def build_request(prompt, image):
 
         bedrock_runtime = boto3.client(service_name="bedrock-runtime")
 
-        input_image = image
-        input_text = prompt
-
         # Read reference image from file and encode as base64 strings.
-        with open(input_image, "rb") as image_file:
-            content_image = base64.b64encode(image_file.read()).decode("utf8")
+        if file_path == None:
+            message = {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                ],
+            }
+        else:
+            with open(file_path, "rb") as image_file:
+                content_image = base64.b64encode(image_file.read()).decode("utf8")
 
-        message = {
-            "role": "user",
-            "content": [
-                {
-                    "type": "image",
-                    "source": {
-                        "type": "base64",
-                        "media_type": "image/jpeg",
-                        "data": content_image,
+            message = {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/jpeg",
+                            "data": content_image,
+                        },
                     },
-                },
-                {"type": "text", "text": input_text},
-            ],
-        }
+                    {"type": "text", "text": prompt},
+                ],
+            }
 
         messages = [message]
 
@@ -191,7 +197,7 @@ def main():
                     background-color: #777777;
                 }
                 div[data-testid="stSidebarUserContent"] {
-                    padding-top: 50px;
+                    padding-top: 40px;
                 }
                 div[class="row-widget stSelectbox"] label {
                     background-color: #777777;
@@ -237,6 +243,9 @@ def main():
     if "top_k" not in st.session_state:
         st.session_state["top_k"] = 250
 
+    if "media_type" not in st.session_state:
+        st.session_state["media_type"] = None
+
     st.markdown("## Generative AI-powered Creative Analysis")
 
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
@@ -253,36 +262,57 @@ def main():
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
-        img_file_buffer = st.file_uploader(
-            "Upload a JPG, PNG, GIF, or WEBP file:", type=["jpg", "png", "webp", "gif"]
+        file_buffer = st.file_uploader(
+            "Upload a JPG, PNG, GIF, WEBP, CSV, TXT file:",
+            type=["jpg", "png", "webp", "gif", "csv", "txt"],
         )
 
-        if img_file_buffer is not None:
-            image = Image.open(img_file_buffer)
-            image_path = f"_temp_images/{img_file_buffer.name}"
-            image.save(image_path)
+        file_path = None
+
+        if file_buffer is not None:
+            st.session_state.media_type = file_buffer.type
+            if file_buffer.type not in [
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+                "image/gif",
+            ]:
+                stringio = StringIO(file_buffer.getvalue().decode("utf-8"))
+                prompt = f"{prompt}\n\n{stringio.getvalue()}"
+            else:
+                image = Image.open(file_buffer)
+                file_path = f"_temp_images/{file_buffer.name}"
+                image.save(file_path)
 
         # Every form must have a submit button.
         submitted = st.form_submit_button("Submit")
-        if submitted and img_file_buffer:
+        if submitted:
             st.markdown("---")
-            st.image(image_path, caption="")
+            if file_buffer and file_path: # image
+                st.image(file_path, caption="")
+            elif file_buffer: # non-image
+                st.markdown(
+                    f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
+                )
+            
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
-                response = build_request(prompt, image_path)
+                response = build_request(prompt, file_path)
                 st.text_area(
-                    label="Analysis:", value=response["content"][0]["text"], height=800
+                    label="Analysis:",
+                    value=response["content"][0]["text"],
+                    height=800,
                 )
                 current_time2 = datetime.datetime.now()
                 st.markdown(
                     f"Analysis time: {current_time2 - current_time1}",
                     unsafe_allow_html=True,
                 )
-        else:
-            st.markdown(
-                "<p style='color: red'>Please upload an image before continuing.</p>",
-                unsafe_allow_html=True,
-            )
+        # else:
+        #     st.markdown(
+        #         "<p style='color: red'>Please upload a file before continuing.</p>",
+        #         unsafe_allow_html=True,
+        #     )
     st.markdown(
         "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
         unsafe_allow_html=True,
@@ -323,7 +353,8 @@ For each element, describe how it is effectively utilized across the ads and exp
 • max_tokens: {st.session_state.max_tokens}
 • temperature: {st.session_state.temperature}
 • top_p: {st.session_state.top_p}
-• top_k: {st.session_state.top_k}"""
+• top_k: {st.session_state.top_k}
+• media_type: {st.session_state.media_type}"""
         )
 
 
