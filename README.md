@@ -103,7 +103,7 @@ Overall, these print ads leverage striking visuals, compelling copy, consistent 
 
 ### Analyzing a Text File vs. Image
 
-Upload the [MBinfo.txt](MBinfo.txt) file.
+Upload the [MB_info.txt](MB_info.txt) file.
 
 ```text
 Provides an analysis of the uploaded print advertisements.
