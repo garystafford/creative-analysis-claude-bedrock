@@ -32,9 +32,9 @@ streamlit run app.py \
 
 ## Samples Prompts
 
-### 1. Using a well-engineered Prompt for Analysis
+### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. No external source of knowledge used. Provide an nalysis of the print advertisements.
+Prompt optimized by model in advance. No external source of knowledge used. Provides an analysis of the uploaded print advertisements.
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -55,13 +55,13 @@ Test the model's ability to access an external URL.
 Please summarize Mercedes-Benz's design philosophy, found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html. Base you response only on the information found at this link.
 ```
 
-Negative Check using the wrong website
+Negative check using the wrong website
 
 ```text
 Please summarize Mercedes-Benz's design philosophy, found here: https:https://www.google.com/. Base you response only on the information found at this link.
 ```
 
-Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the print advertisements.
+Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the uploaded print advertisements.
 
 ```text
 Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
@@ -99,6 +99,14 @@ These Mercedes-Benz print advertisements showcase several compelling creative el
 5. Aspirational lifestyle positioning: While showcasing the vehicles themselves, the ads also subtly convey an aspirational, luxurious lifestyle through the sophisticated urban settings, use of motion and speed, and overall premium aesthetic. This aligns with Mercedes-Benz's high-end brand identity.
 
 Overall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings.
+```
+
+### Analyzing a Text File vs. Image
+
+Upload the [MBinfo.txt](MBinfo.txt) file.
+
+```text
+Provides an analysis of the uploaded print advertisements.
 ```
 
 ## Example Response from Foundation Model
