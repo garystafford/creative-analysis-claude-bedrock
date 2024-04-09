@@ -34,7 +34,7 @@ streamlit run app.py \
 
 ### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. No external source of knowledge used. Provides an analysis of the uploaded print advertisements.
+Prompt optimized by model in advance. No external source of knowledge used. Provides an analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -61,7 +61,7 @@ Negative check using the wrong website
 Please summarize Mercedes-Benz's design philosophy, found here: https:https://www.google.com/. Base you response only on the information found at this link.
 ```
 
-Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the uploaded print advertisements.
+Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
@@ -71,7 +71,7 @@ https://group.mercedes-benz.com/innovation/design/design-philosophy.html
 
 ### 3. Prompt Optimization
 
-Asking the model to optimize the user's initial prompt.
+Asking the model to optimize the user's initial prompt. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
@@ -81,7 +81,7 @@ Analyze these print advertisements and find some common creative elements. Some 
 
 ### 4. Generate New Creative Concepts from Analysis
 
-Using the resulting analysis to design new advertising. Includes an external link to [digital ad specs](https://mlmanhattan.com/online-ad-specs) as a reference for new layout.
+Using the resulting analysis to design new advertising. Includes an external link to [digital ad specs](https://mlmanhattan.com/online-ad-specs) as a reference for new layout. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs found here as a reference for the layout: https://mlmanhattan.com/online-ad-specs.
