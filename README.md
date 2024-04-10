@@ -47,29 +47,7 @@ Analyze these four print advertisements for Mercedes-Benz sedans, two in English
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 ```
 
-### 2. Referring to an External Source of Information
-
-Test the model's ability to access an external URL.
-
-```text
-Please summarize Mercedes-Benz's design philosophy, found here: https://group.mercedes-benz.com/innovation/design/design-philosophy.html. Base you response only on the information found at this link.
-```
-
-Negative check using the wrong website
-
-```text
-Please summarize Mercedes-Benz's design philosophy, found here: https:https://www.google.com/. Base you response only on the information found at this link.
-```
-
-Using Mercedes-Benz [Our design philosophy.](https://group.mercedes-benz.com/innovation/design/design-philosophy.html) website's content as reference for the analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
-
-```text
-Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. How well do the elements align to Mercedes-Benz's design philosophy found here:
-
-https://group.mercedes-benz.com/innovation/design/design-philosophy.html
-```
-
-### 3. Prompt Optimization
+### 2 Prompt Optimization
 
 Asking the model to optimize the user's initial prompt. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
@@ -79,7 +57,7 @@ You are an expert at optimizing large language model prompts for marketing analy
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
-### 4. Generate New Creative Concepts from Analysis
+### 3. Generate New Creative Concepts from Analysis
 
 Using the resulting analysis to design new advertising. Includes an external link to [digital ad specs](https://mlmanhattan.com/online-ad-specs) as a reference for new layout. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
