@@ -34,7 +34,7 @@ streamlit run app.py \
 
 ### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. No external source of knowledge used. Provides an analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -52,17 +52,17 @@ For each element, describe how it is effectively utilized across the ads and exp
 Asking the model to optimize the user's initial prompt. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
-You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description, which will accompany the these advertising samples:
+You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
 
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
 ### 3. Generate New Creative Concepts from Analysis
 
-Using the resulting analysis to design new advertising. Includes an external link to [digital ad specs](https://mlmanhattan.com/online-ad-specs) as a reference for new layout. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Using the resulting analysis to design new advertising. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs found here as a reference for the layout: https://mlmanhattan.com/online-ad-specs.
+Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout, described in this PDF.
 
 These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:
 
@@ -85,6 +85,39 @@ Upload the [MB_info.txt](MB_info.txt) file.
 
 ```text
 Provides an analysis of the uploaded print advertisements.
+```
+
+### Analyzing Creative Brief
+
+Upoad the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
+
+```text
+You are a creative director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop a three compelling online digital advertisements. Include the headline, ad copy, call to action, and description of imagery for each in your response. Format the output as a nested JSON object according to the template below.
+
+{
+    "advertisement": {
+        "headline": "",
+        "ad_copy": "",
+        "call_to_action": "",
+        "imagery": ""
+    }
+},
+{
+    "advertisement": {
+        "headline": "",
+        "ad_copy": "",
+        "call_to_action": "",
+        "imagery": ""
+    }
+},
+{
+    "advertisement": {
+        "headline": "",
+        "ad_copy": "",
+        "call_to_action": "",
+        "imagery": ""
+    }
+},
 ```
 
 ## Example Response from Foundation Model
