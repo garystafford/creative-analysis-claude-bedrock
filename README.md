@@ -84,7 +84,7 @@ Overall, these print ads leverage striking visuals, compelling copy, consistent 
 Upload the [MB_info.txt](MB_info.txt) file.
 
 ```text
-Provides an analysis of the uploaded print advertisements.
+Provides a summary of this document.
 ```
 
 ### Analyzing Creative Brief
