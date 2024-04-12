@@ -45,7 +45,7 @@ streamlit run app.py \
 
 ### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements for Mercedes-Benz.
+Prompt was pre-optimized by a foundation model in advance. Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
 Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
@@ -62,7 +62,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 ### 2. Prompt Optimization
 
-Asking the foundation model to optimize the user's initial prompt.
+Asking the foundation model to optimize the user's initial prompt based on the task and content.
 
 Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
