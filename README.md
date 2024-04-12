@@ -95,12 +95,12 @@ Provides a summary of this document.
 
 ### 5. Analyzing a Creative Brief and Generate New Advertisements Ideas
 
-Analyze a creative brief for PayPal and generte three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
+Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
-Upoad the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
+Upload the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
 
 ```text
-You are a creative director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop a three compelling online digital advertisements. Include a unique ad id (UUID), headline, ad copy, call to action, and description of imagery for each in your response. Format the output as a series of JSON object according to the template below.
+You are a Creative Director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop three compelling online digital advertisements. Include a unique ad id (UUID), headline, ad copy, call to action, and description of imagery for each in your response. Format the response as a series of JSON objects according to the template below.
 
 {
     "advertisements": [
