@@ -34,7 +34,9 @@ streamlit run app.py \
 
 ### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements.
+
+Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -49,7 +51,9 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 ### 2. Prompt Optimization
 
-Asking the model to optimize the user's initial prompt. Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Asking the foundation model to optimize the user's initial prompt.
+
+Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
