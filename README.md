@@ -140,12 +140,29 @@ You are a Creative Director for a leading advertising agency. Based on this foll
 }
 ```
 
-### 6. Develop a Layout for an Ad Based on the Above Output (see #5)
+### 6a. Develop a Layout for an Ad Based on the Above Output (see #5)
 
 No upload required.
 
 ```text
 You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2.
+
+{
+  "advertisement": {
+    "headline": "Your Money, Your Rules",
+    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving allowance from your parents or getting paid for that dog-walking gig, PayPal is your virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
+    "call_to_action": "Download the PayPal app today and take charge of your financial freedom.",
+    "imagery": "The ad features a group of diverse teens hanging out together, laughing and having fun. One of them holds up their smartphone, displaying the PayPal app. The imagery conveys a sense of independence, friendship, and the freedom to manage their money on their own terms."
+  }
+}
+```
+
+### 6b. Develop a Layout for an Ad Based on the Above Output (see #5) using Brief as Additional Context
+
+Upload the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
+
+```text
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2. The Creative Brief for PayPal is included for reference.
 
 {
   "advertisement": {
