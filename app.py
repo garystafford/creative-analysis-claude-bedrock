@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-08
+# Modified: 2024-04-11
 # AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
 
 """
@@ -13,6 +13,7 @@ import logging
 from io import StringIO
 
 import boto3
+import fitz
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
@@ -263,23 +264,27 @@ For each element, describe how it is effectively utilized across the ads and exp
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         file_buffer = st.file_uploader(
-            "Upload a JPG, PNG, GIF, WEBP, CSV, TXT file:",
-            type=["jpg", "png", "webp", "gif", "csv", "txt"],
+            "Upload a JPG, PNG, GIF, WEBP, PDF, CSV, TXT file:",
+            type=["jpg", "png", "webp", "pdf", "gif", "csv", "txt"],
         )
 
         file_path = None  # only used for images, else none
 
         if file_buffer is not None:
             st.session_state.media_type = file_buffer.type
-            if file_buffer.type not in [
-                "image/jpeg",
-                "image/png",
-                "image/webp",
-                "image/gif",
+            if file_buffer.type in [
+                "text/csv",
+                "text/plain",
             ]:
                 stringio = StringIO(file_buffer.getvalue().decode("utf-8"))
                 prompt = f"{prompt}\n\n{stringio.getvalue()}"
-            else:
+            if file_buffer.type == "application/pdf":
+                doc = fitz.open(file_buffer)
+                text = ""
+                for page in doc:
+                    text += page.get_text()
+                prompt = f"{prompt}\n\n{text}"
+            else:  # image media-type
                 image = Image.open(file_buffer)
                 file_path = f"_temp_images/{file_buffer.name}"
                 image.save(file_path)
@@ -289,12 +294,17 @@ For each element, describe how it is effectively utilized across the ads and exp
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.markdown("---")
-            if file_buffer and file_path:  # image media-type
-                st.image(file_path, caption="")
-            elif file_buffer:  # non-image media-type
+            if file_buffer and file_buffer.type in [
+                "text/csv",
+                "text/plain",
+            ]:
                 st.markdown(
                     f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
                 )
+            elif file_buffer and file_buffer.type == "application/pdf":
+                st.markdown(f"Sample of file contents:\n\n{text[0:500]}...")
+            elif file_buffer and file_path:  # image media-type
+                st.image(file_path, caption="")
 
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
@@ -309,11 +319,6 @@ For each element, describe how it is effectively utilized across the ads and exp
                     f"Analysis time: {current_time2 - current_time1}",
                     unsafe_allow_html=True,
                 )
-        # else:
-        #     st.markdown(
-        #         "<p style='color: red'>Please upload a file before continuing.</p>",
-        #         unsafe_allow_html=True,
-        #     )
     st.markdown(
         "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
         unsafe_allow_html=True,
