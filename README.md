@@ -159,7 +159,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 ## Example Response from Foundation Model
 
-Example response body from Claude 3 Sonnet model on Bedrock.
+Example response body from Claude 3 Sonnet model on Bedrock. Note that responses also include input and output token counts, which are useful for estimating costs.
 
 ```json
 {
