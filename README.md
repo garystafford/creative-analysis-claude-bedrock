@@ -4,6 +4,17 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 family of
 
 ![Screenshot](screengrab7.png)
 
+## Media Types Supported
+
+Currently, this app supports the following media-types for uploading:
+* image/jpeg
+* image/png
+* image/webp
+* image/gif
+* text/plain - text content is copied into prompt as raw text
+* text/csv - text content is copied into prompt as raw text
+* application/pdf - text content is copied into prompt as raw text
+
 ## Samples Advertisements
 
 ![Mercedes-Benz Ads](Mercedes-Benz_advertisements.jpg)
