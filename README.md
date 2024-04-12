@@ -202,3 +202,7 @@ Example response body from Claude 3 Sonnet model on Bedrock.
     }
 }
 ```
+
+---
+
+_The contents of this repository represent my viewpoints and not of my past or current employers, including Amazon Web Services (AWS). All third-party libraries, modules, plugins, and SDKs are the property of their respective owners._
