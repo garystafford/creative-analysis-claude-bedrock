@@ -7,13 +7,13 @@ Simple Streamlit application used for demonstrating Anthropic Claude 3 family of
 ## Media Types Supported
 
 Currently, this app supports the following media-types for uploading:
-* image/jpeg
-* image/png
-* image/webp
-* image/gif
-* text/plain - text content is added into prompt as raw text
-* text/csv - text content is added into prompt as raw text (a little hacky right now...)
-* application/pdf - text content is added into prompt as raw text (a little hacky right now...)
+* image/jpeg - natively supported by Bedrock/Anthropic
+* image/png - natively supported by Bedrock/Anthropic
+* image/webp - natively supported by Bedrock/Anthropic
+* image/gif - natively supported by Bedrock/Anthropic
+* text/plain - content of file is added into prompt as raw text
+* text/csv - content of file is added into prompt as raw text (a little hacky right now...)
+* application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
 
 ## Samples Advertisements
 
