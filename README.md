@@ -34,7 +34,7 @@ streamlit run app.py \
 
 ### 1. Using a Well-engineered Prompt for Analysis
 
-Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements.
+Prompt optimized by model in advance. Provides an analysis of the uploaded print advertisements for Mercedes-Benz.
 
 Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
 
@@ -85,7 +85,7 @@ These Mercedes-Benz print advertisements showcase several compelling creative el
 Overall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings.
 ```
 
-### Analyzing a Text File vs. Image
+### 4. Analyzing a Text File vs. Image
 
 Upload the [MB_info.txt](MB_info.txt) file.
 
@@ -93,12 +93,14 @@ Upload the [MB_info.txt](MB_info.txt) file.
 Provides a summary of this document.
 ```
 
-### Analyzing Creative Brief
+### 5. Analyzing a Creative Brief and Generate New Advertisements Ideas
+
+Analyze a creative brief for PayPal and generte three ideas for new ads. Output a structured response as JSON objects that an be easily ingested into a downstream system.
 
 Upoad the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
 
 ```text
-You are a creative director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop a three compelling online digital advertisements. Include the headline, ad copy, call to action, and description of imagery for each in your response. Format the output as a nested JSON object according to the template below.
+You are a creative director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop a three compelling online digital advertisements. Include the headline, ad copy, call to action, and description of imagery for each in your response. Format the output as a series of JSON object according to the template below.
 
 {
     "advertisement": {
@@ -124,6 +126,23 @@ You are a creative director for a leading advertising agency. Based on this foll
         "imagery": ""
     }
 },
+```
+
+### 6. Develop a Layout for an Ad Based on the Above Output (see #5)
+
+No upload required.
+
+```text
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 2:3.
+
+{
+  "advertisement": {
+    "headline": "Your Money, Your Rules",
+    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving allowance from your parents or getting paid for that dog-walking gig, PayPal is your virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
+    "call_to_action": "Download the PayPal app today and take charge of your financial freedom.",
+    "imagery": "The ad features a group of diverse teens hanging out together, laughing and having fun. One of them holds up their smartphone, displaying the PayPal app. The imagery conveys a sense of independence, friendship, and the freedom to manage their money on their own terms."
+  }
+}
 ```
 
 ## Example Response from Foundation Model
