@@ -126,16 +126,16 @@ These Mercedes-Benz print advertisements showcase several compelling creative el
 Overall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings.
 ```
 
-### 4. Example of Analyzing a Text File vs. Image
+### 4. Analyzing a Text File vs. Image
 
 Upload (1) TXT file:
 
-- [MB_info.txt](MB_info.txt)
+- [mercedes_benz_info.txt](mercedes_benz_info.txt)
 
 Prompt:
 
 ```text
-Provides a summary of this document.
+Provides a concise summary of this document.
 ```
 
 ### 5. Analyzing a PayPal Creative Brief and Generate New Creative Concepts
