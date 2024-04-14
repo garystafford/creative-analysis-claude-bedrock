@@ -49,7 +49,13 @@ streamlit run app.py \
 
 Prompt was pre-optimized by a foundation model in advance. Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
-Upload (4) JPEGs: [ad1.jpeg](ad1.jpeg), [ad2.jpeg](ad2.jpeg), [ad3.jpeg](ad3.jpeg), [ad4.jpeg](ad4.jpeg),
+Upload (4) JPEGs:
+* [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+* [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+* [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+* [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+
+Prompt:
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -66,7 +72,13 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 Asking the foundation model to optimize the user's initial prompt based on the task and content.
 
-Upload (4) JPEGs: [ad1.jpeg](ad1.jpeg), [ad2.jpeg](ad2.jpeg), [ad3.jpeg](ad3.jpeg), [ad4.jpeg](ad4.jpeg),
+Upload (4) JPEGs:
+* [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+* [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+* [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+* [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+
+Prompt:
 
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
@@ -78,7 +90,11 @@ Analyze these print advertisements and find some common creative elements. Some 
 
 Using the resulting analysis to design for new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
-Upload (2) PDFs: [Ad_Specs_Modern_Luxury.pdf](Ad_Specs_Modern_Luxury.pdf) and [Advertise_Info_Modern_Luxury.pdf](Advertise_Info_Modern_Luxury.pdf)
+Upload (2) PDFs:
+* [manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
+* [manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+
+Prompt:
 
 ```text
 Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout, described in this PDF. Include the size of the ad in the response.
@@ -100,7 +116,10 @@ Overall, these print ads leverage striking visuals, compelling copy, consistent 
 
 ### 4. Analyzing a Text File vs. Image
 
-Upload the [MB_info.txt](MB_info.txt) file.
+Upload (1) TXT file:
+* [MB_info.txt](MB_info.txt)
+
+Prompt:
 
 ```text
 Provides a summary of this document.
@@ -110,7 +129,10 @@ Provides a summary of this document.
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
-Upload the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
+Upload (1) WebP file:
+* [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
+
+Prompt:
 
 ```text
 You are a Creative Director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop three compelling online digital advertisements. Include a unique ad id (UUID), headline, ad copy, call to action, and description of imagery for each in your response. Format the response as a series of JSON objects according to the template below.
@@ -146,6 +168,8 @@ You are a Creative Director for a leading advertising agency. Based on this foll
 
 No upload required.
 
+Prompt:
+
 ```text
 You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2.
 
@@ -161,7 +185,10 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 ### 6b. Develop a Layout for an Ad Based on the Above Output (see #5) using Brief as Additional Context
 
-Upload the [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp) file.
+Upload (1) WebP file:
+* [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
+
+Prompt:
 
 ```text
 You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2. The Creative Brief for PayPal is included for reference.
