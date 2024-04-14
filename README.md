@@ -7,28 +7,16 @@ Simple Streamlit [application](app.py) used for demonstrating Anthropic Claude 3
 ## Media Types Supported
 
 Currently, this app supports the following media-types for uploading:
-* image/jpeg - natively supported by Bedrock/Anthropic
-* image/png - natively supported by Bedrock/Anthropic
-* image/webp - natively supported by Bedrock/Anthropic
-* image/gif - natively supported by Bedrock/Anthropic
-* text/plain - content of file is added into prompt as raw text
-* text/csv - content of file is added into prompt as raw text (a little hacky right now...)
-* application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
+
+- image/jpeg - natively supported by Bedrock/Anthropic
+- image/png - natively supported by Bedrock/Anthropic
+- image/webp - natively supported by Bedrock/Anthropic
+- image/gif - natively supported by Bedrock/Anthropic
+- text/plain - content of file is added into prompt as raw text
+- text/csv - content of file is added into prompt as raw text (a little hacky right now...)
+- application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
 
 __*** NEW ***__ application can now accept multiple file uploads.
-
-## Samples Advertisements
-
-<table>
-    <tr>
-        <td width=384><image src="mercedes_benz_ads/ad1.jpeg"></td>
-        <td width=384><image src="mercedes_benz_ads/ad2.jpeg"></td>
-    </tr>
-    <tr>
-        <td width=384><image src="mercedes_benz_ads/ad3.jpeg"></td>
-        <td width=384><image src="mercedes_benz_ads/ad4.jpeg"></td>
-    </tr>
-</table>
 
 ## Start Application
 
@@ -51,6 +39,18 @@ streamlit run app.py \
     --client.toolbarMode "minimal"
 ```
 
+## Samples Advertisements
+
+<table>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad1.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad2.jpeg"></td>
+    </tr>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad3.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad4.jpeg"></td>
+    </tr>
+</table>
 
 ## Samples Prompts
 
@@ -59,10 +59,11 @@ streamlit run app.py \
 Prompt was pre-optimized by a foundation model in advance. Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
 Upload (4) JPEGs:
-* [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
-* [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
-* [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
-* [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+
+- [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
 
 Prompt:
 
@@ -84,10 +85,11 @@ Important, if no ads were provided, do not return an analysis.
 Asking the foundation model to optimize the user's initial prompt based on the task and content.
 
 Upload (4) JPEGs:
-* [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
-* [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
-* [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
-* [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+
+- [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
 
 Prompt:
 
@@ -102,8 +104,9 @@ Analyze these print advertisements and find some common creative elements. Some 
 Using the resulting analysis to design for new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
 Upload (2) PDFs:
-* [manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
-* [manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+
+- [manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
+- [manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
 
 Prompt:
 
@@ -128,7 +131,8 @@ Overall, these print ads leverage striking visuals, compelling copy, consistent 
 ### 4. Analyzing a Text File vs. Image
 
 Upload (1) TXT file:
-* [MB_info.txt](MB_info.txt)
+
+- [MB_info.txt](MB_info.txt)
 
 Prompt:
 
@@ -141,7 +145,8 @@ Provides a summary of this document.
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
 Upload (1) WebP file:
-* [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
+
+- [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
@@ -197,7 +202,8 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 ### 6b. Develop a Layout for an Ad Based on the Above Output (see #5) using Brief as Additional Context
 
 Upload (1) WebP file:
-* [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
+
+- [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
@@ -220,43 +226,43 @@ Example response body from Claude 3 Sonnet model on Bedrock. Note that responses
 
 ```json
 {
-    "id": "msg_017ntpirxuSGXfJMN1afGAXR",
-    "type": "message",
-    "role": "assistant",
-    "content": [
-        {
-            "type": "text",
-            "text": "Here is a concise and effective positive prompt for analyzing the common creative elements across these Mercedes-Benz print advertisements, some in English and some in German:\n\n\"Examine the visual design, messaging, and marketing approaches used across these Mercedes-Benz vehicle print ads. Identify recurring creative strategies, themes, and techniques employed to promote the brand's luxury automotive offerings to potential customers. Discuss how the ads aim to create desire and appeal through their imagery, copy, and overall artistic execution, while being mindful to objectively analyze the marketing without subjective judgement or bias.\""
-        }
-    ],
-    "model": "claude-3-sonnet-28k-20240229",
-    "stop_reason": "end_turn",
-    "stop_sequence": null,
-    "usage": {
-        "input_tokens": 1662,
-        "output_tokens": 124
+  "id": "msg_017ntpirxuSGXfJMN1afGAXR",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "Here is a concise and effective positive prompt for analyzing the common creative elements across these Mercedes-Benz print advertisements, some in English and some in German:\n\n\"Examine the visual design, messaging, and marketing approaches used across these Mercedes-Benz vehicle print ads. Identify recurring creative strategies, themes, and techniques employed to promote the brand's luxury automotive offerings to potential customers. Discuss how the ads aim to create desire and appeal through their imagery, copy, and overall artistic execution, while being mindful to objectively analyze the marketing without subjective judgement or bias.\""
     }
+  ],
+  "model": "claude-3-sonnet-28k-20240229",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 1662,
+    "output_tokens": 124
+  }
 }
 ```
 
 ```json
 {
-    "id": "msg_01A6TxmM18XGTFJ6vMk7xnCg",
-    "type": "message",
-    "role": "assistant",
-    "content": [
-        {
-            "type": "text",
-            "text": "These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:\n\n1. Striking visual imagery: All four ads feature high-quality, dramatic photography that showcases the vehicles in stylish and aspirational settings. The use of dynamic lighting, motion blur effects, and urban/futuristic backdrops creates a sense of sophistication and excitement around the cars.\n\n2. Impactful copywriting: The ads employ concise, evocative taglines and headlines that reinforce Mercedes-Benz's brand positioning around perfection, innovation, and superior performance. Examples include \"The only thing that's not relative. Perfection.\" and \"Glam turismo.\" The German copy like \"Das Beste kennt keine Alternative\" also conveys a premium, uncompromising message.\n\n3. Consistent branding elements: The iconic Mercedes-Benz tri-star logo is prominently featured in each ad, along with the brand's signature typography and color palette of silver, black, and blue tones. This strong brand identity ties the campaigns together cohesively.\n\n4. Focus on design and styling: The ads highlight the sleek, modern designs of the featured C-Class and S-Class models through artistic angles and attention to detail on elements like the sculpted bodies, alloy wheels, and LED lighting accents.\n\n5. Aspirational lifestyle positioning: While showcasing the vehicles themselves, the ads also subtly convey an aspirational, luxurious lifestyle through the sophisticated urban settings, use of motion and speed, and overall premium aesthetic. This aligns with Mercedes-Benz's high-end brand identity.\n\nOverall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings."
-        }
-    ],
-    "model": "claude-3-sonnet-28k-20240229",
-    "stop_reason": "end_turn",
-    "stop_sequence": null,
-    "usage": {
-        "input_tokens": 1743,
-        "output_tokens": 417
+  "id": "msg_01A6TxmM18XGTFJ6vMk7xnCg",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:\n\n1. Striking visual imagery: All four ads feature high-quality, dramatic photography that showcases the vehicles in stylish and aspirational settings. The use of dynamic lighting, motion blur effects, and urban/futuristic backdrops creates a sense of sophistication and excitement around the cars.\n\n2. Impactful copywriting: The ads employ concise, evocative taglines and headlines that reinforce Mercedes-Benz's brand positioning around perfection, innovation, and superior performance. Examples include \"The only thing that's not relative. Perfection.\" and \"Glam turismo.\" The German copy like \"Das Beste kennt keine Alternative\" also conveys a premium, uncompromising message.\n\n3. Consistent branding elements: The iconic Mercedes-Benz tri-star logo is prominently featured in each ad, along with the brand's signature typography and color palette of silver, black, and blue tones. This strong brand identity ties the campaigns together cohesively.\n\n4. Focus on design and styling: The ads highlight the sleek, modern designs of the featured C-Class and S-Class models through artistic angles and attention to detail on elements like the sculpted bodies, alloy wheels, and LED lighting accents.\n\n5. Aspirational lifestyle positioning: While showcasing the vehicles themselves, the ads also subtly convey an aspirational, luxurious lifestyle through the sophisticated urban settings, use of motion and speed, and overall premium aesthetic. This aligns with Mercedes-Benz's high-end brand identity.\n\nOverall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings."
     }
+  ],
+  "model": "claude-3-sonnet-28k-20240229",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 1743,
+    "output_tokens": 417
+  }
 }
 ```
 
