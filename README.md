@@ -203,7 +203,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 Upload (1) WebP file:
 
-- [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
+- [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
