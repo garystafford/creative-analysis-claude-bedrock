@@ -15,6 +15,8 @@ Currently, this app supports the following media-types for uploading:
 * text/csv - content of file is added into prompt as raw text (a little hacky right now...)
 * application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
 
+__*** NEW ***__ application can now accept multiple file uploads.
+
 ## Samples Advertisements
 
 ![Mercedes-Benz Ads](Mercedes-Benz_advertisements.jpg)
@@ -47,7 +49,7 @@ streamlit run app.py \
 
 Prompt was pre-optimized by a foundation model in advance. Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
-Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Upload (4) JPEGs: [ad1.jpeg](ad1.jpeg), [ad2.jpeg](ad2.jpeg), [ad3.jpeg](ad3.jpeg), [ad4.jpeg](ad4.jpeg),
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -64,7 +66,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 Asking the foundation model to optimize the user's initial prompt based on the task and content.
 
-Upload [Mercedes-Benz_advertisements.jpg](Mercedes-Benz_advertisements.jpg).
+Upload (4) JPEGs: [ad1.jpeg](ad1.jpeg), [ad2.jpeg](ad2.jpeg), [ad3.jpeg](ad3.jpeg), [ad4.jpeg](ad4.jpeg),
 
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
@@ -76,10 +78,10 @@ Analyze these print advertisements and find some common creative elements. Some 
 
 Using the resulting analysis to design for new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
-Upload [Ad_Specs_Modern_Luxury.pdf](Ad_Specs_Modern_Luxury.pdf).
+Upload (2) PDFs: [Ad_Specs_Modern_Luxury.pdf](Ad_Specs_Modern_Luxury.pdf) and [Advertise_Info_Modern_Luxury.pdf](Advertise_Info_Modern_Luxury.pdf)
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout, described in this PDF.
+Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout, described in this PDF. Include the size of the ad in the response.
 
 These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:
 
