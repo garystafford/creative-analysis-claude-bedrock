@@ -52,9 +52,9 @@ streamlit run app.py \
 
 ## Samples Prompts
 
-### 1. Using a Well-engineered Prompt for Analysis
+### 1. Analysis of Four Print Advertisements for Mercedes-Benz
 
-Prompt was pre-optimized by a foundation model in advance. Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
+Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
 Upload (4) JPEGs:
 
@@ -97,7 +97,7 @@ You are an expert at optimizing large language model prompts for marketing analy
 Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
 ```
 
-### 3. Generate New Creative Concepts from Analysis
+### 3. Generate New Creative Concepts from Analysis of Four Print Advertisements for Mercedes-Benz
 
 Using the resulting analysis to design for new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
@@ -126,7 +126,7 @@ These Mercedes-Benz print advertisements showcase several compelling creative el
 Overall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings.
 ```
 
-### 4. Analyzing a Text File vs. Image
+### 4. Example of Analyzing a Text File vs. Image
 
 Upload (1) TXT file:
 
@@ -138,7 +138,7 @@ Prompt:
 Provides a summary of this document.
 ```
 
-### 5. Analyzing a Creative Brief and Generate New Advertisements Ideas
+### 5. Analyzing a PayPal Creative Brief and Generate New Creative Concepts
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
@@ -178,7 +178,7 @@ You are a Creative Director for a leading advertising agency. Based on this foll
 }
 ```
 
-### 6a. Develop a Layout for an Ad Based on the Above Output (see #5)
+### 6a. Develop a Layout for an Ad Based on the Generated Creative Concepts Above (see #5)
 
 No upload required.
 
@@ -197,7 +197,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 }
 ```
 
-### 6b. Develop a Layout for an Ad Based on the Above Output (see #5) using Brief as Additional Context
+### 6b. Develop a Layout for an Ad Based on the Generated Creative Concepts Above (see #5) using the Creative Brief as Additional Context
 
 Upload (1) WebP file:
 
