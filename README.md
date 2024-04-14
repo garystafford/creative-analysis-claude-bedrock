@@ -66,6 +66,8 @@ Analyze these four print advertisements for Mercedes-Benz sedans, two in English
     5. Alignment with Mercedes-Benz's brand identity and positioning
 
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
+
+Important, if no ads were provided, do not return an analysis.
 ```
 
 ### 2. Prompt Optimization
