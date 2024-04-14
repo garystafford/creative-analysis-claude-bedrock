@@ -125,8 +125,8 @@ def main():
     """
 
     st.set_page_config(
-        page_title="Creative Analysis",
-        page_icon="paint.png",
+        page_title="Multimodal Analysis",
+        page_icon="analysis.png",
     )
 
     custom_css = """
@@ -142,7 +142,7 @@ def main():
                     padding-right: 0;
                 }
                 textarea[class^="st-"] {
-                    height: 350px;
+                    height: 375px;
                     font-family: 'Inter', sans-serif;
                     background-color: #777777;
                     color: #ffffff;
@@ -209,7 +209,7 @@ def main():
                 [data-testid="stForm"] {
                     border-color: #777777;
                 }
-                [id="generative-ai-powered-creative-analysis"] span {
+                [id="generative-ai-powered-multimodal-analysis"] span {
                     color: #e6e6e6;
                 }
                 [data-testid="stForm"] {
@@ -241,11 +241,11 @@ def main():
     if "media_type" not in st.session_state:
         st.session_state["media_type"] = None
 
-    st.markdown("## Generative AI-powered Creative Analysis")
+    st.markdown("## Generative AI-powered Multimodal Analysis")
 
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
         st.markdown(
-            "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
+            "Describe the analysis task you wish to perform and optionally upload the content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
         default_prompt = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
@@ -254,7 +254,9 @@ def main():
     4. Interactivity or multimedia components
     5. Alignment with Mercedes-Benz's brand identity and positioning
 
-For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective. Important, if no ads were provided, do not return an analysis."""
+For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
+
+Important: if no ads were provided, do not produce the analysis."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         uploaded_files = st.file_uploader(
