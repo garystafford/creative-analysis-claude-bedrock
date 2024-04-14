@@ -80,7 +80,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 2. Prompt Optimization
 
-Asking the foundation model to optimize the user's initial prompt based on the task and content.
+Asking the foundation model to optimize the user's sub-optimal initial prompt.
 
 Upload (4) JPEGs:
 
@@ -94,7 +94,7 @@ Prompt:
 ```text
 You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
 
-Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
+Analyze these English and Gernam print advertisements and find some common creative elements.
 ```
 
 ### 3. Generate New Creative Concepts from Analysis of Four Print Advertisements for Mercedes-Benz
