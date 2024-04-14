@@ -2,7 +2,7 @@
 
 Simple Streamlit [application](app.py) used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Oriented toward AdTech, MarTech, Advertising Agencies. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to that link for all inference parameters.
 
-![Screenshot](screengrab9.png)
+![Screenshot](screengrab10.png)
 
 ## Media Types Supported
 
