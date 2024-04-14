@@ -1,6 +1,6 @@
 # Generative AI-powered Creative Analysis
 
-Simple Streamlit [application](app.py) used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Oriented toward AdTech, MarTech, Advertising Agencies. Describe the analysis task you wish to perform and upload the creative content to be analyzed. Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to that link for all inference parameters.
+Simple Streamlit [application](app.py) used for demonstrating Anthropic Claude 3 family of model's multimodal prompting on Amazon Bedrock. Describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to that link for all inference parameters.
 
 ![Screenshot](screenshot10.png)
 
@@ -15,8 +15,6 @@ Currently, this app supports the following media-types for uploading:
 - text/plain - content of file is added into prompt as raw text
 - text/csv - content of file is added into prompt as raw text (a little hacky right now...)
 - application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
-
-__*** NEW ***__ application can now accept multiple file uploads.
 
 ## Start Application
 
@@ -77,7 +75,7 @@ Analyze these four print advertisements for Mercedes-Benz sedans, two in English
 
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 
-Important, if no ads were provided, do not return an analysis.
+Important: if no ads were provided, do not produce the analysis.
 ```
 
 ### 2. Prompt Optimization
