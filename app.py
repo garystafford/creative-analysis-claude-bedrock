@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-11
+# Modified: 2024-04-14
 # AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
 
 """
@@ -255,7 +255,7 @@ def main():
     4. Interactivity or multimedia components
     5. Alignment with Mercedes-Benz's brand identity and positioning
 
-For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective."""
+For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective. Important, if no ads were provided, do not return an analysis."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         uploaded_files = st.file_uploader(
@@ -268,6 +268,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 
         if uploaded_files is not None:
             for uploaded_file in uploaded_files:
+                print(f"file_type: {uploaded_file.type}")
                 st.session_state.media_type = uploaded_file.type
                 if uploaded_file.type in [
                     "text/csv",
@@ -275,7 +276,7 @@ For each element, describe how it is effectively utilized across the ads and exp
                 ]:
                     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
                     prompt = f"{prompt}\n\n{stringio.getvalue()}"
-                if uploaded_file.type == "application/pdf":
+                elif uploaded_file.type == "application/pdf":
                     doc = fitz.open(uploaded_file)
                     text = ""
                     for page in doc:
@@ -297,16 +298,16 @@ For each element, describe how it is effectively utilized across the ads and exp
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.markdown("---")
-            if uploaded_file and uploaded_file.type in [
+            if uploaded_files and uploaded_files[0].type in [
                 "text/csv",
                 "text/plain",
             ]:
                 st.markdown(
                     f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
                 )
-            elif uploaded_file and uploaded_file.type == "application/pdf":
+            elif uploaded_files and uploaded_files[0].type == "application/pdf":
                 st.markdown(f"Sample of file contents:\n\n{text[0:500]}...")
-            elif uploaded_file and file_paths:  # image media-type
+            elif uploaded_files and file_paths:  # image media-type
                 for file_path in file_paths:
                     st.image(file_path["file_path"], caption="", width=400)
 
