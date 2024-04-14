@@ -148,7 +148,7 @@ def main():
                     background-color: #777777;
                     color: #ffffff;
                 }
-                section[aria-label="Upload a JPG image:"] {
+                section[aria-label="Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:"] {
                     background-color: #777777;
                 }
                 textarea[aria-label="Analysis:"] { # llm response
@@ -259,7 +259,7 @@ For each element, describe how it is effectively utilized across the ads and exp
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
         uploaded_files = st.file_uploader(
-            "Upload a JPG, PNG, GIF, WEBP, PDF, CSV, TXT file:",
+            "Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:",
             type=["jpg", "png", "webp", "pdf", "gif", "csv", "txt"],
             accept_multiple_files=True,
         )
