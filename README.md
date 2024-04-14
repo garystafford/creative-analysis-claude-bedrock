@@ -1,6 +1,6 @@
 # Generative AI-powered Multimodal Analysis
 
-Simple Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of model's multimodal prompting on [Amazon Bedrock](https://aws.amazon.com/bedrock). It was originally creted for AdTech, MarTech, and Advertising Agencies who need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html); refer to this link for all inference parameters.
+Simple Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of model's multimodal prompting on [Amazon Bedrock](https://aws.amazon.com/bedrock). It was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html); refer to this link for all inference parameters.
 
 ![Screenshot](screenshot11.png)
 
@@ -92,14 +92,14 @@ Upload (4) JPEGs:
 Prompt:
 
 ```text
-You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompany advertising samples:
+You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompanying advertising samples:
 
-Analyze these English and Gernam print advertisements and find some common creative elements.
+Analyze these English and German print advertisements and find some common creative elements.
 ```
 
 ### 3. Generate New Creative Concepts from Analysis of Four Print Advertisements for Mercedes-Benz
 
-Using the resulting analysis to design for new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
+Using the resulting analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
 Upload (2) PDFs:
 
@@ -109,7 +109,7 @@ Upload (2) PDFs:
 Prompt:
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout, described in this PDF. Include the size of the ad in the response.
+Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25 and 35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout described in this PDF. Include the size of the ad in the response.
 
 These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:
 
@@ -149,7 +149,7 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a Creative Director for a leading advertising agency. Based on this following Creative Brief for PayPal, develop three compelling online digital advertisements. Include a unique ad id (UUID), headline, ad copy, call to action, and description of imagery for each in your response. Format the response as a series of JSON objects according to the template below.
+You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. Format the response as a series of JSON objects according to the template below.
 
 {
     "advertisements": [
@@ -180,17 +180,17 @@ You are a Creative Director for a leading advertising agency. Based on this foll
 
 ### 6a. Develop a Layout for an Ad Based on the Generated Creative Concepts Above (see #5)
 
-No upload required.
+No upload is required.
 
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2.
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a height-to-width ratio of 3:2.
 
 {
   "advertisement": {
     "headline": "Your Money, Your Rules",
-    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving allowance from your parents or getting paid for that dog-walking gig, PayPal is your virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
+    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving an allowance from your parents or getting paid for that dog-walking gig, PayPal is the virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
     "call_to_action": "Download the PayPal app today and take charge of your financial freedom.",
     "imagery": "The ad features a group of diverse teens hanging out together, laughing and having fun. One of them holds up their smartphone, displaying the PayPal app. The imagery conveys a sense of independence, friendship, and the freedom to manage their money on their own terms."
   }
@@ -206,12 +206,12 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait-format, with a height-to-width ratio of 3:2. The Creative Brief for PayPal is included for reference.
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a height-to-width ratio of 3:2. The Creative Brief for PayPal is included for reference.
 
 {
   "advertisement": {
     "headline": "Your Money, Your Rules",
-    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving allowance from your parents or getting paid for that dog-walking gig, PayPal is your virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
+    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving an allowance from your parents or getting paid for that dog-walking gig, PayPal is the virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
     "call_to_action": "Download the PayPal app today and take charge of your financial freedom.",
     "imagery": "The ad features a group of diverse teens hanging out together, laughing and having fun. One of them holds up their smartphone, displaying the PayPal app. The imagery conveys a sense of independence, friendship, and the freedom to manage their money on their own terms."
   }
