@@ -82,10 +82,9 @@ def build_request(prompt, file_paths):
             ],
         }
 
-        if file_paths is not None:
-            for file_path in file_paths:
+        if file_paths is not None:  # must be image(s)
+            for file_path in file_paths:  # append each to message
                 with open(file_path["file_path"], "rb") as image_file:
-                    # Read reference image from file and encode as base64 strings.
                     content_image = base64.b64encode(image_file.read()).decode("utf8")
                     message["content"].append(
                         {
@@ -268,7 +267,6 @@ For each element, describe how it is effectively utilized across the ads and exp
 
         if uploaded_files is not None:
             for uploaded_file in uploaded_files:
-                print(f"file_type: {uploaded_file.type}")
                 st.session_state.media_type = uploaded_file.type
                 if uploaded_file.type in [
                     "text/csv",
