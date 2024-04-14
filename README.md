@@ -19,7 +19,16 @@ __*** NEW ***__ application can now accept multiple file uploads.
 
 ## Samples Advertisements
 
-![Mercedes-Benz Ads](Mercedes-Benz_advertisements.jpg)
+<table>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad1.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad2.jpeg"></td>
+    </tr>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad3.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad4.jpeg"></td>
+    </tr>
+</table>
 
 ## Start Application
 
@@ -132,7 +141,7 @@ Provides a summary of this document.
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
 Upload (1) WebP file:
-* [paypal-creative-brief-1-2048.webp](paypal-creative-brief-1-2048.webp)
+* [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
