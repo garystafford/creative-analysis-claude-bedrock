@@ -62,7 +62,7 @@ def run_multi_modal_prompt(
     return response_body
 
 
-def build_request(prompt, file_path):
+def build_request(prompt, file_paths):
     """
     Entrypoint for Anthropic Claude multimodal prompt example.
     Args:
@@ -73,37 +73,32 @@ def build_request(prompt, file_path):
     """
 
     try:
-
         bedrock_runtime = boto3.client(service_name="bedrock-runtime")
 
-        # Read reference image from file and encode as base64 strings.
-        if file_path is None:
-            message = {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": prompt},
-                ],
-            }
-        else:
-            with open(file_path, "rb") as image_file:
-                content_image = base64.b64encode(image_file.read()).decode("utf8")
+        message = {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": prompt},
+            ],
+        }
 
-            message = {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": "image/jpeg",
-                            "data": content_image,
-                        },
-                    },
-                    {"type": "text", "text": prompt},
-                ],
-            }
+        if file_paths is not None:
+            for file_path in file_paths:
+                with open(file_path["file_path"], "rb") as image_file:
+                    # Read reference image from file and encode as base64 strings.
+                    content_image = base64.b64encode(image_file.read()).decode("utf8")
+                    message["content"].append(
+                        {
+                            "type": "image",
+                            "source": {
+                                "type": "base64",
+                                "media_type": file_path["file_type"],
+                                "data": content_image,
+                            },
+                        }
+                    )
 
-        messages = [message]
+            messages = [message]
 
         response = run_multi_modal_prompt(
             bedrock_runtime,
@@ -263,52 +258,61 @@ def main():
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective."""
         prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
 
-        file_buffer = st.file_uploader(
+        uploaded_files = st.file_uploader(
             "Upload a JPG, PNG, GIF, WEBP, PDF, CSV, TXT file:",
             type=["jpg", "png", "webp", "pdf", "gif", "csv", "txt"],
+            accept_multiple_files=True,
         )
 
-        file_path = None  # only used for images, else none
+        file_paths = []  # only used for images, else none
 
-        if file_buffer is not None:
-            st.session_state.media_type = file_buffer.type
-            if file_buffer.type in [
-                "text/csv",
-                "text/plain",
-            ]:
-                stringio = StringIO(file_buffer.getvalue().decode("utf-8"))
-                prompt = f"{prompt}\n\n{stringio.getvalue()}"
-            if file_buffer.type == "application/pdf":
-                doc = fitz.open(file_buffer)
-                text = ""
-                for page in doc:
-                    text += page.get_text()
-                prompt = f"{prompt}\n\n{text}"
-            else:  # image media-type
-                image = Image.open(file_buffer)
-                file_path = f"_temp_images/{file_buffer.name}"
-                image.save(file_path)
+        if uploaded_files is not None:
+            for uploaded_file in uploaded_files:
+                st.session_state.media_type = uploaded_file.type
+                if uploaded_file.type in [
+                    "text/csv",
+                    "text/plain",
+                ]:
+                    stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+                    prompt = f"{prompt}\n\n{stringio.getvalue()}"
+                if uploaded_file.type == "application/pdf":
+                    doc = fitz.open(uploaded_file)
+                    text = ""
+                    for page in doc:
+                        text += page.get_text()
+                    prompt = f"{prompt}\n\n{text}"
+                else:  # image media-type
+                    image = Image.open(uploaded_file)
+                    file_path = f"_temp_images/{uploaded_file.name}"
+                    image.save(file_path)
+                    file_paths.append(
+                        {
+                            "file_path": file_path,
+                            "file_type": uploaded_file.type,
+                        }
+                    )
 
             print(f"Prompt: {prompt}")
-        # Every form must have a submit button.
+
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.markdown("---")
-            if file_buffer and file_buffer.type in [
+            if uploaded_file and uploaded_file.type in [
                 "text/csv",
                 "text/plain",
             ]:
                 st.markdown(
                     f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
                 )
-            elif file_buffer and file_buffer.type == "application/pdf":
+            elif uploaded_file and uploaded_file.type == "application/pdf":
                 st.markdown(f"Sample of file contents:\n\n{text[0:500]}...")
-            elif file_buffer and file_path:  # image media-type
-                st.image(file_path, caption="")
+            elif uploaded_file and file_paths:  # image media-type
+                for file_path in file_paths:
+                    st.image(file_path["file_path"], caption="", width=400)
 
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
-                response = build_request(prompt, file_path)
+                response = build_request(prompt, file_paths)
                 st.text_area(
                     label="Analysis:",
                     value=response["content"][0]["text"],
