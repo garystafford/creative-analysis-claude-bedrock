@@ -2,7 +2,7 @@
 
 Simple Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of model's multimodal prompting on [Amazon Bedrock](https://aws.amazon.com/bedrock). To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The Analysis powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html); refer to this link for all inference parameters.
 
-![Screenshot](screenshot10.png)
+![Screenshot](screenshot11.png)
 
 ## Media Types Supported
 
