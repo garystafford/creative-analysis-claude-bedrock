@@ -58,10 +58,10 @@ Provides an analysis of the four uploaded print advertisements for Mercedes-Benz
 
 Upload (4) JPEGs:
 
-- [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
-- [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
-- [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
-- [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
 Prompt:
 
@@ -84,10 +84,10 @@ Asking the foundation model to optimize the user's initial prompt based on the t
 
 Upload (4) JPEGs:
 
-- [mercedes_benz_ads/ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
-- [mercedes_benz_ads/ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
-- [mercedes_benz_ads/ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
-- [mercedes_benz_ads/ad4.jpeg](mercedes_benz_ads/ad4.jpeg),
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
 Prompt:
 
@@ -103,8 +103,8 @@ Using the resulting analysis to design for new 'Large Leaderboard' size digital 
 
 Upload (2) PDFs:
 
-- [manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
-- [manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+- [Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
+- [Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
 
 Prompt:
 
@@ -144,7 +144,7 @@ Analyze a creative brief for PayPal and generate three ideas for new ads. Output
 
 Upload (1) WebP file:
 
-- [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
+- [paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
@@ -201,7 +201,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 Upload (1) WebP file:
 
-- [/creative_briefs/paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
+- [paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
