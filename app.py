@@ -211,9 +211,10 @@ def main():
                 }
                 [id="generative-ai-powered-multimodal-analysis"] span {
                     color: #e6e6e6;
+                    font-size: 34px;
                 }
                 [data-testid="stForm"] {
-                    width: 800px;
+                    width: 850px;
                 }
         </style>
         """
@@ -225,6 +226,15 @@ def main():
 
     if "model_id" not in st.session_state:
         st.session_state["model_id"] = "anthropic.claude-3-sonnet-20240229-v1:0"
+
+    if "analysis_time" not in st.session_state:
+        st.session_state["analysis_time"] = 0
+
+    if "input_tokens" not in st.session_state:
+        st.session_state["input_tokens"] = 0
+
+    if "output_tokens" not in st.session_state:
+        st.session_state["output_tokens"] = 0
 
     if "max_tokens" not in st.session_state:
         st.session_state["max_tokens"] = 1000
@@ -314,16 +324,20 @@ Important: if no ads were provided, do not produce the analysis."""
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
                 response = build_request(prompt, file_paths)
+                current_time2 = datetime.datetime.now()
                 st.text_area(
                     label="Analysis:",
                     value=response["content"][0]["text"],
                     height=800,
                 )
-                current_time2 = datetime.datetime.now()
-                st.markdown(
-                    f"Analysis time: {current_time2 - current_time1}",
-                    unsafe_allow_html=True,
-                )
+                st.session_state.analysis_time = (current_time2 - current_time1).total_seconds()
+
+                # st.markdown(
+                #     f"Analysis time: {current_time2 - current_time1}",
+                #     unsafe_allow_html=True,
+                # )
+                st.session_state.input_tokens = response["usage"]["input_tokens"]
+                st.session_state.output_tokens = response["usage"]["output_tokens"]
     st.markdown(
         "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
         unsafe_allow_html=True,
@@ -365,7 +379,13 @@ Important: if no ads were provided, do not produce the analysis."""
 • temperature: {st.session_state.temperature}
 • top_p: {st.session_state.top_p}
 • top_k: {st.session_state.top_k}
-• media_type: {st.session_state.media_type}"""
+⎯
+• uploaded_media_type: {st.session_state.media_type}
+⎯
+• analysis_time_sec: {st.session_state.analysis_time}
+• input_tokens: {st.session_state.input_tokens}
+• output_tokens: {st.session_state.output_tokens}
+"""
         )
 
 
