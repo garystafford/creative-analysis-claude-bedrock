@@ -48,7 +48,7 @@ draw.rectangle(
 draw.text((cta_x, cta_y), cta, font=cta_font, fill="white")
 
 # Imagery
-image = Image.open("paypal_creative_brief/paypal_generated_image.png")
+image = Image.open("paypal_creative_brief/paypal_generated_image_v1.png")
 image = image.resize((400, 240))
 image_x = (width - image.width) / 2
 image_y = copy_y + copy_height + 20
