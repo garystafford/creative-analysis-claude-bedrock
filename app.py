@@ -11,12 +11,14 @@ import datetime
 import json
 import logging
 from io import StringIO
+import os
 
 import boto3
 import fitz
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
+from tempfile import NamedTemporaryFile
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -279,6 +281,12 @@ Important: if no ads were provided, do not produce the analysis."""
 
         if uploaded_files is not None:
             for uploaded_file in uploaded_files:
+                print(
+                    uploaded_file.file_id,
+                    uploaded_file.name,
+                    uploaded_file.type,
+                    uploaded_file.size,
+                )
                 st.session_state.media_type = uploaded_file.type
                 if uploaded_file.type in [
                     "text/csv",
@@ -287,11 +295,14 @@ Important: if no ads were provided, do not produce the analysis."""
                     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
                     prompt = f"{prompt}\n\n{stringio.getvalue()}"
                 elif uploaded_file.type == "application/pdf":
-                    doc = fitz.open(uploaded_file)
-                    text = ""
-                    for page in doc:
-                        text += page.get_text()
-                    prompt = f"{prompt}\n\n{text}"
+                    with NamedTemporaryFile(suffix="pdf") as temp:
+                        temp.write(uploaded_file.getvalue())
+                        temp.seek(0)
+                        doc = fitz.open(temp.name)
+                        text = ""
+                        for page in doc:
+                            text += page.get_text()
+                        prompt = f"{prompt}\n\n{text}"
                 else:  # image media-type
                     image = Image.open(uploaded_file)
                     file_path = f"_temp_images/{uploaded_file.name}"
@@ -330,7 +341,9 @@ Important: if no ads were provided, do not produce the analysis."""
                     value=response["content"][0]["text"],
                     height=800,
                 )
-                st.session_state.analysis_time = (current_time2 - current_time1).total_seconds()
+                st.session_state.analysis_time = (
+                    current_time2 - current_time1
+                ).total_seconds()
 
                 # st.markdown(
                 #     f"Analysis time: {current_time2 - current_time1}",
