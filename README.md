@@ -187,7 +187,7 @@ No upload is required.
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a height-to-width ratio of 3:2.
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels.
 
 {
     "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
@@ -207,15 +207,14 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a height-to-width ratio of 3:2. The Creative Brief for PayPal is included for reference.
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, describe the layout in detail. The ad should designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
 
 {
-  "advertisement": {
-    "headline": "Your Money, Your Rules",
-    "ad_copy": "As a teen, you're starting to gain independence and make your own choices. With PayPal, you have complete control over your money. Whether it's receiving an allowance from your parents or getting paid for that dog-walking gig, PayPal is the virtual wallet that lets you manage your funds on your terms. No more waiting for your parents to hand you cash or dealing with the complexities of credit cards.",
-    "call_to_action": "Download the PayPal app today and take charge of your financial freedom.",
-    "imagery": "The ad features a group of diverse teens hanging out together, laughing and having fun. One of them holds up their smartphone, displaying the PayPal app. The imagery conveys a sense of independence, friendship, and the freedom to manage their money on their own terms."
-  }
+    "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
+    "headline": "Your Money, Your Control",
+    "ad_copy": "Take charge of your finances with PayPal. No complexities, just convenience.",
+    "call_to_action": "Download the App",
+    "imagery": "The ad depicts a teenager's hand holding a smartphone with the PayPal app open, showcasing the ease of managing money on the go."
 }
 ```
 
