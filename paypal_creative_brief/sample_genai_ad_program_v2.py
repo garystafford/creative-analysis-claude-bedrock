@@ -2,12 +2,12 @@ from PIL import Image, ImageDraw, ImageFont
 
 for idx, generated_image in enumerate(
     [
-        # "paypal_creative_brief/paypal_generated_image_v1.png",
-        # "paypal_creative_brief/paypal_generated_image_v2.png",
-        # "paypal_creative_brief/paypal_generated_image_v3.png",
-        "paypal_creative_brief/paypal_generated_image_v4.png",
-        "paypal_creative_brief/paypal_generated_image_v5.png",
-        "paypal_creative_brief/paypal_generated_image_v6.png",
+        # "generated_images/paypal_creative_brief/paypal_generated_image_v1.png",
+        # "generated_images/paypal_creative_brief/paypal_generated_image_v2.png",
+        # "pgenerated_images/aypal_creative_brief/paypal_generated_image_v3.png",
+        "generated_images/paypal_creative_brief/paypal_generated_image_v4.png",
+        "generated_images/paypal_creative_brief/paypal_generated_image_v5.png",
+        "generated_images/paypal_creative_brief/paypal_generated_image_v6.png",
     ]
 ):
     # Create a new image with the desired dimensions
@@ -66,4 +66,4 @@ for idx, generated_image in enumerate(
     img.paste(image, (int(image_x), int(image_y)))
 
     # Save the image
-    img.save(f"paypal_creative_brief/paypal_generated_ad_v2_{idx + 1}.jpg")
+    img.save(f"generated_ads/paypal_generated_ad_v2_{idx + 1}.jpg")
