@@ -2,12 +2,10 @@ from PIL import Image, ImageDraw, ImageFont
 
 for idx, generated_image in enumerate(
     [
-        # "generated_images/paypal_generated_image_v1.png",
-        # "generated_images/paypal_generated_image_v2.png",
-        # "generated_images/paypal_generated_image_v3.png",
-        "generated_images/paypal_generated_image_v4.png",
         "generated_images/paypal_generated_image_v5.png",
         "generated_images/paypal_generated_image_v6.png",
+        "generated_images/paypal_generated_image_v7.png",
+        "generated_images/paypal_generated_image_v8.png",
     ]
 ):
     # Create a new image with the desired dimensions
@@ -18,7 +16,7 @@ for idx, generated_image in enumerate(
     # Load fonts
     headline_font = ImageFont.truetype(
      
-        "/Users/garystafford/Library/Fonts/Montserrat-Bold.ttf", 38
+        "/Users/garystafford/Library/Fonts/Montserrat-Bold.ttf", 32
     )
     copy_font = ImageFont.truetype(
         "/Users/garystafford/Library/Fonts/Montserrat-Regular.ttf", 20
@@ -28,23 +26,23 @@ for idx, generated_image in enumerate(
     )
 
     # Headline
-    headline = "Join PayPal Today"
+    headline = "Earn, Spend, Repeat"
 
     headline_width, headline_height = draw.textbbox((0, 0), headline, font=headline_font)[
         2:
     ]
     headline_x = (width - headline_width) / 2
     headline_y = 20
-    draw.text((headline_x, headline_y), headline, font=headline_font, fill="#7C15FF")
+    draw.text((headline_x, headline_y), headline, font=headline_font, fill="#7C15FF", align="center")
 
     # Ad Copy
     ad_copy = (
-        "     Whether it's your allowance\n               or a part-time gig,\nPayPal keeps your money moving."
+        "Whether it's your allowance\nor a part-time gig,\nPayPal keeps your money moving."
     )
     copy_width, copy_height = draw.textbbox((0, 0), ad_copy, font=copy_font)[2:]
     copy_x = (width - copy_width) / 2
     copy_y = headline_y + headline_height + 10
-    draw.text((copy_x, copy_y), ad_copy, font=copy_font, fill="#000000")
+    draw.text((copy_x, copy_y), ad_copy, font=copy_font, fill="#000000", align="center")
 
     # Call to Action
     cta = "Join PayPal Today"
@@ -60,10 +58,15 @@ for idx, generated_image in enumerate(
 
     # Imagery
     image = Image.open(generated_image)
-    image = image.resize((400, 240))
+    image = image.resize((400, 250))
     image_x = (width - image.width) / 2
     image_y = copy_y + copy_height + 20
     img.paste(image, (int(image_x), int(image_y)))
 
+    # Border for entire image
+    draw.rectangle(
+        [0, 0, width - 1, height - 1], outline="#999999", width=1
+    )
+
     # Save the image
-    img.save(f"generated_ads/paypal_generated_ad_v2_{idx + 1}.jpg")
+    img.save(f"generated_ads/paypal_generated_ad_v2_{idx + 1}.png", format="PNG")

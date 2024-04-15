@@ -149,7 +149,7 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 25 words or less.
+You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 20 words or less.
 
 Format the response as a series of JSON objects according to the template below.
 
@@ -187,7 +187,7 @@ No upload is required.
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery for a compelling online digital advertisement, write a Python program using the PILLOW package to create this advertisement. The advertisement should designed in a tall, portrait format, with a width of 400 pixels and a height of 600 pixels.
+You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery, describe the design for a compelling online digital advertisement. The advertisement should be designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
 
 {
     "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
@@ -222,7 +222,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 Examples of ads built from Python program written by foundational model.
 
-![Ads](/paypal_creative_brief/six_paypal_ads.png)
+![Ads](/paypal_creative_brief/nine_up_ads.png)
 
 ## Example Response from Foundation Model
 
