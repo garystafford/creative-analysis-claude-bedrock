@@ -153,7 +153,7 @@ def main():
                     background-color: #777777;
                 }
                 textarea[aria-label="Analysis:"] { # llm response
-                    height: 600px;
+                    height: 800px;
                 }
                 .element-container img { # uploaded image preview
                     background-color: #ffffff;

@@ -2,7 +2,7 @@
 
 Simple Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of model's multimodal prompting on [Amazon Bedrock](https://aws.amazon.com/bedrock). It was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html); refer to this link for all inference parameters.
 
-![Screenshot](screenshot11.png)
+![Screenshot](screenshot_app.png)
 
 ## Media Types Supported
 
@@ -130,7 +130,7 @@ By effectively combining these creative elements, the Mercedes-Benz ads create a
 
 Upload (1) TXT file:
 
-- [mercedes_benz_info.txt](mercedes_benz_info.txt)
+- [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt)
 
 Prompt:
 
@@ -144,7 +144,7 @@ Analyze a creative brief for PayPal and generate three ideas for new ads. Output
 
 Upload (1) WebP file:
 
-- [paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
@@ -202,7 +202,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 Upload (1) WebP file:
 
-- [paypal-creative-brief-1-2048.webp](/creative_briefs/paypal-creative-brief-1-2048.webp)
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
