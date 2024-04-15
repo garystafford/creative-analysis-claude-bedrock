@@ -52,7 +52,7 @@ streamlit run app.py \
 
 ## Samples Prompts
 
-### 1. Analysis of Four Print Advertisements for Mercedes-Benz
+### 1. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
 Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
@@ -78,7 +78,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 Important: if no ads were provided, do not produce the analysis.
 ```
 
-### 2. Prompt Optimization
+### 2. Generate Better Prompts using Prompt Optimization
 
 Asking the foundation model to optimize the user's sub-optimal initial prompt.
 
@@ -97,7 +97,7 @@ You are an expert at optimizing large language model prompts for marketing analy
 "Analyze these English and German print advertisements and find some common creative elements."
 ```
 
-### 3. Generate New Creative Concepts from Analysis of Four Print Advertisements for Mercedes-Benz
+### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
 
 Using the resulting analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
@@ -126,7 +126,7 @@ The provided Mercedes-Benz sedan advertisements effectively utilize several crea
 By effectively combining these creative elements, the Mercedes-Benz ads create a compelling and aspirational brand experience that aligns with the company's positioning as a leader in luxury and innovation. The ads effectively communicate the brand's values and the vehicles' desirable attributes, appealing to the target audience's desires and reinforcing Mercedes-Benz's premium brand identity.
 ```
 
-### 4. Analyzing a Text File vs. Image
+### 4. Generate an Analysis of a Text File vs. Image
 
 Upload (1) TXT file:
 
@@ -138,7 +138,7 @@ Prompt:
 Provides a concise summary of this document.
 ```
 
-### 5. Analyzing a PayPal Creative Brief and Generate New Creative Concepts
+### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
@@ -180,7 +180,7 @@ Format the response as a series of JSON objects according to the template below.
 }
 ```
 
-### 6. Develop a Layout for an Ad Based on the Generated Creative Concepts Above
+### 6. Generate a Layout Design for an Ad Based on Generated Creative Concepts
 
 As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
 
@@ -202,7 +202,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 }
 ```
 
-### 7. Generate Ads Programmatically Based on the Generated Creative Concepts
+### 7. Generate Ads Programmatically Based on Generated Creative Concepts
 
 Generate a Python program, which uses the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement based on the content generated in example 5, above.
 
