@@ -213,7 +213,7 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a talented Graphic Designer for a leading advertising agency. Based on the following headline, ad copy, call to action, and description of imagery, write a Python program using the PILLOW package to create a compelling online digital advertisement. The advertisement should be designed in a tall, portrait format, with a width of 400 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
+You are a talented Graphic Designer and Python developer for a leading advertising agency. Write a Python program using the PILLOW package to create a compelling online digital advertisement based on the following headline, ad copy, call to action, and imagery description. The advertisement should be designed in a tall, portrait format, with a width of 400 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
 
 {
     "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
