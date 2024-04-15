@@ -180,9 +180,13 @@ Format the response as a series of JSON objects according to the template below.
 }
 ```
 
-### 6a. Develop a Layout for an Ad Based on the Generated Creative Concepts Above (see #5)
+### 6. Develop a Layout for an Ad Based on the Generated Creative Concepts Above
 
-No upload is required.
+As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
 
 Prompt:
 
@@ -198,9 +202,9 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 }
 ```
 
-### 6c. Develop a Python Script for an Ad Based on the Generated Creative Concepts Above (see #5)
+### 7. Generate Ads Programmatically Based on the Generated Creative Concepts
 
-Write a Python program using the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement.
+Generate a Python program, which uses the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement based on the content generated in example 5, above.
 
 Upload (1) WebP file:
 
@@ -220,7 +224,7 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 }
 ```
 
-Examples of ads built from Python program written by foundational model.
+#### Examples Ads Built from Generated Python Program
 
 ![Ads](/paypal_creative_brief/nine_up_ads.png)
 
