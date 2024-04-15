@@ -200,6 +200,8 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 ### 6c. Develop a Python Script for an Ad Based on the Generated Creative Concepts Above (see #5)
 
+Write a Python program using the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement.
+
 Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
