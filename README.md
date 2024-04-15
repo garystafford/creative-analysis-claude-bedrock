@@ -92,9 +92,9 @@ Upload (4) JPEGs:
 Prompt:
 
 ```text
-You are an expert at optimizing large language model prompts for marketing analysts. Your job is to create a concise and effective positive prompt that will provide effective responses from a large language model, given the following marketing analyst's task description and the accompanying advertising samples:
+You are an expert at optimizing large language model prompts for marketing analysts. Given the following marketing analyst’s task description and the accompanying advertising samples, your job is to create a concise and effective positive prompt that will provide effective responses from a large language model. Based on the content provided, suggest a concise list of key elements to focus on in the analysis.
 
-"Analyze these English and German print advertisements and find some common creative elements."
+Analyze these English and German print advertisements and find some common creative elements.
 ```
 
 ### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
