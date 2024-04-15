@@ -149,7 +149,9 @@ Upload (1) WebP file:
 Prompt:
 
 ```text
-You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. Format the response as a series of JSON objects according to the template below.
+You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 25 words or less.
+
+Format the response as a series of JSON objects according to the template below.
 
 {
     "advertisements": [
