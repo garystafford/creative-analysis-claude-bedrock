@@ -226,6 +226,8 @@ You are a talented Graphic Designer for a leading advertising agency. Based on t
 
 #### Examples Ads Built from Generated Python Program
 
+All images were created on Amazon Bedrock using the recently announced Amazon Titan Image Generator G1 foundation model.
+
 ![Ads](/paypal_creative_brief/nine_up_ads.png)
 
 ## Example Response from Foundation Model
