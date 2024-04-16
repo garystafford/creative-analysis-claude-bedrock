@@ -126,7 +126,7 @@ The provided Mercedes-Benz sedan advertisements effectively utilize several crea
 By effectively combining these creative elements, the Mercedes-Benz ads create a compelling and aspirational brand experience that aligns with the company's positioning as a leader in luxury and innovation. The ads effectively communicate the brand's values and the vehicles' desirable attributes, appealing to the target audience's desires and reinforcing Mercedes-Benz's premium brand identity.
 ```
 
-### 4. Generate an Analysis of a Text File vs. Image
+### 4a. Summerize Contents of a Text File
 
 Upload (1) TXT file:
 
@@ -136,6 +136,18 @@ Prompt:
 
 ```text
 Provides a concise summary of this document.
+```
+
+### 4b. Query Data in CSV File
+
+Upload (1) CSV file:
+
+- [Advertising_Budget_and_Sales.csv](Advertising_Budget_and_Sales.csv)
+
+Prompt:
+
+```text
+Based on this Advertising Budget and Sales CSV file, what is the total Sales?.
 ```
 
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 
