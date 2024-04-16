@@ -142,7 +142,7 @@ Provides a concise summary of this document.
 
 Upload (1) CSV file:
 
-- [Advertising_Budget_and_Sales.csv](Advertising_Budget_and_Sales.csv)
+- [Advertising_Budget_and_Sales.csv](/csv_data/Advertising_Budget_and_Sales.csv)
 
 Prompt:
 
