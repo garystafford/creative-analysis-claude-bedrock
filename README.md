@@ -140,6 +140,7 @@ Provides a concise summary of this document.
 
 ### 4b. Query Data in CSV File
 
+Souce of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
 Upload (1) CSV file:
 
 - [Advertising_Budget_and_Sales.csv](/csv_data/Advertising_Budget_and_Sales.csv)
