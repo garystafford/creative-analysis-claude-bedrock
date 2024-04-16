@@ -247,6 +247,6 @@ _temp_images/*.webp
 
 csv_data/*.class
 csv_data/*.json
-csv_data/node_modules
+csv_data/node_modules/
 
 .vscode/
