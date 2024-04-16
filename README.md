@@ -140,7 +140,7 @@ Provides a concise summary of this document.
 
 ### 4b. Query Data in CSV File
 
-The model cannot correctly add up large volumes of numbers. It will provide an answer, but that answer is likely not correct.
+The model cannot correctly add up large volumes of numbers. It will provide an answer, but that answer is likely not correct. This prompt writes a program that can correctly calculate the answer.
 
 Source of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
 
@@ -148,10 +148,22 @@ Upload (1) CSV file:
 
 - [Advertising_Budget_and_Sales.csv](/csv_data/Advertising_Budget_and_Sales.csv)
 
-Prompt:
+Prompts:
 
 ```text
-Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas library.
+Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas package.
+```
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Java program to calculate the total sales.
+```
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Node.js program to calculate the grand total of all TV, radio, and newspaper ad budgets. Use the csv-parser package.
+```
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the ratio of the grand total of TV, radio, and newspaper ad budgets to sales for ID 100. Use the Pandas package.
 ```
 
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 
