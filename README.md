@@ -147,7 +147,7 @@ Upload (1) CSV file:
 Prompt:
 
 ```text
-Based on this Advertising Budget and Sales CSV file, what is the total Sales?.
+Base your answers on this Advertising Budget and Sales CSV file. What are the total sales? What are the total TV, radio, and newspaper ad budgets?
 ```
 
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 
