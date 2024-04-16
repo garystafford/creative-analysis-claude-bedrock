@@ -140,7 +140,9 @@ Provides a concise summary of this document.
 
 ### 4b. Query Data in CSV File
 
-Souce of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
+The model cannot correctly add up large volumes of numbers. It will provide an answer, but that answer is likely not correct.
+
+Source of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
 
 Upload (1) CSV file:
 
@@ -149,7 +151,7 @@ Upload (1) CSV file:
 Prompt:
 
 ```text
-Base your answers on this Advertising Budget and Sales CSV file. What are the total sales? What is the grand total of all TV, radio, and newspaper ad budgets?
+Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas library.
 ```
 
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 

@@ -239,12 +239,10 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python,jupyternotebooks
 
 # Custom
-content/source_videos/
-content/source_frames/demo*
-content/generated_frames/demo*
-content/generated_videos/demo*
-content/generated_videos/vidlist.txt
-
-bedrock-venv/
+_temp_images/*.gif
+_temp_images/*.png
+_temp_images/*.jpg
+_temp_images/*.jpeg
+_temp_images/*.webp
 
 .vscode/
