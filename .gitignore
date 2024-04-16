@@ -246,5 +246,6 @@ _temp_images/*.jpeg
 _temp_images/*.webp
 
 csv_data/*.class
+csv_data/*.json
 
 .vscode/
