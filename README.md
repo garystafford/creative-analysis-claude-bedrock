@@ -18,6 +18,14 @@ Currently, this app supports the following media-types for uploading:
 
 ## Start Application
 
+Make sure you have provided your AWS credential on the commandline before starting the application.
+
+```sh
+export AWS_ACCESS_KEY_ID="<YOUR_AWS_ACCESS_KEY_ID>"
+export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
+export AWS_SESSION_TOKEN="<YOUR_AWS_SESSION_TOKEN>"
+```
+
 ```sh
 python3 -m pip install virtualenv -Uq
 virtualenv claude-streamlit-venv
