@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-14
+# Modified: 2024-04-18
 # AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
 
 """
@@ -10,15 +10,15 @@ import base64
 import datetime
 import json
 import logging
-from io import StringIO
 import os
+from io import StringIO
+from tempfile import NamedTemporaryFile
 
 import boto3
 import fitz
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
-from tempfile import NamedTemporaryFile
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -27,6 +27,7 @@ logging.basicConfig(level=logging.INFO)
 def run_multi_modal_prompt(
     bedrock_runtime,
     model_id,
+    system_prompt,
     messages,
     max_tokens,
     temperature,
@@ -38,6 +39,7 @@ def run_multi_modal_prompt(
     Args:
         bedrock_runtime: The Amazon Bedrock boto3 client.
         model_id (str): The model ID to use.
+        system_prompt (str): The system prompt to use.
         messages (JSON) : The messages to send to the model.
         max_tokens (int) : The maximum  number of tokens to generate.
         temperature (float): The amount of randomness injected into the response.
@@ -51,6 +53,7 @@ def run_multi_modal_prompt(
         {
             "anthropic_version": "bedrock-2023-05-31",
             "max_tokens": max_tokens,
+            "system": system_prompt,
             "messages": messages,
             "temperature": temperature,
             "top_p": top_p,
@@ -64,11 +67,11 @@ def run_multi_modal_prompt(
     return response_body
 
 
-def build_request(prompt, file_paths):
+def build_request(user_prompt, file_paths):
     """
     Entrypoint for Anthropic Claude multimodal prompt example.
     Args:
-        prompt (str): The prompt to use.
+        user_prompt (str): The user prompt to use.
         image (str): The image to use.
     Returns:
         response_body (string): Response from foundation model.
@@ -80,7 +83,7 @@ def build_request(prompt, file_paths):
         message = {
             "role": "user",
             "content": [
-                {"type": "text", "text": prompt},
+                {"type": "text", "text": user_prompt},
             ],
         }
 
@@ -104,6 +107,7 @@ def build_request(prompt, file_paths):
         response = run_multi_modal_prompt(
             bedrock_runtime,
             st.session_state.model_id,
+            st.session_state.system_prompt,
             messages,
             st.session_state.max_tokens,
             st.session_state.temperature,
@@ -144,16 +148,21 @@ def main():
                     padding-right: 0;
                 }
                 textarea[class^="st-"] {
-                    height: 375px;
                     font-family: 'Inter', sans-serif;
-                    background-color: #777777;
                     color: #ffffff;
+                    background-color: #777777;
+                }
+                textarea[aria-label="Task:"] {
+                    height: 350px;
+                }
+                textarea[aria-label="Role:"] { # llm response
+                    height: 20px;
+               }
+                textarea[aria-label="Analysis:"] { # llm response
+                    height: 600px;
                 }
                 section[aria-label="Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:"] {
                     background-color: #777777;
-                }
-                textarea[aria-label="Analysis:"] { # llm response
-                    height: 800px;
                 }
                 .element-container img { # uploaded image preview
                     background-color: #ffffff;
@@ -211,7 +220,7 @@ def main():
                 [data-testid="stForm"] {
                     border-color: #777777;
                 }
-                [id="generative-ai-powered-multimodal-analysis"] span {
+                h2[id="generative-ai-powered-multimodal-analysis"] {
                     color: #e6e6e6;
                     font-size: 34px;
                 }
@@ -226,8 +235,11 @@ def main():
         unsafe_allow_html=True,
     )
 
+    if "system_prompt" not in st.session_state:
+        st.session_state["system_prompt"] = None
+
     if "model_id" not in st.session_state:
-        st.session_state["model_id"] = "anthropic.claude-3-sonnet-20240229-v1:0"
+        st.session_state["model_id"] = "anthropic.claude-3-5-sonnet-20240620-v1:0"
 
     if "analysis_time" not in st.session_state:
         st.session_state["analysis_time"] = 0
@@ -257,9 +269,11 @@ def main():
 
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
         st.markdown(
-            "Describe the analysis task you wish to perform and optionally upload the content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
+            "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
-        default_prompt = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+        system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at analyzing advertising, or ad analysis, the process of examining advertising to understand its effects on consumers."""
+
+        user_prompt_default = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
@@ -269,7 +283,15 @@ def main():
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 
 Important: if no ads were provided, do not produce the analysis."""
-        prompt = st.text_area(label="User Prompt:", value=default_prompt, height=250)
+        system_prompt = st.text_area(
+            label="Role:",
+            value=system_prompt_default,
+            height=20,
+        )
+
+        st.session_state.system_prompt = system_prompt
+
+        user_prompt = st.text_area(label="Task:", value=user_prompt_default, height=250)
 
         uploaded_files = st.file_uploader(
             "Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:",
@@ -293,7 +315,7 @@ Important: if no ads were provided, do not produce the analysis."""
                     "text/plain",
                 ]:
                     stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-                    prompt = f"{prompt}\n\n{stringio.getvalue()}"
+                    user_prompt = f"{user_prompt}\n\n{stringio.getvalue()}"
                 elif uploaded_file.type == "application/pdf":
                     with NamedTemporaryFile(suffix="pdf") as temp:
                         temp.write(uploaded_file.getvalue())
@@ -302,7 +324,7 @@ Important: if no ads were provided, do not produce the analysis."""
                         text = ""
                         for page in doc:
                             text += page.get_text()
-                        prompt = f"{prompt}\n\n{text}"
+                        user_prompt = f"{user_prompt}\n\n{text}"
                 else:  # image media-type
                     image = Image.open(uploaded_file)
                     file_path = f"_temp_images/{uploaded_file.name}"
@@ -314,27 +336,30 @@ Important: if no ads were provided, do not produce the analysis."""
                         }
                     )
 
-            print(f"Prompt: {prompt}")
+            print(f"Prompt: {user_prompt}")
 
         submitted = st.form_submit_button("Submit")
         if submitted:
             st.markdown("---")
-            if uploaded_files and uploaded_files[0].type in [
-                "text/csv",
-                "text/plain",
-            ]:
-                st.markdown(
-                    f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
-                )
-            elif uploaded_files and uploaded_files[0].type == "application/pdf":
-                st.markdown(f"Sample of file contents:\n\n{text[0:500]}...")
-            elif uploaded_files and file_paths:  # image media-type
-                for file_path in file_paths:
-                    st.image(file_path["file_path"], caption="", width=400)
+            try:
+                if uploaded_files and uploaded_files[0].type in [
+                    "text/csv",
+                    "text/plain",
+                ]:
+                    st.markdown(
+                        f"Sample of file contents:\n\n{stringio.getvalue()[0:500]}..."
+                    )
+                elif uploaded_files and uploaded_files[0].type == "application/pdf":
+                    st.markdown(f"Sample of file contents:\n\n{text[0:500]}...")
+                elif uploaded_files and file_paths:  # image media-type
+                    for file_path in file_paths:
+                        st.image(file_path["file_path"], caption="", width=400)
+            except UnboundLocalError as e:
+                print("No files uploaded")
 
             with st.spinner(text="Analyzing..."):
                 current_time1 = datetime.datetime.now()
-                response = build_request(prompt, file_paths)
+                response = build_request(user_prompt, file_paths)
                 current_time2 = datetime.datetime.now()
                 st.text_area(
                     label="Analysis:",
@@ -358,14 +383,15 @@ Important: if no ads were provided, do not produce the analysis."""
 
     with st.sidebar:
         st.markdown("### Inference Parameters")
-        st.session_state["model_id"] = "anthropic.claude-3-sonnet-20240229-v1:0"
+        st.session_state["model_id"] = "anthropic.claude-3-5-sonnet-20240620-v1:0"
 
         st.session_state.model_id = st.selectbox(
             "model_id",
             options=[
+                "anthropic.claude-3-5-sonnet-20240620-v1:0",
+                "anthropic.claude-3-haiku-20240307-v1:0",
                 "anthropic.claude-3-sonnet-20240229-v1:0",
                 "anthropic.claude-3-haiku-20240307-v1:0",
-                "anthropic.claude-3-opus-20240229-v1:0",
             ],
         )
 
