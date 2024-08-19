@@ -271,7 +271,7 @@ def main():
         st.markdown(
             "Describe the analysis task you wish to perform and upload the creative content to be analyzed. Generative AI analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
-        system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at analyzing advertising, or ad analysis, the process of examining advertising to understand its effects on consumers."""
+        system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
 
         user_prompt_default = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
