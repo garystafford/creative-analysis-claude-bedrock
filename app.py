@@ -269,7 +269,7 @@ def main():
 
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
         st.markdown(
-            "Describe the role you want the model to play, the task you wish to perform, and upload the content to be analyzed. The Generative AI-based analysis powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
+            "Describe the role you want the model to play, the task you wish to perform, and upload the content to be analyzed. The Generative AI-based analysis is powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
         system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
 
