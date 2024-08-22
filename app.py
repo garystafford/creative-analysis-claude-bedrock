@@ -103,7 +103,11 @@ def build_request(user_prompt, file_paths):
                         }
                     )
 
+        messages = []
+        if message:
             messages = [message]
+        else:
+            logger.error("A error has occurred while building the request")
 
         response = run_multi_modal_prompt(
             bedrock_runtime,
