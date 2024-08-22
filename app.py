@@ -121,7 +121,7 @@ def build_request(user_prompt, file_paths):
         return response
     except ClientError as err:
         message = err.response["Error"]["Message"]
-        logger.error(f"A client error occurred: {message}")
+        logger.error("A client error occurred: %s", message)
         return None
 
 
@@ -336,7 +336,7 @@ Important: if no ads were provided, do not produce the analysis."""
                         }
                     )
 
-            logger.info(f"Prompt: {user_prompt}")
+            logger.info("Prompt: %s", user_prompt)
 
         submitted = st.form_submit_button("Submit")
         if submitted:
@@ -354,7 +354,7 @@ Important: if no ads were provided, do not produce the analysis."""
                 elif uploaded_files and file_paths:  # image media-type
                     for file_path in file_paths:
                         st.image(file_path["file_path"], caption="", width=400)
-            except UnboundLocalError as e:
+            except UnboundLocalError as _:
                 logger.error("No files uploaded")
 
             with st.spinner(text="Analyzing..."):
