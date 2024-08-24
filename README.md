@@ -1,4 +1,4 @@
-# Generative AI-powered Multimodal Analysis with Anthropic Claude 3
+# Generative AI-powered Multimodal Analysis
 
 Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
 
@@ -206,20 +206,28 @@ Prompts:
 System:
 
 ```text
-You are an experienced Python software developer, with a deep understanding of the Python language and its libraries. You have significant experience in building complex applications using Python, that incorporate object-oriented programming, functional programming, data structures, and algorithms. You understand software design principles, best practices, and code optimization techniques. You regularly solve complex problems efficiently using Python.
+You are an experienced software developer, with a deep understanding of the different programming language and their libraries. You have significant experience in building complex applications that incorporate object-oriented programming, functional programming, data structures, and algorithms. You understand software design principles, best practices, and code optimization techniques. You regularly solve complex problems efficiently using your software development skills.
 ```
+
+User:
 
 ```text
 Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas package.
 ```
 
+User:
+
 ```text
 Based on the Advertising Budget and Sales CSV file, write a Java program to calculate the total sales.
 ```
 
+User:
+
 ```text
 Based on the Advertising Budget and Sales CSV file, write a Node.js program to calculate the grand total of all TV, radio, and newspaper ad budgets. Use the csv-parser package.
 ```
+
+User:
 
 ```text
 Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the ratio of the grand total of TV, radio, and newspaper ad budgets to sales for ID 100. Use the Pandas package.
