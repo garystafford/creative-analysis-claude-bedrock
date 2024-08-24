@@ -312,7 +312,7 @@ Example Output:
 }
 ```
 
-### 6. Generate a Layout Design for an Ad Based on Generated Creative Concepts
+### 6a. Generate a Layout Design for an Ad Based on Generated Creative Concepts
 
 As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
 
@@ -342,15 +342,59 @@ Based on the following headline, ad copy, call to action, and description of ima
 }
 ```
 
+### 6b. Generate a Layout Design with Midjourney for an Ad Based on Generated Creative Concepts
+
+As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
+
+System:
+
+```text
+You are a talented Graphic Designer at a top-tier advertising agency. You are experienced at developing effective advertising layout for multiple media types: print, mobile, and web.
+```
+
+User:
+
+```text
+Based on the following headline, ad copy, call to action, and description of imagery, describe the design for a compelling online digital advertisement. The advertisement should be designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels (1:2 tall format). The Creative Brief for PayPal is included for reference.
+
+{
+    "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
+    "headline": "Your Money, Your Control",
+    "ad_copy": "Take charge of your finances with PayPal. No complexities, just convenience.",
+    "call_to_action": "Download the App",
+    "imagery": "The ad depicts a teenager's hand holding a smartphone with the PayPal app open, showcasing the ease of managing money on the go."
+}
+
+Write the response in a format that will be an effective prompt for generating an image of the advertisement with Midjourney. Include the flag '--ar 1:2' at the end of the response.
+```
+
 Example Output:
 
 ```text
-A compelling online digital advertisement for PayPal in a 300x600 pixel portrait format: 1. Background: Use a gradient background transitioning from PayPal's signature blue at the top to a light, fresh teal at the bottom. This creates a modern, youthful feel that appeals to the target audience of teenagers. 2. Header: At the top of the ad, place the PayPal logo in white, making it stand out against the blue background. 3. Main Image: In the center of the ad, feature a close-up of a teenager's hand holding a smartphone. The phone should display the PayPal app interface, showcasing its clean, user-friendly design. This image should take up about 40% of the ad space. 4. Headline: Above the main image, place the headline "Your Money, Your Control" in bold, white text. Use a modern, sans-serif font that appeals to younger audiences. 5. Ad Copy: Below the main image, include the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." in smaller, easy-to-read white text. 6. Call-to-Action: At the bottom of the ad, create a bright, eye-catching button in PayPal's secondary color (likely a shade of yellow or orange) with the text "Download the App" in contrasting dark text. 7. Visual Elements: Incorporate subtle, modern graphic elements like thin lines or small geometric shapes in white or light colors to add visual interest without cluttering the design. These can be used to separate different sections of the ad. 8. Social Proof: If space allows, include small icons of popular social media platforms or logos of well-known brands that work with PayPal to reinforce trust and relevance. This design aligns with the creative brief by emphasizing PayPal as a virtual wallet that gives users control over their money, appealing to teenagers' desire for independence and simplicity in managing their finances. The smartphone imagery and modern design elements cater to the tech-savvy nature of the target audience, while the clear call-to-action encourages immediate engagement with the app.
+A digital advertisement for PayPal in a tall, portrait format (300x600 pixels). The background is a gradient of cool blue tones, representing trust and financial stability. At the top, the PayPal logo is prominently displayed in its signature blue and white colors.
+
+The main focus is a close-up of a teenager's hand holding a modern smartphone. The phone screen displays the PayPal app interface, showing a clean and user-friendly design with balance and transaction information. The hand is positioned slightly off-center, allowing space for text.
+
+Above the hand, the headline "Your Money, Your Control" appears in bold, sans-serif typography. The text is white for high contrast against the blue background.
+
+Below the smartphone, the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." is displayed in a smaller, easy-to-read font.
+
+At the bottom of the ad, a bright blue button with rounded corners contains the call-to-action "Download the App" in white text. The button has a subtle drop shadow to make it stand out.
+
+The overall design is clean, modern, and appeals to the teenage demographic outlined in the creative brief. The imagery and text emphasize ease of use, control, and independence, aligning with the goals and insights provided.
+
+--ar 1:2
 ```
 
 Example Images from Midjourney v6.1 (Aug. 2024):
 
-![layouts](/paypal_creative_brief/midjourney_ad_layouts.png)
+![layouts](/paypal_creative_brief/midjourney_ad_images_v2.png)
 
 ### 7. Generate Ads Programmatically Based on Generated Creative Concepts
 
