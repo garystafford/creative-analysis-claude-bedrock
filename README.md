@@ -342,6 +342,16 @@ Based on the following headline, ad copy, call to action, and description of ima
 }
 ```
 
+Example Output:
+
+```text
+A compelling online digital advertisement for PayPal in a 300x600 pixel portrait format: 1. Background: Use a gradient background transitioning from PayPal's signature blue at the top to a light, fresh teal at the bottom. This creates a modern, youthful feel that appeals to the target audience of teenagers. 2. Header: At the top of the ad, place the PayPal logo in white, making it stand out against the blue background. 3. Main Image: In the center of the ad, feature a close-up of a teenager's hand holding a smartphone. The phone should display the PayPal app interface, showcasing its clean, user-friendly design. This image should take up about 40% of the ad space. 4. Headline: Above the main image, place the headline "Your Money, Your Control" in bold, white text. Use a modern, sans-serif font that appeals to younger audiences. 5. Ad Copy: Below the main image, include the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." in smaller, easy-to-read white text. 6. Call-to-Action: At the bottom of the ad, create a bright, eye-catching button in PayPal's secondary color (likely a shade of yellow or orange) with the text "Download the App" in contrasting dark text. 7. Visual Elements: Incorporate subtle, modern graphic elements like thin lines or small geometric shapes in white or light colors to add visual interest without cluttering the design. These can be used to separate different sections of the ad. 8. Social Proof: If space allows, include small icons of popular social media platforms or logos of well-known brands that work with PayPal to reinforce trust and relevance. This design aligns with the creative brief by emphasizing PayPal as a virtual wallet that gives users control over their money, appealing to teenagers' desire for independence and simplicity in managing their finances. The smartphone imagery and modern design elements cater to the tech-savvy nature of the target audience, while the clear call-to-action encourages immediate engagement with the app.
+```
+
+Example Images from Midjourney v6.1 (Aug. 2024):
+
+![layouts](/paypal_creative_brief/midjourney_ad_layouts.png)
+
 ### 7. Generate Ads Programmatically Based on Generated Creative Concepts
 
 Generate a Python program, which uses the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement based on the content generated in example 5, above.
