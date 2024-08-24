@@ -121,7 +121,6 @@ Analyze these four successful print advertisements for Mercedes-Benz sedans, two
 </design_philosophy>
 ```
 
-
 ### 2. Generate Better Prompts using Prompt Optimization
 
 Asking the foundation model to optimize the user's sub-optimal initial prompt.
@@ -174,7 +173,6 @@ Based on the following analysis of four successful Mercedes-Benz print advertise
 </analysis>
 ```
 
-
 ### 4a. Summerize Contents of a Text File
 
 Upload (1) TXT file:
@@ -215,7 +213,7 @@ Based on the Advertising Budget and Sales CSV file, write a Node.js program to c
 Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the ratio of the grand total of TV, radio, and newspaper ad budgets to sales for ID 100. Use the Pandas package.
 ```
 
-### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief 
+### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
@@ -269,6 +267,8 @@ As a Graphic Designer, describe the layout of the advertisement, based on the co
 Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+![Paypal Brief](./paypal_creative_brief/paypal_brief_preview.png)
 
 System:
 
