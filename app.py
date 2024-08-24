@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-21
+# Modified: 2024-04-24
 # AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
 
 """
@@ -126,6 +126,7 @@ def build_request(user_prompt, file_paths):
     except ClientError as err:
         message = err.response["Error"]["Message"]
         logger.error("A client error occurred: %s", message)
+        st.error(f"A client error occurred: {message}")
         return None
 
 
@@ -288,14 +289,16 @@ For each element, describe how it is effectively utilized across the ads and exp
 
 Important: if no ads were provided, do not produce the analysis."""
         system_prompt = st.text_area(
-            label="Role:",
+            label="System Prompt (Role):",
             value=system_prompt_default,
             height=20,
         )
 
         st.session_state.system_prompt = system_prompt
 
-        user_prompt = st.text_area(label="Task:", value=user_prompt_default, height=250)
+        user_prompt = st.text_area(
+            label="User Prompt (Task):", value=user_prompt_default, height=250
+        )
 
         uploaded_files = st.file_uploader(
             "Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:",
