@@ -1,10 +1,6 @@
 # Author: Gary A. Stafford
 # Modified: 2024-04-24
-# AWS Code Reference: https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html
-
-"""
-Shows how to run a multimodal prompt with Anthropic Claude (on demand) and InvokeModel.
-"""
+# Shows how to use Anthropic Claude 3 multimodal family model prompt on Amazon Bedrock.
 
 import base64
 import datetime
