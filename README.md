@@ -60,7 +60,7 @@ streamlit run app.py \
 
 ## Samples Prompts
 
-### 1. Generate an Analysis of Print Advertisements for Mercedes-Benz
+### 1a. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
 Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
 
@@ -72,6 +72,14 @@ Upload (4) JPEGs:
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
 Prompt:
+
+System:
+
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at ad analysis, the process of examining advertising to understand its effects on consumers.
+```
+
+User:
 
 ```text
 Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
@@ -86,6 +94,34 @@ For each element, describe how it is effectively utilized across the ads and exp
 Important: if no ads were provided, do not produce the analysis.
 ```
 
+### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
+
+Provides an analysis of the four uploaded print advertisements for Mercedes-Benz using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt) file.
+
+Upload (4) JPEGs:
+
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
+
+System:
+
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at ad analysis, the process of examining advertising to understand its effects on consumers.
+```
+
+User:
+
+```text
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described below.
+
+<design_philosophy>
+{{ contents of mercedes_benz_info.txt }}
+</design_philosophy>
+```
+
+
 ### 2. Generate Better Prompts using Prompt Optimization
 
 Asking the foundation model to optimize the user's sub-optimal initial prompt.
@@ -97,12 +133,20 @@ Upload (4) JPEGs:
 - [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
-Prompt:
+System:
 
 ```text
-You are an expert at optimizing large language model prompts for marketing analysts. Given the following marketing analyst’s task description and the accompanying advertising samples, your job is to create a concise and effective positive prompt that will provide effective responses from a large language model. Based on the content provided, suggest a concise list of key elements to focus on in the analysis.
+You are an expert at optimizing the performance of prompts for Anthropic Claude 3 large language models. Your job is to create concise and effective prompts that will ensure effective responses from a large language model.
+```
 
-Analyze these English and German print advertisements and find some common creative elements.
+User:
+
+```text
+Provide an effective prompt to complete the following marketing analyst's task involving the accompany advertising samples:
+
+<task>
+Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
+</task>
 ```
 
 ### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
@@ -114,25 +158,22 @@ Upload (2) PDFs:
 - [Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
 - [Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
 
-Prompt:
+System:
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25 and 35 years old. Use the 'Modern Luxury | Manhattan' online ad specs as a reference for the layout described in this PDF. Include the size of the ad in the response.
-
-The provided Mercedes-Benz sedan advertisements effectively utilize several creative elements that contribute to their compelling and impactful nature. Here are five key strategies employed across these ads:
-
-1. Striking Visual Imagery: The ads feature stunning, high-quality photography that showcases the vehicles in dynamic and aspirational settings. The use of motion blur, lighting effects, and dramatic angles creates a sense of movement and energy, capturing the performance and luxury of the Mercedes-Benz brand. The cars are prominently displayed, allowing viewers to appreciate their sleek designs and premium aesthetics.
-
-2. Emphasis on Innovation and Perfection: The messaging and copywriting consistently reinforce Mercedes-Benz's commitment to innovation and the pursuit of perfection. Phrases like "The only thing that's not relative. Perfection," "Glam turismo," and "Das Beste kennt keine Alternative" (The best knows no alternative) position the brand as a leader in automotive excellence and cutting-edge technology.
-
-3. Consistent Branding and Typography: The ads maintain a strong brand identity through the consistent use of the Mercedes-Benz logo, color palette, and typography. The iconic three-pointed star and the brand's signature tagline, "The best or nothing," are prominently featured, reinforcing brand recognition and association with luxury and quality. The clean, modern typography complements the brand's sophisticated image.
-
-4. Evocative Copywriting: The ads employ evocative and aspirational copywriting that appeals to the target audience's desires for luxury, performance, and exclusivity. Phrases like "A class ahead," "The all new C-Class Coupé is more than just a head turner," and "DISTRONIC PLUS. Gefahren minus" (DISTRONIC PLUS. Dangers minus) highlight the vehicles' advanced features and capabilities, while also tapping into emotional drivers.
-
-5. Attention to Detail and Craftsmanship: The ads showcase the vehicles' meticulous attention to detail and craftsmanship, reflecting Mercedes-Benz's commitment to quality. Close-up shots highlight the sleek lines, premium materials, and intricate design elements, reinforcing the brand's reputation for exceptional engineering and craftsmanship.
-
-By effectively combining these creative elements, the Mercedes-Benz ads create a compelling and aspirational brand experience that aligns with the company's positioning as a leader in luxury and innovation. The ads effectively communicate the brand's values and the vehicles' desirable attributes, appealing to the target audience's desires and reinforcing Mercedes-Benz's premium brand identity.
+You are an expert at optimizing the performance of prompts for Anthropic Claude 3 large language models. Your job is to create concise and effective prompts that will ensure effective responses from a large language model.
 ```
+
+User:
+
+```text
+Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
+
+<analysis>
+{{ analysis content from first prompt }}
+</analysis>
+```
+
 
 ### 4a. Summerize Contents of a Text File
 
@@ -182,11 +223,16 @@ Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
 
-Prompt:
+System:
 
 ```text
-You are a Creative Director for a leading advertising agency. Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 20 words or less.
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at ad analysis, the process of examining advertising to understand its effects on consumers.
+```
 
+User:
+
+```text
+Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 20 words or less.
 Format the response as a series of JSON objects according to the template below.
 
 {
