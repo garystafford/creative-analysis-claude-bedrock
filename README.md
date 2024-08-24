@@ -1,6 +1,6 @@
-# Generative AI-powered Multimodal Analysis
+# Generative AI-powered Multimodal Analysis with Anthropic Claude 3
 
-Simple Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of model's multimodal prompting on [Amazon Bedrock](https://aws.amazon.com/bedrock): Haiku, Sonnet, and Opus. The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls the [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html); refer to this link for all inference parameters.
+Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
 
 ![Screenshot](multimodal_ui_v2.png)
 
@@ -26,6 +26,8 @@ export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
 export AWS_SESSION_TOKEN="<YOUR_AWS_SESSION_TOKEN>"
 ```
 
+I suggest creating a virtual Python environment.
+
 ```sh
 python3 -m pip install virtualenv -Uq
 virtualenv claude-streamlit-venv
@@ -34,7 +36,11 @@ python3 -m venv claude-streamlit-venv
 source claude-streamlit-venv/bin/activate
 
 python3 -m pip install -r requirements.txt -Uq
+```
 
+Run the Strealit application.
+
+```sh
 streamlit run app.py \
     --server.runOnSave true \
     --theme.base "light" \
@@ -62,7 +68,7 @@ streamlit run app.py \
 
 ### 1a. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
-Provides an analysis of the four uploaded print advertisements for Mercedes-Benz.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles.
 
 Upload (4) JPEGs:
 
@@ -96,7 +102,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-Provides an analysis of the four uploaded print advertisements for Mercedes-Benz using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt) file.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt) file.
 
 Upload (4) JPEGs:
 
@@ -123,7 +129,7 @@ Analyze these four successful print advertisements for Mercedes-Benz sedans, two
 
 ### 2. Generate Better Prompts using Prompt Optimization
 
-Asking the foundation model to optimize the user's sub-optimal initial prompt.
+Improve the user's initial sub-optimal prompt using an Anthropic Claude 3 model. Same task as above, an analysis of four public advertisements for Mercedes-Benz vehicles.
 
 Upload (4) JPEGs:
 
@@ -150,7 +156,7 @@ Analyze these print advertisements and find some common creative elements. Some 
 
 ### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
 
-Using the resulting analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
+Using the resulting Mercedes-Benz advertising analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
 Upload (2) PDFs:
 
@@ -160,7 +166,7 @@ Upload (2) PDFs:
 System:
 
 ```text
-You are an expert at optimizing the performance of prompts for Anthropic Claude 3 large language models. Your job is to create concise and effective prompts that will ensure effective responses from a large language model.
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at ad analysis, the process of examining advertising to understand its effects on consumers.
 ```
 
 User:
@@ -169,11 +175,11 @@ User:
 Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
 
 <analysis>
-{{ analysis content from first prompt }}
+{{ Mercedes-Benz advertising analysis contents }}
 </analysis>
 ```
 
-### 4a. Summerize Contents of a Text File
+### 4a. Summarize the Contents of a Text File
 
 Upload (1) TXT file:
 
@@ -185,9 +191,9 @@ Prompt:
 Provides a concise summary of this document.
 ```
 
-### 4b. Query Data in CSV File
+### 4b. Query Data in CSV File - Results will be Inaccurate!
 
-The model cannot correctly add up large volumes of numbers. It will provide an answer, but that answer is likely not correct. This prompt writes a program that can correctly calculate the answer.
+Most foundation models are not good at math. In this simple example, they cannot correctly add up a series of numbers. The model will provide a confident answer, but that answer is most likely not correct. This prompt writes a program that can correctly calculate the answer.
 
 Source of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
 
@@ -196,6 +202,12 @@ Upload (1) CSV file:
 - [Advertising_Budget_and_Sales.csv](/csv_data/Advertising_Budget_and_Sales.csv)
 
 Prompts:
+
+System:
+
+```text
+You are an experienced Python software developer, with a deep understanding of the Python language and its libraries. You have significant experience in building complex applications using Python, that incorporate object-oriented programming, functional programming, data structures, and algorithms. You understand software design principles, best practices, and code optimization techniques. You regularly solve complex problems efficiently using Python.
+```
 
 ```text
 Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas package.
