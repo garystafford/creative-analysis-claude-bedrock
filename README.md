@@ -350,8 +350,6 @@ Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
 
-![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
-
 System:
 
 ```text
