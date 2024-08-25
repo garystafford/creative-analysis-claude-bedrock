@@ -1,246 +1,96 @@
-# Author: Gary A. Stafford
-# Modified: 2024-04-24
-# Shows how to use Anthropic Claude 3 multimodal family model prompt on Amazon Bedrock.
+# Generative AI-powered Multimodal Analysis with Anthropic Claude 3
 
-import base64
-import datetime
-import json
-import logging
-from io import StringIO
-from pathlib import Path
-from tempfile import NamedTemporaryFile
+Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
 
-import boto3
-import fitz
-import streamlit as st
-from botocore.exceptions import ClientError
-from PIL import Image
+![Screenshot](/screengrabs/multimodal_ui_v2.png)
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
+## Media Types Supported
 
+Currently, this app supports the following media-types for uploading:
 
-def invoke_model(
-    model_id,
-    system_prompt,
-    messages,
-    max_tokens,
-    temperature,
-    top_p,
-    top_k,
-):
-    body = json.dumps(
-        {
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": max_tokens,
-            "system": system_prompt,
-            "messages": messages,
-            "temperature": temperature,
-            "top_p": top_p,
-            "top_k": top_k,
-        }
-    )
+- image/jpeg - natively supported by Bedrock/Anthropic
+- image/png - natively supported by Bedrock/Anthropic
+- image/webp - natively supported by Bedrock/Anthropic
+- image/gif - natively supported by Bedrock/Anthropic
+- text/plain - content of file is added into prompt as raw text
+- text/csv - content of file is added into prompt as raw text (a little hacky right now...)
+- application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
 
-    bedrock_runtime = boto3.client(service_name="bedrock-runtime")
+## Start Application
 
-    try:
-        response = bedrock_runtime.invoke_model(body=body, modelId=model_id)
-        logger.info("Response: %s", response)
-        return json.loads(response["body"].read())
-    except ClientError as err:
-        message = err.response["Error"]["Message"]
-        logger.error("A client error occurred: %s", message)
-        st.error(f"A client error occurred: {message}")
-        return None
+Make sure you have provided your AWS credential on the commandline before starting the application.
 
+```sh
+export AWS_ACCESS_KEY_ID="<YOUR_AWS_ACCESS_KEY_ID>"
+export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
+export AWS_SESSION_TOKEN="<YOUR_AWS_SESSION_TOKEN>"
+```
 
-def build_request(user_prompt, file_paths):
-    message = {"role": "user", "content": [{"type": "text", "text": user_prompt}]}
+I suggest creating a virtual Python environment (1x).
 
-    if file_paths:
-        for file_path in file_paths:
-            with open(file_path["file_path"], "rb") as image_file:
-                content_image = base64.b64encode(image_file.read()).decode("utf8")
-                message["content"].append(
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": file_path["file_type"],
-                            "data": content_image,
-                        },
-                    }
-                )
+```sh
+python3 -m pip install virtualenv -Uq
+virtualenv claude-streamlit-venv
+python3 -m venv claude-streamlit-venv
 
-    messages = [message] if message else []
-    return messages
+source claude-streamlit-venv/bin/activate
 
+python3 -m pip install --upgrade pip
 
-def extract_text_from_pdf(uploaded_file):
-    with NamedTemporaryFile(suffix="pdf") as temp:
-        temp.write(uploaded_file.getvalue())
-        temp.seek(0)
-        doc = fitz.open(temp.name)
-        extract_text = "".join(page.get_text() for page in doc)
-        return extract_text
+python3 -m pip install -r requirements.txt -Uq
+```
 
+Run the Streamlit application.
 
-def extract_text_from_text(uploaded_file):
-    extract_text = StringIO(uploaded_file.getvalue().decode("utf-8"))
-    return extract_text.getvalue()
+```sh
+streamlit run app.py \
+    --server.runOnSave true \
+    --theme.base "light" \
+    --theme.backgroundColor "#333333" \
+    --theme.primaryColor "#CCC8AA" \
+    --theme.secondaryBackgroundColor "#777777" \
+    --ui.hideTopBar "true" \
+    --client.toolbarMode "minimal"
+```
 
+## Samples Advertisements
 
-def save_images(uploaded_file, file_paths):
-    if uploaded_file.type not in ["image/jpeg", "image/png", "image/webp", "image/gif"]:
-        logger.error("Invalid image file type: %s", uploaded_file.type)
-        st.error("Invalid image file type")
-        return
-    if uploaded_file.size > 5 * 1024 * 1024:
-        logger.error("File size exceeds 5MB limit")
-        st.error("File size exceeds 5MB limit")
-        return
-    image = Image.open(uploaded_file)
-    file_path = Path("_temp_images") / uploaded_file.name
-    file_path.parent.mkdir(exist_ok=True)
-    image.save(file_path)
-    file_paths.append(
-        {
-            "file_path": str(file_path),
-            "file_type": uploaded_file.type,
-        }
-    )
-    logger.info("Image saved: %s (%s)", file_path, uploaded_file.type)
+<table>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad1.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad2.jpeg"></td>
+    </tr>
+    <tr>
+        <td width=384><image src="mercedes_benz_ads/ad3.jpeg"></td>
+        <td width=384><image src="mercedes_benz_ads/ad4.jpeg"></td>
+    </tr>
+</table>
 
+## Samples Prompts
 
-def main():
-    st.set_page_config(page_title="Multimodal Analysis", page_icon="analysis.png")
+### 1a. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
-    custom_css = """
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
-        html, body, p, li, a, h1, h2, h3, h4, h5, h6, table, td, th, div, form, input, button, textarea, [class*="css"] {
-            font-family: 'Inter', sans-serif;
-        }
-        .block-container {
-            padding-top: 32px;
-            padding-bottom: 32px;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        textarea[class^="st-"] {
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-            background-color: #777777;
-        }
-        textarea[aria-label="System Prompt:"] {
-            height: 50px;
-        }
-        textarea[aria-label="User Prompt:"] {
-            height: 400px;
-        }
-        textarea[aria-label="Analysis:"] {
-            height: 600px;
-        }
-        section[aria-label="Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:"] {
-            background-color: #777777;
-        }
-        .element-container img { # uploaded image preview
-            background-color: #ffffff;
-        }
-        h2 { # main headline
-            color: white;
-        }
-        MainMenu {
-            visibility: hidden;
-        }
-        footer {
-            visibility: hidden;
-        }
-        header {
-            visibility: hidden;
-        }
-        p, div, h1, h2, h3, h4, h5, h6, button, section, label, input, small[class^="st-"] {
-            color: #ffffff;
-        }
-        button, section, label, input {
-            background-color: #555555;
-        }
-        button[class^="st-"] {
-            background-color: #777777;
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-        hr span {
-            color: #ffffff;
-        }
-        div[class^="st-"] {
-            color: #ccc8aa;
-        }
-        div[class^="stSlider"] p {
-            color: #ccc8aa;
-        }
-        div[class^="stSlider"] label {
-            background-color: #777777;
-        }
-        div[data-testid="stSidebarUserContent"] {
-            padding-top: 40px;
-        }
-        div[class="row-widget stSelectbox"] label {
-            background-color: #777777;
-        }
-        label[data-testid="stWidgetLabel"] p {
-            color: #ccc8aa;
-        }
-        div[data-baseweb="select"] div {
-            font-size: 14px;
-        }
-        div[data-baseweb="select"] li {
-            font-size: 12px;
-        }
-        [data-testid="stForm"] {
-            border-color: #777777;
-        }
-        h2[id="generative-ai-powered-multimodal-analysis"] {
-            color: #e6e6e6;
-            font-size: 34px;
-        }
-        [data-testid="stForm"] {
-            width: 850px;
-        }
-    </style>
-    """
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles.
 
-    st.markdown(custom_css, unsafe_allow_html=True)
+Upload (4) JPEGs:
 
-    session_vars = {
-        "system_prompt": None,
-        "user_prompt": None,
-        "model_id": "anthropic.claude-3-5-sonnet-20240620-v1:0",
-        "analysis_time": 0,
-        "input_tokens": 0,
-        "output_tokens": 0,
-        "max_tokens": 1000,
-        "temperature": 1.0,
-        "top_p": 0.999,
-        "top_k": 250,
-        "media_type": None,
-    }
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
-    for var, value in session_vars.items():
-        if var not in st.session_state:
-            st.session_state[var] = value
+Prompt:
 
-    st.markdown("## Generative AI-powered Multimodal Analysis")
+System:
 
-    with st.form("ad_analyze_form", border=True, clear_on_submit=False):
-        st.markdown(
-            "Describe the role you want the model to play, the task you wish to perform, and upload the content to be analyzed. The Generative AI-based analysis is powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
-        )
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
+```
 
-        system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
-        user_prompt_default = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+User:
+
+```text
+Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
     2. Messaging and copywriting
     3. Use of color, typography, and branding
@@ -249,134 +99,369 @@ def main():
 
 For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
 
-Important: if no ads were provided, do not produce the analysis."""
+Important: if no ads were provided, do not produce the analysis.
+```
 
-        st.session_state.system_prompt = st.text_area(
-            "System Prompt:", value=system_prompt_default, height=50
-        )
-        st.session_state.user_prompt = st.text_area(
-            "User Prompt:", value=user_prompt_default, height=250
-        )
+### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-        uploaded_files = st.file_uploader(
-            "Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:",
-            type=["jpg", "png", "webp", "pdf", "gif", "csv", "txt"],
-            accept_multiple_files=True,
-        )
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt) file.
 
-        file_paths = []
-        extract_text = None
+Upload (4) JPEGs:
 
-        if uploaded_files:
-            for uploaded_file in uploaded_files:
-                st.session_state.media_type = uploaded_file.type
-                if uploaded_file.type in ["text/csv", "text/plain"]:
-                    extract_text = extract_text_from_text(uploaded_file)
-                    st.session_state.user_prompt += f"\n\n{extract_text}"
-                elif uploaded_file.type == "application/pdf":
-                    extract_text = extract_text_from_pdf(uploaded_file)
-                    st.session_state.user_prompt += f"\n\n{extract_text}"
-                else:  # image media-type
-                    save_images(uploaded_file, file_paths)
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
-            logger.info("Prompt: %s", st.session_state.user_prompt)
+System:
 
-        submitted = st.form_submit_button("Submit")
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
+```
 
-        if submitted and st.session_state.user_prompt:
-            st.markdown("---")
-            if uploaded_files:
-                if uploaded_files[0].type in [
-                    "text/csv",
-                    "text/plain",
-                    "application/pdf",
-                ]:
-                    st.markdown(f"Sample of file contents:\n\n{extract_text[0:500]}...")
-                else:
-                    for file_path in file_paths:
-                        st.image(file_path["file_path"], caption="", width=400)
+User:
 
-            with st.spinner(text="Analyzing..."):
-                start_time = datetime.datetime.now()
-                messages = build_request(st.session_state.user_prompt, file_paths)
-                if messages:
-                    response = invoke_model(
-                        st.session_state.model_id,
-                        st.session_state.system_prompt,
-                        messages,
-                        st.session_state.max_tokens,
-                        st.session_state.temperature,
-                        st.session_state.top_p,
-                        st.session_state.top_k,
-                    )
-                    end_time = datetime.datetime.now()
-                    if response:
-                        st.text_area(
-                            "Analysis:",
-                            value=response["content"][0]["text"],
-                            height=800,
-                        )
-                        st.session_state.analysis_time = (
-                            end_time - start_time
-                        ).total_seconds()
-                        st.session_state.input_tokens = response["usage"][
-                            "input_tokens"
-                        ]
-                        st.session_state.output_tokens = response["usage"][
-                            "output_tokens"
-                        ]
-                    else:
-                        st.error("An error occurred during the analysis")
-                else:
-                    st.error("An error occurred constructing the analysis request")
+```text
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described below.
 
-    st.markdown(
-        "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
-        unsafe_allow_html=True,
-    )
+<design_philosophy>
+{{ contents of mercedes_benz_info.txt }}
+</design_philosophy>
+```
 
-    with st.sidebar:
-        st.markdown("### Inference Parameters")
-        st.session_state.model_id = st.selectbox(
-            "model_id",
-            options=[
-                "anthropic.claude-3-5-sonnet-20240620-v1:0",
-                "anthropic.claude-3-haiku-20240307-v1:0",
-                "anthropic.claude-3-sonnet-20240229-v1:0",
-                "anthropic.claude-3-opus-20240229-v1:0",
-            ],
-        )
+### 2. Generate Better Prompts using Prompt Optimization
 
-        st.session_state.max_tokens = st.slider(
-            "max_tokens", min_value=0, max_value=5000, value=2000, step=10
-        )
-        st.session_state.temperature = st.slider(
-            "temperature", min_value=0.0, max_value=1.0, value=0.2, step=0.05
-        )
-        st.session_state.top_p = st.slider(
-            "top_p", min_value=0.0, max_value=1.0, value=0.999, step=0.01
-        )
-        st.session_state.top_k = st.slider(
-            "top_k", min_value=0, max_value=500, value=250, step=1
-        )
+Improve the user's initial sub-optimal prompt using an Anthropic Claude 3 model. Same task as above, an analysis of four public advertisements for Mercedes-Benz vehicles.
 
-        st.markdown("---")
+Upload (4) JPEGs:
 
-        st.text(
-            f"""• model_id: {st.session_state.model_id}
-• max_tokens: {st.session_state.max_tokens}
-• temperature: {st.session_state.temperature}
-• top_p: {st.session_state.top_p}
-• top_k: {st.session_state.top_k}
-⎯
-• uploaded_media_type: {st.session_state.media_type}
-⎯
-• analysis_time_sec: {st.session_state.analysis_time}
-• input_tokens: {st.session_state.input_tokens}
-• output_tokens: {st.session_state.output_tokens}
-"""
-        )
+- [ad1.jpeg](mercedes_benz_ads/ad1.jpeg)
+- [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
+- [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
+- [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
 
+System:
 
-if __name__ == "__main__":
-    main()
+```text
+You are an expert at optimizing the performance of prompts for Anthropic Claude 3 large language models. Your job is to create concise and effective prompts that will ensure effective responses from a large language model.
+```
+
+User:
+
+```text
+Provide an effective prompt to complete the following marketing analyst's task involving the accompany advertising samples:
+
+<task>
+Analyze these print advertisements and find some common creative elements. Some ads are in English and some are in German.
+</task>
+```
+
+### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
+
+Using the resulting Mercedes-Benz advertising analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
+
+Upload (2) PDFs:
+
+- [Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
+- [Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+
+System:
+
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
+```
+
+User:
+
+```text
+Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
+
+<analysis>
+{{ Mercedes-Benz advertising analysis contents }}
+</analysis>
+```
+
+### 4a. Summarize the Contents of a Text File
+
+Upload (1) TXT file:
+
+- [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt)
+
+Prompt:
+
+```text
+Provides a concise summary of this document.
+```
+
+### 4b. Query Data in CSV File - Results will be Inaccurate
+
+Most foundation models are not good at math. In this simple example, they cannot correctly add up a series of numbers. The model will provide a confident answer, but that answer is most likely not correct. This prompt writes a program that can correctly calculate the answer.
+
+Source of dataset: [https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset](https://www.kaggle.com/datasets/yasserh/advertising-sales-dataset)
+
+Upload (1) CSV file:
+
+- [Advertising_Budget_and_Sales.csv](/csv_data/Advertising_Budget_and_Sales.csv)
+
+Prompts:
+
+System:
+
+```text
+You are an experienced software developer, with a deep understanding of the different programming language and their libraries. You have significant experience in building complex applications that incorporate object-oriented programming, functional programming, data structures, and algorithms. You understand software design principles, best practices, and code optimization techniques. You regularly solve complex problems efficiently using your software development skills.
+```
+
+User:
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the total sales. Use the Pandas package.
+```
+
+User:
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Java program to calculate the total sales.
+```
+
+User:
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Node.js program to calculate the grand total of all TV, radio, and newspaper ad budgets. Use the csv-parser package.
+```
+
+User:
+
+```text
+Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the ratio of the grand total of TV, radio, and newspaper ad budgets to sales for ID 100. Use the Pandas package.
+```
+
+### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief
+
+Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+System:
+
+```text
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
+```
+
+User:
+
+```text
+Based on the following Creative Brief for PayPal, develop three compelling online digital advertisements. In your response, include a unique ad ID (UUID), headline, ad copy, call to action, and description of imagery for each. The ad copy should be 20 words or less.
+Format the response as a series of JSON objects according to the template below.
+
+{
+    "advertisements": [
+        {
+            "id": "",
+            "headline": "",
+            "ad_copy": "",
+            "call_to_action": "",
+            "imagery": ""
+        },
+        {
+            "id": "",
+            "headline": "",
+            "ad_copy": "",
+            "call_to_action": "",
+            "imagery": ""
+        },
+        {
+            "id": "",
+            "headline": "",
+            "ad_copy": "",
+            "call_to_action": "",
+            "imagery": ""
+        }
+    ]
+}
+```
+
+Example Output:
+
+```json
+{
+  "advertisements": [
+    {
+      "id": "ad-001-7b3c-4d2a-9f8e-1a2b3c4d5e6f",
+      "headline": "Your Money, Your Way",
+      "ad_copy": "Juggling school, work, and life? PayPal lets you receive money anytime, anywhere. Stay in control.",
+      "call_to_action": "Sign Up Now",
+      "imagery": "Split-screen image: one side shows a teenager studying, the other side shows the same teen receiving money on their smartphone."
+    },
+    {
+      "id": "ad-002-9e8d-4c2b-a1f7-2b3c4d5e6f7g",
+      "headline": "Independence Starts Here",
+      "ad_copy": "From allowance to part-time gigs, manage your money easily with PayPal. No credit card needed.",
+      "call_to_action": "Get Started",
+      "imagery": "Animated GIF showing a teen's PayPal balance increasing as they complete various tasks like walking a dog or tutoring."
+    },
+    {
+      "id": "ad-003-5a7f-4b6e-c3d2-3c4d5e6f7g8h",
+      "headline": "Friends, Fun, Finances",
+      "ad_copy": "Split costs, share expenses, and manage your money. PayPal: your social wallet for the digital age.",
+      "call_to_action": "Join PayPal",
+      "imagery": "Collage of teens enjoying activities together, with PayPal interface overlays showing easy money transfers between friends."
+    }
+  ]
+}
+```
+
+### 6a. Generate a Layout Design for an Ad Based on Generated Creative Concepts
+
+As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
+
+System:
+
+```text
+You are a talented Graphic Designer at a top-tier advertising agency. You are experienced at developing effective advertising layout for multiple media types: print, mobile, and web.
+```
+
+User:
+
+```text
+Based on the following headline, ad copy, call to action, and description of imagery, describe the design for a compelling online digital advertisement. The advertisement should be designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
+
+{
+    "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
+    "headline": "Your Money, Your Control",
+    "ad_copy": "Take charge of your finances with PayPal. No complexities, just convenience.",
+    "call_to_action": "Download the App",
+    "imagery": "The ad depicts a teenager's hand holding a smartphone with the PayPal app open, showcasing the ease of managing money on the go."
+}
+```
+
+### 6b. Generate a Layout Design with Midjourney for an Ad Based on Generated Creative Concepts
+
+As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+System:
+
+```text
+You are a talented Graphic Designer at a top-tier advertising agency. You are experienced at developing effective advertising layout for multiple media types: print, mobile, and web.
+```
+
+User:
+
+```text
+Based on the following headline, ad copy, call to action, and description of imagery, describe the design for a compelling online digital advertisement. The advertisement should be designed in a tall, portrait format, with a width of 300 pixels and a height of 600 pixels (1:2 tall format). The Creative Brief for PayPal is included for reference.
+
+{
+    "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
+    "headline": "Your Money, Your Control",
+    "ad_copy": "Take charge of your finances with PayPal. No complexities, just convenience.",
+    "call_to_action": "Download the App",
+    "imagery": "The ad depicts a teenager's hand holding a smartphone with the PayPal app open, showcasing the ease of managing money on the go."
+}
+
+Write the response in a format that will be an effective prompt for generating an image of the advertisement with Midjourney. Important, include the flags '--ar 1:2 --q 2 --v 6.1' at the end of the response.
+```
+
+Example Output:
+
+```text
+A compelling online digital advertisement for PayPal in a 300x600 pixel portrait format: 1. Background: Use a gradient background transitioning from PayPal's signature blue at the top to a light, fresh teal at the bottom. This creates a modern, youthful feel that appeals to the target audience of teenagers. 2. Header: At the top of the ad, place the PayPal logo in white, making it stand out against the blue background. 3. Main Image: In the center of the ad, feature a close-up of a teenager's hand holding a smartphone. The phone should display the PayPal app interface, showcasing its clean, user-friendly design. This image should take up about 40% of the ad space. 4. Headline: Above the main image, place the headline "Your Money, Your Control" in bold, white text. Use a modern, sans-serif font that appeals to younger audiences. 5. Ad Copy: Below the main image, include the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." in smaller, easy-to-read white text. 6. Call-to-Action: At the bottom of the ad, create a bright, eye-catching button in PayPal's secondary color (likely a shade of yellow or orange) with the text "Download the App" in contrasting dark text. 7. Visual Elements: Incorporate subtle, modern graphic elements like thin lines or small geometric shapes in white or light colors to add visual interest without cluttering the design. These can be used to separate different sections of the ad. 8. Social Proof: If space allows, include small icons of popular social media platforms or logos of well-known brands that work with PayPal to reinforce trust and relevance. This design aligns with the creative brief by emphasizing PayPal as a virtual wallet that gives users control over their money, appealing to teenagers' desire for independence and simplicity in managing their finances. The smartphone imagery and modern design elements cater to the tech-savvy nature of the target audience, while the clear call-to-action encourages immediate engagement with the app. --ar 1:2 --q 2 --v 6.1
+```
+
+Example Images from Midjourney v6.1 (Aug. 2024):
+
+![layouts](/paypal_creative_brief/midjourney_layouts_v3.png)
+
+### 7. Generate Ads Programmatically Based on Generated Creative Concepts
+
+Generate a Python program, which uses the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement based on the content generated in example 5, above.
+
+Upload (1) WebP file:
+
+- [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+System:
+
+```text
+You are a talented Graphic Designer at a top-tier advertising agency. You are experienced at developing effective advertising layout for multiple media types: print, mobile, and web.
+```
+
+User:
+
+```text
+Write a Python program using the PILLOW package to create a compelling online digital advertisement based on the following headline, ad copy, call to action, and imagery description. The advertisement should be designed in a tall, portrait format, with a width of 400 pixels and a height of 600 pixels. The Creative Brief for PayPal is included for reference.
+
+{
+    "id": "3e67f83a-5f3e-4b4f-8653-b1c3c6b7147e",
+    "headline": "Your Money, Your Control",
+    "ad_copy": "Take charge of your finances with PayPal. No complexities, just convenience.",
+    "call_to_action": "Download the App",
+    "imagery": "The ad depicts a teenager's hand holding a smartphone with the PayPal app open, showcasing the ease of managing money on the go."
+}
+```
+
+#### Examples Ads Built from Generated Python Program
+
+All images were created on Amazon Bedrock using the recently announced Amazon Titan Image Generator G1 foundation model.
+
+![Ads](/paypal_creative_brief/nine_up_ads.png)
+
+## Example Response from Foundation Model
+
+Example response body from Claude 3 Sonnet model on Bedrock. Note that responses also include input and output token counts, which are useful for estimating costs.
+
+```json
+{
+  "id": "msg_017ntpirxuSGXfJMN1afGAXR",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "Here is a concise and effective positive prompt for analyzing the common creative elements across these Mercedes-Benz print advertisements, some in English and some in German:\n\n\"Examine the visual design, messaging, and marketing approaches used across these Mercedes-Benz vehicle print ads. Identify recurring creative strategies, themes, and techniques employed to promote the brand's luxury automotive offerings to potential customers. Discuss how the ads aim to create desire and appeal through their imagery, copy, and overall artistic execution, while being mindful to objectively analyze the marketing without subjective judgement or bias.\""
+    }
+  ],
+  "model": "claude-3-sonnet-28k-20240229",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 1662,
+    "output_tokens": 124
+  }
+}
+```
+
+```json
+{
+  "id": "msg_01A6TxmM18XGTFJ6vMk7xnCg",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "These Mercedes-Benz print advertisements showcase several compelling creative elements that contribute to their effectiveness in promoting the brand's luxury sedans:\n\n1. Striking visual imagery: All four ads feature high-quality, dramatic photography that showcases the vehicles in stylish and aspirational settings. The use of dynamic lighting, motion blur effects, and urban/futuristic backdrops creates a sense of sophistication and excitement around the cars.\n\n2. Impactful copywriting: The ads employ concise, evocative taglines and headlines that reinforce Mercedes-Benz's brand positioning around perfection, innovation, and superior performance. Examples include \"The only thing that's not relative. Perfection.\" and \"Glam turismo.\" The German copy like \"Das Beste kennt keine Alternative\" also conveys a premium, uncompromising message.\n\n3. Consistent branding elements: The iconic Mercedes-Benz tri-star logo is prominently featured in each ad, along with the brand's signature typography and color palette of silver, black, and blue tones. This strong brand identity ties the campaigns together cohesively.\n\n4. Focus on design and styling: The ads highlight the sleek, modern designs of the featured C-Class and S-Class models through artistic angles and attention to detail on elements like the sculpted bodies, alloy wheels, and LED lighting accents.\n\n5. Aspirational lifestyle positioning: While showcasing the vehicles themselves, the ads also subtly convey an aspirational, luxurious lifestyle through the sophisticated urban settings, use of motion and speed, and overall premium aesthetic. This aligns with Mercedes-Benz's high-end brand identity.\n\nOverall, these print ads leverage striking visuals, compelling copy, consistent branding, design-focused vehicle depictions, and an aspirational luxury positioning to create a cohesive, impactful campaign that effectively promotes Mercedes-Benz's premium sedan offerings."
+    }
+  ],
+  "model": "claude-3-sonnet-28k-20240229",
+  "stop_reason": "end_turn",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 1743,
+    "output_tokens": 417
+  }
+}
+```
+
+---
+
+_The contents of this repository represent my viewpoints and not of my past or current employers, including Amazon Web Services (AWS). All third-party libraries, modules, plugins, and SDKs are the property of their respective owners._
