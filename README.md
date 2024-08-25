@@ -286,29 +286,29 @@ Example Output:
 
 ```json
 {
-    "advertisements": [
-        {
-            "id": "ad-001-7b3c-4d2a-9f8e-1a2b3c4d5e6f",
-            "headline": "Your Money, Your Way",
-            "ad_copy": "Juggling school, work, and life? PayPal lets you receive money anytime, anywhere. Stay in control.",
-            "call_to_action": "Sign Up Now",
-            "imagery": "Split-screen image: one side shows a teenager studying, the other side shows the same teen receiving money on their smartphone."
-        },
-        {
-            "id": "ad-002-9e8d-4c2b-a1f7-2b3c4d5e6f7g",
-            "headline": "Independence Starts Here",
-            "ad_copy": "From allowance to part-time gigs, manage your money easily with PayPal. No credit card needed.",
-            "call_to_action": "Get Started",
-            "imagery": "Animated GIF showing a teen's PayPal balance increasing as they complete various tasks like walking a dog or tutoring."
-        },
-        {
-            "id": "ad-003-5a7f-4b6e-c3d2-3c4d5e6f7g8h",
-            "headline": "Friends, Fun, Finances",
-            "ad_copy": "Split costs, share expenses, and manage your money. PayPal: your social wallet for the digital age.",
-            "call_to_action": "Join PayPal",
-            "imagery": "Collage of teens enjoying activities together, with PayPal interface overlays showing easy money transfers between friends."
-        }
-    ]
+  "advertisements": [
+    {
+      "id": "ad-001-7b3c-4d2a-9f8e-1a2b3c4d5e6f",
+      "headline": "Your Money, Your Way",
+      "ad_copy": "Juggling school, work, and life? PayPal lets you receive money anytime, anywhere. Stay in control.",
+      "call_to_action": "Sign Up Now",
+      "imagery": "Split-screen image: one side shows a teenager studying, the other side shows the same teen receiving money on their smartphone."
+    },
+    {
+      "id": "ad-002-9e8d-4c2b-a1f7-2b3c4d5e6f7g",
+      "headline": "Independence Starts Here",
+      "ad_copy": "From allowance to part-time gigs, manage your money easily with PayPal. No credit card needed.",
+      "call_to_action": "Get Started",
+      "imagery": "Animated GIF showing a teen's PayPal balance increasing as they complete various tasks like walking a dog or tutoring."
+    },
+    {
+      "id": "ad-003-5a7f-4b6e-c3d2-3c4d5e6f7g8h",
+      "headline": "Friends, Fun, Finances",
+      "ad_copy": "Split costs, share expenses, and manage your money. PayPal: your social wallet for the digital age.",
+      "call_to_action": "Join PayPal",
+      "imagery": "Collage of teens enjoying activities together, with PayPal interface overlays showing easy money transfers between friends."
+    }
+  ]
 }
 ```
 
