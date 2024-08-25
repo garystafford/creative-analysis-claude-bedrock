@@ -1,6 +1,6 @@
 # Generative AI-powered Multimodal Analysis with Anthropic Claude 3
 
-Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The analysis is powered by Amazon Bedrock and Anthropic Claude 3 foundational AI model. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
+Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, or TXT files. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
 
 UI Preview:
 
@@ -32,17 +32,15 @@ export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
 export AWS_SESSION_TOKEN="<YOUR_AWS_SESSION_TOKEN>"
 ```
 
-I suggest creating a virtual Python environment (1x).
+It is recommended to create a virtual Python environment (1x):
 
 ```sh
 python3 -m pip install virtualenv -Uq
 virtualenv claude-streamlit-venv
 python3 -m venv claude-streamlit-venv
-
 source claude-streamlit-venv/bin/activate
 
 python3 -m pip install --upgrade pip
-
 python3 -m pip install -r requirements.txt -Uq
 
 streamlit --version
