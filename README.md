@@ -38,6 +38,15 @@ source claude-streamlit-venv/bin/activate
 python3 -m pip install --upgrade pip
 
 python3 -m pip install -r requirements.txt -Uq
+
+streamlit --version
+```
+
+To deactivate and delete virtual environment once you are done:
+
+```sh
+deactivate
+rm -r claude-streamlit-venv
 ```
 
 Run the Streamlit application.
