@@ -12,6 +12,7 @@ from tempfile import NamedTemporaryFile
 
 import boto3
 import pymupdf
+import pyperclip
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
@@ -136,7 +137,7 @@ def main():
         textarea[aria-label="User Prompt:"] {
             height: 400px;
         }
-        textarea[aria-label="Analysis:"] {
+        textarea[aria-label="Model Response:"] {
             height: 600px;
         }
         section[aria-label="Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:"] {
@@ -286,52 +287,50 @@ Important: if no ads were provided, do not produce the analysis."""
 
         submitted = st.form_submit_button("Submit")
 
-        if submitted and st.session_state.user_prompt:
-            st.markdown("---")
-            if uploaded_files:
-                if uploaded_files[0].type in [
-                    "text/csv",
-                    "text/plain",
-                    "application/pdf",
-                ]:
-                    st.markdown(f"Sample of file contents:\n\n{extract_text[0:500]}...")
-                else:
-                    for file_path in file_paths:
-                        st.image(file_path["file_path"], caption="", width=400)
+    if submitted and st.session_state.user_prompt:
+        st.markdown("---")
+        if uploaded_files:
+            if uploaded_files[0].type in [
+                "text/csv",
+                "text/plain",
+                "application/pdf",
+            ]:
+                st.markdown(f"Sample of file contents:\n\n{extract_text[0:500]}...")
+            else:
+                for file_path in file_paths:
+                    st.image(file_path["file_path"], caption="", width=400)
 
-            with st.spinner(text="Analyzing..."):
-                start_time = datetime.datetime.now()
-                messages = compose_message(st.session_state.user_prompt, file_paths)
-                if messages:
-                    response = invoke_model(
-                        st.session_state.model_id,
-                        st.session_state.system_prompt,
-                        messages,
-                        st.session_state.max_tokens,
-                        st.session_state.temperature,
-                        st.session_state.top_p,
-                        st.session_state.top_k,
+        with st.spinner(text="Analyzing..."):
+            start_time = datetime.datetime.now()
+            messages = compose_message(st.session_state.user_prompt, file_paths)
+            if messages:
+                response = invoke_model(
+                    st.session_state.model_id,
+                    st.session_state.system_prompt,
+                    messages,
+                    st.session_state.max_tokens,
+                    st.session_state.temperature,
+                    st.session_state.top_p,
+                    st.session_state.top_k,
+                )
+                end_time = datetime.datetime.now()
+                if response:
+                    analysis = st.text_area(
+                        "Model Response:",
+                        value=response["content"][0]["text"],
+                        height=800,
                     )
-                    end_time = datetime.datetime.now()
-                    if response:
-                        st.text_area(
-                            "Analysis:",
-                            value=response["content"][0]["text"],
-                            height=800,
-                        )
-                        st.session_state.analysis_time = (
-                            end_time - start_time
-                        ).total_seconds()
-                        st.session_state.input_tokens = response["usage"][
-                            "input_tokens"
-                        ]
-                        st.session_state.output_tokens = response["usage"][
-                            "output_tokens"
-                        ]
-                    else:
-                        st.error("An error occurred during the analysis")
+                    st.session_state.analysis_time = (
+                        end_time - start_time
+                    ).total_seconds()
+                    st.session_state.input_tokens = response["usage"]["input_tokens"]
+                    st.session_state.output_tokens = response["usage"]["output_tokens"]
+                    pyperclip.copy(analysis)
+                    st.success("Analysis copied to clipboard!")
                 else:
-                    st.error("An error occurred constructing the analysis request")
+                    st.error("An error occurred during the analysis")
+            else:
+                st.error("An error occurred constructing the analysis request")
 
     st.markdown(
         "<small style='color: #888888'> Gary A. Stafford, 2024</small>",
@@ -366,7 +365,8 @@ Important: if no ads were provided, do not produce the analysis."""
         st.markdown("---")
 
         st.text(
-            f"""• model_id: {st.session_state.model_id}
+            f"""Inference Summary:
+• model_id: {st.session_state.model_id}
 • max_tokens: {st.session_state.max_tokens}
 • temperature: {st.session_state.temperature}
 • top_p: {st.session_state.top_p}
