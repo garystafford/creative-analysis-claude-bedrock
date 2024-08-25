@@ -12,9 +12,9 @@ Currently, this app supports the following media-types for uploading:
 - image/png - natively supported by Bedrock/Anthropic
 - image/webp - natively supported by Bedrock/Anthropic
 - image/gif - natively supported by Bedrock/Anthropic
-- text/plain - content of file is added into prompt as raw text
-- text/csv - content of file is added into prompt as raw text (a little hacky right now...)
-- application/pdf - content of file is added into prompt as raw text (a little hacky right now...)
+- text/plain - content of file is added into prompt as raw text (uses StringIO)
+- text/csv - content of file is added into prompt as raw text (uses StringIO - a bit hacky!)
+- application/pdf - content of file is added into prompt as raw text (uses PyMuPDF - a bit hacky!)
 
 ## Start Application
 
