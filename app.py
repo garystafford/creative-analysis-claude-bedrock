@@ -11,7 +11,7 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 
 import boto3
-import fitz
+import pymupdf
 import streamlit as st
 from botocore.exceptions import ClientError
 from PIL import Image
@@ -82,7 +82,7 @@ def extract_text_from_pdf(uploaded_file):
     with NamedTemporaryFile(suffix="pdf") as temp:
         temp.write(uploaded_file.getvalue())
         temp.seek(0)
-        doc = fitz.open(temp.name)
+        doc = pymupdf.open(temp.name)
         extract_text = "".join(page.get_text() for page in doc)
         return extract_text
 
@@ -272,7 +272,12 @@ Important: if no ads were provided, do not produce the analysis."""
                 elif uploaded_file.type == "application/pdf":
                     extract_text = extract_text_from_pdf(uploaded_file)
                     st.session_state.user_prompt += f"\n\n{extract_text}"
-                elif uploaded_file.type in ["image/jpeg", "image/png", "image/webp", "image/gif"]:
+                elif uploaded_file.type in [
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp",
+                    "image/gif",
+                ]:
                     save_image(uploaded_file, file_paths)
                 else:
                     st.error("Invalid file type. Please upload a valid file type.")
