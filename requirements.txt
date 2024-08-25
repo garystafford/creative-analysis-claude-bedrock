@@ -1,5 +1,7 @@
 boto3
 botocore
+Pillow
 PyMuPDF
+pyperclip
 streamlit
 watchdog
