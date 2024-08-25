@@ -24,7 +24,7 @@ Currently, this app supports the following media-types for uploading:
 
 ## Start Application
 
-Make sure you have provided your AWS credential on the commandline before starting the application.
+Make sure you have provided your AWS credential on the commandline, or using an alternative authentication method, before starting the application.
 
 ```sh
 export AWS_ACCESS_KEY_ID="<YOUR_AWS_ACCESS_KEY_ID>"
@@ -32,28 +32,25 @@ export AWS_SECRET_ACCESS_KEY="<YOUR_AWS_SECRET_ACCESS_KEY>"
 export AWS_SESSION_TOKEN="<YOUR_AWS_SESSION_TOKEN>"
 ```
 
-It is recommended to create a virtual Python environment (1x):
+Create a virtual Python environment (1x):
 
 ```sh
 python3 -m pip install virtualenv -Uq
 virtualenv claude-streamlit-venv
 python3 -m venv claude-streamlit-venv
 source claude-streamlit-venv/bin/activate
+```
 
+Install Python package dependencies:
+
+```sh
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt -Uq
 
 streamlit --version
 ```
 
-To deactivate and delete virtual environment once you are done:
-
-```sh
-deactivate
-rm -r claude-streamlit-venv
-```
-
-Run the Streamlit application.
+Run the Streamlit application:
 
 ```sh
 streamlit run app.py \
@@ -64,6 +61,13 @@ streamlit run app.py \
     --theme.secondaryBackgroundColor "#777777" \
     --ui.hideTopBar "true" \
     --client.toolbarMode "minimal"
+```
+
+Deactivate and delete virtual environment once you are done:
+
+```sh
+deactivate
+rm -r claude-streamlit-venv
 ```
 
 ## Samples Advertisements
