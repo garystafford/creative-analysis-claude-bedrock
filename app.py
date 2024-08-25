@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-24
+# Modified: 2024-04-25
 # Shows how to use Anthropic Claude 3 multimodal family model prompt on Amazon Bedrock.
 
 import base64
@@ -56,7 +56,7 @@ def invoke_model(
         return None
 
 
-def build_request(user_prompt, file_paths):
+def compose_message(user_prompt, file_paths):
     message = {"role": "user", "content": [{"type": "text", "text": user_prompt}]}
 
     if file_paths:
@@ -298,7 +298,7 @@ Important: if no ads were provided, do not produce the analysis."""
 
             with st.spinner(text="Analyzing..."):
                 start_time = datetime.datetime.now()
-                messages = build_request(st.session_state.user_prompt, file_paths)
+                messages = compose_message(st.session_state.user_prompt, file_paths)
                 if messages:
                     response = invoke_model(
                         st.session_state.model_id,
