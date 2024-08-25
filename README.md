@@ -380,7 +380,7 @@ A compelling online digital advertisement for PayPal in a 300x600 pixel portrait
 
 Example Images from Midjourney v6.1 (Aug. 2024):
 
-![layouts](/paypal_creative_brief/midjourney_layouts_v3)
+![layouts](/paypal_creative_brief/midjourney_layouts_v3.png)
 
 ### 7. Generate Ads Programmatically Based on Generated Creative Concepts
 
