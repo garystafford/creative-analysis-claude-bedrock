@@ -47,7 +47,7 @@ def invoke_model(
 
     try:
         response = bedrock_runtime.invoke_model(body=body, modelId=model_id)
-        logger.info("Response: %s", response)
+        logger.debug("Response: %s", response)
         return json.loads(response["body"].read())
     except ClientError as err:
         message = err.response["Error"]["Message"]
@@ -92,11 +92,7 @@ def extract_text_from_text(uploaded_file):
     return extract_text.getvalue()
 
 
-def save_images(uploaded_file, file_paths):
-    if uploaded_file.type not in ["image/jpeg", "image/png", "image/webp", "image/gif"]:
-        logger.error("Invalid image file type: %s", uploaded_file.type)
-        st.error("Invalid image file type")
-        return
+def save_image(uploaded_file, file_paths):
     if uploaded_file.size > 5 * 1024 * 1024:
         logger.error("File size exceeds 5MB limit")
         st.error("File size exceeds 5MB limit")
@@ -276,8 +272,10 @@ Important: if no ads were provided, do not produce the analysis."""
                 elif uploaded_file.type == "application/pdf":
                     extract_text = extract_text_from_pdf(uploaded_file)
                     st.session_state.user_prompt += f"\n\n{extract_text}"
-                else:  # image media-type
-                    save_images(uploaded_file, file_paths)
+                elif uploaded_file.type in ["image/jpeg", "image/png", "image/webp", "image/gif"]:
+                    save_image(uploaded_file, file_paths)
+                else:
+                    st.error("Invalid file type. Please upload a valid file type.")
 
             logger.info("Prompt: %s", st.session_state.user_prompt)
 
