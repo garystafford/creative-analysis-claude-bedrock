@@ -129,11 +129,12 @@ Upload (4) JPEGs:
 - [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
 - [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
+- [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt)
 
 System:
 
 ```text
-You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_info.txt file.
 ```
 
 User:
