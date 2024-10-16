@@ -129,7 +129,7 @@ Upload (4) JPEGs:
 - [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
 - [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
-- [Mercedes-Benz design philosophy](mercedes_benz_ads/mercedes_benz_design_ philosophy.txt)
+- [Mercedes-Benz design philosophy](mercedes_benz_ads/mercedes_benz_design_philosophy.txt)
 
 System:
 
@@ -140,7 +140,7 @@ You are an experienced Creative Director at a top-tier advertising agency. You a
 User:
 
 ```text
-Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_design_ philosophy.txt file.
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_design_philosophy.txt file.
 ```
 
 ### 2. Generate Better Prompts using Prompt Optimization
