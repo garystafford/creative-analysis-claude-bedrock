@@ -134,17 +134,13 @@ Upload (4) JPEGs:
 System:
 
 ```text
-Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_info.txt file.
+You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers.
 ```
 
 User:
 
 ```text
-Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described below.
-
-<design_philosophy>
-{{ contents of mercedes_benz_info.txt }}
-</design_philosophy>
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_info.txt file.
 ```
 
 ### 2. Generate Better Prompts using Prompt Optimization
@@ -193,7 +189,7 @@ You are an experienced Creative Director at a top-tier advertising agency. You a
 User:
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, found in the mercedes_benz_ads_analysis.txt document, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
+Based on the following analysis of four successful Mercedes-Benz print advertisements, found in the document, mercedes_benz_ads_analysis.txt, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in the PDF, Ad_Specs_Modern_Luxury.pdf.
 ```
 
 ### 4a. Summarize the Contents of a Text File
