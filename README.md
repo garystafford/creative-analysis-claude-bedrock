@@ -129,7 +129,7 @@ Upload (4) JPEGs:
 - [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
 - [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
-- [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt)
+- [Mercedes-Benz design philosophy](mercedes_benz_ads/mercedes_benz_info.txt)
 
 System:
 
@@ -182,6 +182,7 @@ Upload (2) PDFs:
 
 - [Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
 - [Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+- [Merceded-Benz Ads Analysis](mercedes_benz_ads/mercedes_benz_ads_analysis.txt)
 
 System:
 
