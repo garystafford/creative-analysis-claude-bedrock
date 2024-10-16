@@ -193,11 +193,7 @@ You are an experienced Creative Director at a top-tier advertising agency. You a
 User:
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
-
-<analysis>
-{{ Mercedes-Benz advertising analysis contents }}
-</analysis>
+Based on the following analysis of four successful Mercedes-Benz print advertisements, found in the mercedes_benz_ads_analysis.txt document, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
 ```
 
 ### 4a. Summarize the Contents of a Text File
