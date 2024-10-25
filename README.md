@@ -70,7 +70,7 @@ Deactivate and delete virtual environment once you are done:
 
 ```sh
 deactivate
-rm -r claude-streamlit-venv
+rm -rf .venv
 ```
 
 ## Samples Advertisements
