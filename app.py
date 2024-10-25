@@ -1,5 +1,5 @@
 # Author: Gary A. Stafford
-# Modified: 2024-04-25
+# Modified: 2024-10-25
 # Shows how to use Anthropic Claude 3 multimodal family model prompt on Amazon Bedrock.
 
 import base64
@@ -22,6 +22,41 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 
+################### Constants ###################
+AWS_REGIONS = ["us-west-2", "us-east-1"]
+
+DEFAULT_AWS_REGION = AWS_REGIONS[0]
+
+MODELS = [
+    "anthropic.claude-3-5-sonnet-20241022-v2:0",  # currently only available in us-west-2!
+    "anthropic.claude-3-5-sonnet-20240620-v1:0",
+    "anthropic.claude-3-haiku-20240307-v1:0",
+    "anthropic.claude-3-sonnet-20240229-v1:0",
+    "anthropic.claude-3-opus-20240229-v1:0",
+]
+
+DEFAULT_MODEL_ID = MODELS[0]
+
+DEFAULT_MAX_TOKENS = 2048
+DEFAULT_TEMPERATURE = 0.2
+DEFAULT_TOP_P = 0.999
+DEFAULT_TOP_K = 250
+
+DEFAULT_SYSTEM_PROMPT = """You are an experienced Creative Director at a top-tier advertising agency. 
+You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
+
+DEFAULT_USER_PROMPT = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
+    1. Visual design and imagery
+    2. Messaging and copywriting
+    3. Use of color, typography, and branding
+    4. Interactivity or multimedia components
+    5. Alignment with Mercedes-Benz's brand identity and positioning
+
+For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
+
+Important: if no ads were provided, do not produce the analysis."""
+#################################################
+
 
 def invoke_model(
     model_id,
@@ -31,7 +66,7 @@ def invoke_model(
     temperature,
     top_p,
     top_k,
-):
+) -> dict:
     body = json.dumps(
         {
             "anthropic_version": "bedrock-2023-05-31",
@@ -44,7 +79,9 @@ def invoke_model(
         }
     )
 
-    bedrock_runtime = boto3.client(service_name="bedrock-runtime")
+    bedrock_runtime = boto3.client(
+        service_name="bedrock-runtime", region_name=st.session_state.aws_regions
+    )
 
     try:
         response = bedrock_runtime.invoke_model(body=body, modelId=model_id)
@@ -57,7 +94,7 @@ def invoke_model(
         return None
 
 
-def compose_message(user_prompt, file_paths):
+def compose_message(user_prompt, file_paths) -> list:
     message = {"role": "user", "content": [{"type": "text", "text": user_prompt}]}
 
     if file_paths:
@@ -79,7 +116,7 @@ def compose_message(user_prompt, file_paths):
     return messages
 
 
-def extract_text_from_pdf(uploaded_file):
+def extract_text_from_pdf(uploaded_file) -> str:
     with NamedTemporaryFile(suffix="pdf") as temp:
         temp.write(uploaded_file.getvalue())
         temp.seek(0)
@@ -88,13 +125,13 @@ def extract_text_from_pdf(uploaded_file):
         return extract_text
 
 
-def extract_text_from_text(uploaded_file):
+def extract_text_from_text(uploaded_file) -> str:
     extract_text = StringIO(uploaded_file.getvalue().decode("utf-8"))
     return extract_text.getvalue()
 
 
-def save_image(uploaded_file, file_paths):
-    if uploaded_file.size > 5 * 1024 * 1024:
+def save_image(uploaded_file, file_paths) -> None:
+    if uploaded_file.size > 5 * 1024 * 1024:  # 5MB
         logger.error("File size exceeds 5MB limit")
         st.error("File size exceeds 5MB limit")
         return
@@ -111,118 +148,44 @@ def save_image(uploaded_file, file_paths):
     logger.info("Image saved: %s (%s)", file_path, uploaded_file.type)
 
 
-def main():
+def display_inference_summary() -> str:
+    return f"""
+Inference Parameters:
+• aws_region: {st.session_state.aws_region}
+• model_id: {st.session_state.model_id}
+• max_tokens: {st.session_state.max_tokens}
+• temperature: {st.session_state.temperature}
+• top_p: {st.session_state.top_p}
+• top_k: {st.session_state.top_k}
+• uploaded_media_type: {st.session_state.media_type}
+
+Inference Results:
+• analysis_time_sec: {st.session_state.analysis_time}
+• input_tokens: {st.session_state.input_tokens}
+• output_tokens: {st.session_state.output_tokens}"""
+
+
+def main() -> None:
     st.set_page_config(page_title="Multimodal Analysis", page_icon="analysis.png")
 
-    custom_css = """
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
-        html, body, p, li, a, h1, h2, h3, h4, h5, h6, table, td, th, div, form, input, button, textarea, [class*="css"] {
-            font-family: 'Inter', sans-serif;
-        }
-        .block-container {
-            padding-top: 32px;
-            padding-bottom: 32px;
-            padding-left: 0;
-            padding-right: 0;
-        }
-        textarea[class^="st-"] {
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-            background-color: #777777;
-        }
-        textarea[aria-label="System Prompt:"] {
-            height: 50px;
-        }
-        textarea[aria-label="User Prompt:"] {
-            height: 400px;
-        }
-        textarea[aria-label="Model Response:"] {
-            height: 600px;
-        }
-        section[aria-label="Upload JPG, PNG, GIF, WEBP, PDF, CSV, or TXT files:"] {
-            background-color: #777777;
-        }
-        .element-container img { # uploaded image preview
-            background-color: #ffffff;
-        }
-        h2 { # main headline
-            color: white;
-        }
-        MainMenu {
-            visibility: hidden;
-        }
-        footer {
-            visibility: hidden;
-        }
-        header {
-            visibility: hidden;
-        }
-        p, div, h1, h2, h3, h4, h5, h6, button, section, label, input, small[class^="st-"] {
-            color: #ffffff;
-        }
-        button, section, label, input {
-            background-color: #555555;
-        }
-        button[class^="st-"] {
-            background-color: #777777;
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-        hr span {
-            color: #ffffff;
-        }
-        div[class^="st-"] {
-            color: #ccc8aa;
-        }
-        div[class^="stSlider"] p {
-            color: #ccc8aa;
-        }
-        div[class^="stSlider"] label {
-            background-color: #777777;
-        }
-        div[data-testid="stSidebarUserContent"] {
-            padding-top: 40px;
-        }
-        div[class="row-widget stSelectbox"] label {
-            background-color: #777777;
-        }
-        label[data-testid="stWidgetLabel"] p {
-            color: #ccc8aa;
-        }
-        div[data-baseweb="select"] div {
-            font-size: 14px;
-        }
-        div[data-baseweb="select"] li {
-            font-size: 12px;
-        }
-        [data-testid="stForm"] {
-            border-color: #777777;
-        }
-        h2[id="generative-ai-powered-multimodal-analysis"] {
-            color: #e6e6e6;
-            font-size: 34px;
-        }
-        [data-testid="stForm"] {
-            width: 850px;
-        }
-    </style>
-    """
+    with open("css.txt") as css_file:
+        custom_css = css_file.read()
 
     st.markdown(custom_css, unsafe_allow_html=True)
 
     session_vars = {
-        "system_prompt": None,
-        "user_prompt": None,
-        "model_id": "anthropic.claude-3-5-sonnet-20240620-v1:0",
+        "aws_region": DEFAULT_AWS_REGION,
+        "system_prompt": DEFAULT_SYSTEM_PROMPT,
+        "user_prompt": DEFAULT_USER_PROMPT,
+        "model_id": DEFAULT_MODEL_ID,
+        "max_tokens": DEFAULT_MAX_TOKENS,
+        "temperature": DEFAULT_TEMPERATURE,
+        "top_p": DEFAULT_TOP_P,
+        "top_k": DEFAULT_TOP_K,
+        "media_type": None,
         "analysis_time": 0,
         "input_tokens": 0,
         "output_tokens": 0,
-        "max_tokens": 1000,
-        "temperature": 1.0,
-        "top_p": 0.999,
-        "top_k": 250,
-        "media_type": None,
     }
 
     for var, value in session_vars.items():
@@ -236,17 +199,8 @@ def main():
             "Describe the role you want the model to play, the task you wish to perform, and upload the content to be analyzed. The Generative AI-based analysis is powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
         )
 
-        system_prompt_default = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
-        user_prompt_default = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
-    1. Visual design and imagery
-    2. Messaging and copywriting
-    3. Use of color, typography, and branding
-    4. Interactivity or multimedia components
-    5. Alignment with Mercedes-Benz's brand identity and positioning
-
-For each element, describe how it is effectively utilized across the ads and explain why it is an impactful creative choice. Provide specific examples and insights to support your analysis. The goal is to uncover the key creative strategies that make these Mercedes-Benz ads compelling and effective.
-
-Important: if no ads were provided, do not produce the analysis."""
+        system_prompt_default = DEFAULT_SYSTEM_PROMPT
+        user_prompt_default = DEFAULT_USER_PROMPT
 
         st.session_state.system_prompt = st.text_area(
             "System Prompt:", value=system_prompt_default, height=50
@@ -337,48 +291,39 @@ Important: if no ads were provided, do not produce the analysis."""
         unsafe_allow_html=True,
     )
 
+    # model ids: https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html
     with st.sidebar:
         st.markdown("### Inference Parameters")
-        st.session_state.model_id = st.selectbox(
-            "model_id",
-            options=[
-                "anthropic.claude-3-5-sonnet-20240620-v1:0",
-                "anthropic.claude-3-haiku-20240307-v1:0",
-                "anthropic.claude-3-sonnet-20240229-v1:0",
-                "anthropic.claude-3-opus-20240229-v1:0",
-            ],
+        st.session_state.aws_regions = st.selectbox(
+            label="aws_region:",
+            options=AWS_REGIONS,
         )
-
+        st.session_state.model_id = st.selectbox(
+            label="model_id (Anthropic Claude 3 family of models):",
+            options=MODELS,
+        )
         st.session_state.max_tokens = st.slider(
-            "max_tokens", min_value=0, max_value=5000, value=2000, step=10
+            "max_tokens", min_value=0, max_value=5000, value=DEFAULT_MAX_TOKENS, step=10
         )
         st.session_state.temperature = st.slider(
-            "temperature", min_value=0.0, max_value=1.0, value=0.2, step=0.05
+            "temperature",
+            min_value=0.0,
+            max_value=1.0,
+            value=DEFAULT_TEMPERATURE,
+            step=0.05,
         )
         st.session_state.top_p = st.slider(
-            "top_p", min_value=0.0, max_value=1.0, value=0.999, step=0.01
+            "top_p", min_value=0.0, max_value=1.0, value=DEFAULT_TOP_P, step=0.01
         )
         st.session_state.top_k = st.slider(
-            "top_k", min_value=0, max_value=500, value=250, step=1
+            "top_k", min_value=0, max_value=500, value=DEFAULT_TOP_K, step=1
         )
 
         st.markdown("---")
 
-        st.text(
-            f"""Inference Summary:
-• model_id: {st.session_state.model_id}
-• max_tokens: {st.session_state.max_tokens}
-• temperature: {st.session_state.temperature}
-• top_p: {st.session_state.top_p}
-• top_k: {st.session_state.top_k}
-⎯
-• uploaded_media_type: {st.session_state.media_type}
-⎯
-• analysis_time_sec: {st.session_state.analysis_time}
-• input_tokens: {st.session_state.input_tokens}
-• output_tokens: {st.session_state.output_tokens}
-"""
-        )
+        # display inference summary
+        inference_summary = display_inference_summary()
+        st.text(inference_summary)
 
 
 if __name__ == "__main__":
