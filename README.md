@@ -210,7 +210,7 @@ You are an expert at concisely and accurately summarizing documents.
 User:
 
 ```text
-Ssummarize this document.
+Summarize this document.
 ```
 
 ### 6. Query Data in CSV File
