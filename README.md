@@ -124,7 +124,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes*benz_ads/mercedes_benz_design* philosophy.txt) file.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_design_ philosophy.txt) file.
 
 Upload (4) JPEGs:
 
@@ -199,7 +199,7 @@ Based on the following analysis of four successful Mercedes-Benz print advertise
 
 Upload (1) TXT file:
 
-- [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt)
+- [Merceded-Benz Ads Analysis](mercedes_benz_ads/mercedes_benz_ads_analysis.txt)
 
 Prompt:
 
@@ -207,7 +207,7 @@ Prompt:
 Provides a concise summary of this document.
 ```
 
-### 4b. Query Data in CSV File - Results will be Inaccurate
+### 4b. Query Data in CSV File - NOTE: Results will be Inaccurate
 
 Most foundation models are not good at math. In this simple example, they cannot correctly add up a series of numbers. The model will provide a confident answer, but that answer is most likely not correct. This prompt writes a program that can correctly calculate the answer.
 
@@ -252,6 +252,8 @@ Based on the Advertising Budget and Sales CSV file, write a Python program to ca
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
+
+![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
 
 Upload (1) WebP file:
 
@@ -333,8 +335,6 @@ As a Graphic Designer, describe the layout of the advertisement, based on the co
 Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
-
-![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
 
 System:
 
