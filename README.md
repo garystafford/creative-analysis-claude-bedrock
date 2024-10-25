@@ -201,13 +201,19 @@ Upload (1) TXT file:
 
 - [Merceded-Benz Ads Analysis](mercedes_benz_ads/mercedes_benz_ads_analysis.txt)
 
-Prompt:
+System:
 
 ```text
-Provides a concise summary of this document.
+You are an expert at concisely and accurately summarizing documents.
 ```
 
-### 4b. Query Data in CSV File - NOTE: Results will be Inaccurate
+User:
+
+```text
+Ssummarize this document.
+```
+
+### 4b. Query Data in CSV File
 
 Most foundation models are not good at math. In this simple example, they cannot correctly add up a series of numbers. The model will provide a confident answer, but that answer is most likely not correct. This prompt writes a program that can correctly calculate the answer.
 
