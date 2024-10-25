@@ -434,6 +434,11 @@ Write a Python program using the PILLOW package to create a compelling online di
 
 All images were created on Amazon Bedrock using the recently announced Amazon Titan Image Generator G1 foundation model.
 
+Scripts:
+- [sample_genai_ad_program_v1.py](/paypal_creative_brief/sample_genai_ad_program_v1.py)
+- [sample_genai_ad_program_v2.py](/paypal_creative_brief/sample_genai_ad_program_v2.py)
+- [sample_genai_ad_program_v3.py](/paypal_creative_brief/sample_genai_ad_program_v3.py)
+
 ![Ads](/paypal_creative_brief/nine_up_ads.png)
 
 ## Example Response from Foundation Model
