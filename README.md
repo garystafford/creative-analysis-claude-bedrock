@@ -60,7 +60,7 @@ streamlit run app.py \
     --server.runOnSave true \
     --theme.base "light" \
     --theme.backgroundColor "#333333" \
-    --theme.primaryColor "#c7c7c7" \
+    --theme.primaryColor "#CCC8AA" \
     --theme.secondaryBackgroundColor "#777777" \
     --ui.hideTopBar "true" \
     --client.toolbarMode "minimal"
@@ -124,7 +124,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_info.txt) file.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes*benz_ads/mercedes_benz_design* philosophy.txt) file.
 
 Upload (4) JPEGs:
 
@@ -132,6 +132,7 @@ Upload (4) JPEGs:
 - [ad2.jpeg](mercedes_benz_ads/ad2.jpeg)
 - [ad3.jpeg](mercedes_benz_ads/ad3.jpeg)
 - [ad4.jpeg](mercedes_benz_ads/ad4.jpeg)
+- [Mercedes-Benz design philosophy](mercedes_benz_ads/mercedes_benz_design_philosophy.txt)
 
 System:
 
@@ -142,11 +143,7 @@ You are an experienced Creative Director at a top-tier advertising agency. You a
 User:
 
 ```text
-Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described below.
-
-<design_philosophy>
-{{ contents of mercedes_benz_info.txt }}
-</design_philosophy>
+Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_design_philosophy.txt file.
 ```
 
 ### 2. Generate Better Prompts using Prompt Optimization
@@ -184,6 +181,7 @@ Upload (2) PDFs:
 
 - [Ad_Specs_Modern_Luxury.pdf](manhattan_ad_specs/Ad_Specs_Modern_Luxury.pdf)
 - [Advertise_Info_Modern_Luxury.pdf](manhattan_ad_specs/Advertise_Info_Modern_Luxury.pdf)
+- [Merceded-Benz Ads Analysis](mercedes_benz_ads/mercedes_benz_ads_analysis.txt)
 
 System:
 
@@ -194,11 +192,7 @@ You are an experienced Creative Director at a top-tier advertising agency. You a
 User:
 
 ```text
-Based on the following analysis of four successful Mercedes-Benz print advertisements, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in this PDF.
-
-<analysis>
-{{ Mercedes-Benz advertising analysis contents }}
-</analysis>
+Based on the following analysis of four successful Mercedes-Benz print advertisements, found in the document, mercedes_benz_ads_analysis.txt, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in the PDF, Ad_Specs_Modern_Luxury.pdf.
 ```
 
 ### 4a. Summarize the Contents of a Text File
@@ -258,8 +252,6 @@ Based on the Advertising Budget and Sales CSV file, write a Python program to ca
 ### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
-
-![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
 
 Upload (1) WebP file:
 
@@ -341,6 +333,8 @@ As a Graphic Designer, describe the layout of the advertisement, based on the co
 Upload (1) WebP file:
 
 - [paypal-creative-brief-1-2048.webp](/paypal_creative_brief/paypal-creative-brief-1-2048.webp)
+
+![Paypal Brief](./paypal_creative_brief/paypal_brief.png)
 
 System:
 
