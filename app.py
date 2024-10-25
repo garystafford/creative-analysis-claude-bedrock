@@ -42,8 +42,7 @@ DEFAULT_TEMPERATURE = 0.2
 DEFAULT_TOP_P = 0.999
 DEFAULT_TOP_K = 250
 
-DEFAULT_SYSTEM_PROMPT = """You are an experienced Creative Director at a top-tier advertising agency. 
-You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
+DEFAULT_SYSTEM_PROMPT = """You are an experienced Creative Director at a top-tier advertising agency. You are an expert at advertising analysis, the process of examining advertising to understand its effects on consumers."""
 
 DEFAULT_USER_PROMPT = """Analyze these four print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify at least 5 common creative elements that contribute to their success. Examine factors such as:
     1. Visual design and imagery
