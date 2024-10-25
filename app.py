@@ -27,6 +27,7 @@ AWS_REGIONS = ["us-west-2", "us-east-1"]
 
 DEFAULT_AWS_REGION = AWS_REGIONS[0]
 
+# model ids: https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html
 MODELS = [
     "anthropic.claude-3-5-sonnet-20241022-v2:0",  # currently only available in us-west-2!
     "anthropic.claude-3-5-sonnet-20240620-v1:0",
@@ -164,35 +165,42 @@ Inference Results:
 • output_tokens: {st.session_state.output_tokens}"""
 
 
-def main() -> None:
-    st.set_page_config(page_title="Multimodal Analysis", page_icon="analysis.png")
+def display_sidebar() -> None:
+    with st.sidebar:
+        st.markdown("### Inference Parameters")
+        st.session_state.aws_regions = st.selectbox(
+            label="aws_region:",
+            options=AWS_REGIONS,
+        )
+        st.session_state.model_id = st.selectbox(
+            label="model_id (Anthropic Claude 3 family of models):",
+            options=MODELS,
+        )
+        st.session_state.max_tokens = st.slider(
+            "max_tokens", min_value=0, max_value=5000, value=DEFAULT_MAX_TOKENS, step=10
+        )
+        st.session_state.temperature = st.slider(
+            "temperature",
+            min_value=0.0,
+            max_value=1.0,
+            value=DEFAULT_TEMPERATURE,
+            step=0.05,
+        )
+        st.session_state.top_p = st.slider(
+            "top_p", min_value=0.0, max_value=1.0, value=DEFAULT_TOP_P, step=0.01
+        )
+        st.session_state.top_k = st.slider(
+            "top_k", min_value=0, max_value=500, value=DEFAULT_TOP_K, step=1
+        )
 
-    with open("css.txt") as css_file:
-        custom_css = css_file.read()
+        st.markdown("---")
 
-    st.markdown(custom_css, unsafe_allow_html=True)
+        # display inference summary
+        inference_summary = display_inference_summary()
+        st.text(inference_summary)
 
-    session_vars = {
-        "aws_region": DEFAULT_AWS_REGION,
-        "system_prompt": DEFAULT_SYSTEM_PROMPT,
-        "user_prompt": DEFAULT_USER_PROMPT,
-        "model_id": DEFAULT_MODEL_ID,
-        "max_tokens": DEFAULT_MAX_TOKENS,
-        "temperature": DEFAULT_TEMPERATURE,
-        "top_p": DEFAULT_TOP_P,
-        "top_k": DEFAULT_TOP_K,
-        "media_type": None,
-        "analysis_time": 0,
-        "input_tokens": 0,
-        "output_tokens": 0,
-    }
 
-    for var, value in session_vars.items():
-        if var not in st.session_state:
-            st.session_state[var] = value
-
-    st.markdown("## Generative AI-powered Multimodal Analysis")
-
+def handle_form_submission() -> tuple:
     with st.form("ad_analyze_form", border=True, clear_on_submit=False):
         st.markdown(
             "Describe the role you want the model to play, the task you wish to perform, and upload the content to be analyzed. The Generative AI-based analysis is powered by Amazon Bedrock and Anthropic Claude 3 family of foundation models."
@@ -239,6 +247,39 @@ def main() -> None:
             logger.info("Prompt: %s", st.session_state.user_prompt)
 
         submitted = st.form_submit_button("Submit")
+
+    return submitted, uploaded_files, file_paths, extract_text
+
+
+def main() -> None:
+    st.set_page_config(page_title="Multimodal Analysis", page_icon="analysis.png")
+
+    with open("css.txt") as css_file:
+        custom_css = css_file.read()
+    st.markdown(custom_css, unsafe_allow_html=True)
+
+    session_vars = {
+        "aws_region": DEFAULT_AWS_REGION,
+        "system_prompt": DEFAULT_SYSTEM_PROMPT,
+        "user_prompt": DEFAULT_USER_PROMPT,
+        "model_id": DEFAULT_MODEL_ID,
+        "max_tokens": DEFAULT_MAX_TOKENS,
+        "temperature": DEFAULT_TEMPERATURE,
+        "top_p": DEFAULT_TOP_P,
+        "top_k": DEFAULT_TOP_K,
+        "media_type": None,
+        "analysis_time": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+    }
+    for var, value in session_vars.items():
+        if var not in st.session_state:
+            st.session_state[var] = value
+
+    st.markdown("## Generative AI-powered Multimodal Analysis")
+
+    # display form and handle form submission
+    submitted, uploaded_files, file_paths, extract_text = handle_form_submission()
 
     if submitted and st.session_state.user_prompt:
         st.markdown("---")
@@ -290,39 +331,8 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    # model ids: https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html
-    with st.sidebar:
-        st.markdown("### Inference Parameters")
-        st.session_state.aws_regions = st.selectbox(
-            label="aws_region:",
-            options=AWS_REGIONS,
-        )
-        st.session_state.model_id = st.selectbox(
-            label="model_id (Anthropic Claude 3 family of models):",
-            options=MODELS,
-        )
-        st.session_state.max_tokens = st.slider(
-            "max_tokens", min_value=0, max_value=5000, value=DEFAULT_MAX_TOKENS, step=10
-        )
-        st.session_state.temperature = st.slider(
-            "temperature",
-            min_value=0.0,
-            max_value=1.0,
-            value=DEFAULT_TEMPERATURE,
-            step=0.05,
-        )
-        st.session_state.top_p = st.slider(
-            "top_p", min_value=0.0, max_value=1.0, value=DEFAULT_TOP_P, step=0.01
-        )
-        st.session_state.top_k = st.slider(
-            "top_k", min_value=0, max_value=500, value=DEFAULT_TOP_K, step=1
-        )
-
-        st.markdown("---")
-
-        # display inference summary
-        inference_summary = display_inference_summary()
-        st.text(inference_summary)
+    # display sidebar
+    display_sidebar()
 
 
 if __name__ == "__main__":
