@@ -4,7 +4,7 @@ Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](http
 
 UI Preview:
 
-![Request](./screengrabs/preview_request_v2.png)
+![Request](./screengrabs/multimodal_ui_v3.png)
 
 Sample Response:
 
