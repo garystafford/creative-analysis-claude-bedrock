@@ -124,7 +124,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the [mercedes_benz_info.txt](mercedes_benz_ads/mercedes_benz_design_ philosophy.txt) file.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the mercedes_benz_design_ philosophy.txt file.
 
 Upload (4) JPEGs:
 
