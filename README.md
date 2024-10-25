@@ -88,7 +88,7 @@ rm -rf .venv
 
 ## Samples Prompts
 
-### 1a. Generate an Analysis of Print Advertisements for Mercedes-Benz
+## 1. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
 Provides an analysis of four public advertisements for Mercedes-Benz vehicles.
 
@@ -122,7 +122,7 @@ For each element, describe how it is effectively utilized across the ads and exp
 Important: if no ads were provided, do not produce the analysis.
 ```
 
-### 1b. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
+### 2. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
 Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the mercedes_benz_design_ philosophy.txt file.
 
@@ -146,7 +146,7 @@ User:
 Analyze these four successful print advertisements for Mercedes-Benz sedans, two in English and two in German. Identify common creative elements that contribute to their success. Explain how the elements align to Mercedes-Benz's design philosophy, described the mercedes_benz_design_philosophy.txt file.
 ```
 
-### 2. Generate Better Prompts using Prompt Optimization
+### 3. Generate Better Prompts using Prompt Optimization
 
 Improve the user's initial sub-optimal prompt using an Anthropic Claude 3 model. Same task as above, an analysis of four public advertisements for Mercedes-Benz vehicles.
 
@@ -173,7 +173,7 @@ Analyze these print advertisements and find some common creative elements. Some 
 </task>
 ```
 
-### 3. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
+### 4. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz
 
 Using the resulting Mercedes-Benz advertising analysis to design a new 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old.
 
@@ -195,7 +195,7 @@ User:
 Based on the following analysis of four successful Mercedes-Benz print advertisements, found in the document, mercedes_benz_ads_analysis.txt, describe a new and compelling design for a 'Large Leaderboard' size digital advertisement appearing on the 'Modern Luxury | Manhattan' website, for Mercedes-Benz C-Class Sedans, targeting young affluent urban couples between 25-35 years old. Use the online ad specs as a reference for the layout, described in the PDF, Ad_Specs_Modern_Luxury.pdf.
 ```
 
-### 4a. Summarize the Contents of a Text File
+### 5. Summarize the Contents of a Text File
 
 Upload (1) TXT file:
 
@@ -213,7 +213,7 @@ User:
 Ssummarize this document.
 ```
 
-### 4b. Query Data in CSV File
+### 6. Query Data in CSV File
 
 Most foundation models are not good at math. In this simple example, they cannot correctly add up a series of numbers. The model will provide a confident answer, but that answer is most likely not correct. This prompt writes a program that can correctly calculate the answer.
 
@@ -255,7 +255,7 @@ User:
 Based on the Advertising Budget and Sales CSV file, write a Python program to calculate the ratio of the grand total of TV, radio, and newspaper ad budgets to sales for ID 100. Use the Pandas package.
 ```
 
-### 5. Generate New Creative Concepts Based on Analysis of a Creative Brief
+### 7. Generate New Creative Concepts Based on Analysis of a Creative Brief
 
 Analyze a creative brief for PayPal and generate three ideas for new ads. Output a structured response as well-formatted JSON that an be easily ingested into a downstream system.
 
@@ -334,7 +334,7 @@ Example Output:
 }
 ```
 
-### 6a. Generate a Layout Design for an Ad Based on Generated Creative Concepts
+### 8. Generate a Layout Design for an Ad Based on Generated Creative Concepts
 
 As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
 
@@ -362,7 +362,7 @@ Based on the following headline, ad copy, call to action, and description of ima
 }
 ```
 
-### 6b. Generate a Layout Design with Midjourney for an Ad Based on Generated Creative Concepts
+### 9. Generate a Layout Design with Midjourney for an Ad Based on Generated Creative Concepts
 
 As a Graphic Designer, describe the layout of the advertisement, based on the content generated in example 5, above.
 
@@ -402,7 +402,7 @@ Example Images from Midjourney v6.1 (Aug. 2024):
 
 ![layouts](/paypal_creative_brief/midjourney_layouts_v3.png)
 
-### 7. Generate Ads Programmatically Based on Generated Creative Concepts
+### 10. Generate Ads Programmatically Based on Generated Creative Concepts
 
 Generate a Python program, which uses the [PILLOW](https://pypi.org/project/pillow/) package to create a compelling online digital advertisement based on the content generated in example 5, above.
 
