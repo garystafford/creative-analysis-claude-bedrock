@@ -22,7 +22,7 @@ Currently, this app supports the following media-types for uploading:
 - text/csv - content of file is added into prompt as raw text (uses StringIO - a bit hacky!)
 - application/pdf - content of file is added into prompt as raw text (uses PyMuPDF - a bit hacky!)
 
-## Start Application
+## Configure Environment and Start Application
 
 Make sure you have provided your AWS credential on the commandline, or using an alternative authentication method, before starting the application.
 
