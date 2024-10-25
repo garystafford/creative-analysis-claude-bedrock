@@ -4,11 +4,11 @@ Streamlit [application](app.py) used for demonstrating [Anthropic Claude 3](http
 
 UI Preview:
 
-![Request](./screengrabs/multimodal_ui_v3.png)
+![Request](./screengrabs/multimodal_ui_v3a.png)
 
 Sample Response:
 
-![Response](./screengrabs/preview_response.png)
+![Response](./screengrabs/multimodal_ui_v3b.png)
 
 ## Media Types Supported
 
