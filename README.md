@@ -40,15 +40,13 @@ python --version # I am using 3.12.x
 python -m pip install virtualenv -U --break-system-packages
 python -m venv .venv
 source .venv/bin/activate
-
-python -m pip install -r requirements.txt -U
 ```
 
 Install Python package dependencies:
 
 ```sh
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt -Uq
+python -m pip install pip -U
+python -m pip install -r requirements.txt -U
 
 streamlit --version
 ```
