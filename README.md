@@ -91,16 +91,16 @@ rm -rf .venv
 
 ## Samples Prompts
 
-- [1. Generate an Analysis of Print Advertisements for Mercedes-Benz](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#1-generate-an-analysis-of-print-advertisements-for-mercedes-benz)
-- [2. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#2-generate-an-analysis-of-print-advertisements-for-mercedes-benz-using-additional-information)
-- [3. Generate Better Prompts using Prompt Optimization](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#3-generate-better-prompts-using-prompt-optimization)
-- [4. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#4-generate-new-creative-concepts-from-analysis-of-print-advertisements-for-mercedes-benz)
-- [5. Summarize the Contents of a Text File](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#5-summarize-the-contents-of-a-text-file)
-- [6. Query Data in CSV File](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#6-query-data-in-csv-file)
-- [7. Generate New Creative Concepts Based on Analysis of a Creative Brief](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#7-generate-new-creative-concepts-based-on-analysis-of-a-creative-brief)
-- [8. Generate a Layout Design for an Ad Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#8-generate-a-layout-design-for-an-ad-based-on-generated-creative-concepts)
-- [9. Generated Ad Layouts Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#9-generate-a-layout-design-with-midjourney-for-an-ad-based-on-generated-creative-concepts)
-- [10. Generate Ads Programmatically Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#10-generate-ads-programmatically-based-on-generated-creative-concepts)
+- [1. Generate an Analysis of Print Advertisements for Mercedes-Benz](#1-generate-an-analysis-of-print-advertisements-for-mercedes-benz)
+- [2. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information](#2-generate-an-analysis-of-print-advertisements-for-mercedes-benz-using-additional-information)
+- [3. Generate Better Prompts using Prompt Optimization](#3-generate-better-prompts-using-prompt-optimization)
+- [4. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz](#4-generate-new-creative-concepts-from-analysis-of-print-advertisements-for-mercedes-benz)
+- [5. Summarize the Contents of a Text File](#5-summarize-the-contents-of-a-text-file)
+- [6. Query Data in CSV File](#6-query-data-in-csv-file)
+- [7. Generate New Creative Concepts Based on Analysis of a Creative Brief](#7-generate-new-creative-concepts-based-on-analysis-of-a-creative-brief)
+- [8. Generate a Layout Design for an Ad Based on Generated Creative Concepts](#8-generate-a-layout-design-for-an-ad-based-on-generated-creative-concepts)
+- [9. Generated Ad Layouts Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock/blob/main/README.md#9-generated-ad-layouts-based-on-generated-creative-concepts)
+- [10. Generate Ads Programmatically Based on Generated Creative Concepts](#10-generate-ads-programmatically-based-on-generated-creative-concepts)
 
 ## 1. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
