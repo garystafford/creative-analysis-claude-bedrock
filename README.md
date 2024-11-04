@@ -91,6 +91,17 @@ rm -rf .venv
 
 ## Samples Prompts
 
+- [1. Generate an Analysis of Print Advertisements for Mercedes-Benz](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#1-generate-an-analysis-of-print-advertisements-for-mercedes-benz)
+- [2. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#2-generate-an-analysis-of-print-advertisements-for-mercedes-benz-using-additional-information)
+- [3. Generate Better Prompts using Prompt Optimization](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#3-generate-better-prompts-using-prompt-optimization)
+- [4. Generate New Creative Concepts from Analysis of Print Advertisements for Mercedes-Benz](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#4-generate-new-creative-concepts-from-analysis-of-print-advertisements-for-mercedes-benz)
+- [5. Summarize the Contents of a Text File](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#5-summarize-the-contents-of-a-text-file)
+- [6. Query Data in CSV File](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#6-query-data-in-csv-file)
+- [7. Generate New Creative Concepts Based on Analysis of a Creative Brief](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#7-generate-new-creative-concepts-based-on-analysis-of-a-creative-brief)
+- [8. Generate a Layout Design for an Ad Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#8-generate-a-layout-design-for-an-ad-based-on-generated-creative-concepts)
+- [9. Generate a Layout Design with Midjourney for an Ad Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#9-generate-a-layout-design-with-midjourney-for-an-ad-based-on-generated-creative-concepts)
+- [10. Generate Ads Programmatically Based on Generated Creative Concepts](https://github.com/garystafford/creative-analysis-claude-bedrock?tab=readme-ov-file#10-generate-ads-programmatically-based-on-generated-creative-concepts)
+
 ## 1. Generate an Analysis of Print Advertisements for Mercedes-Benz
 
 Provides an analysis of four public advertisements for Mercedes-Benz vehicles.
@@ -127,7 +138,7 @@ Important: if no ads were provided, do not produce the analysis.
 
 ### 2. Generate an Analysis of Print Advertisements for Mercedes-Benz using Additional Information
 
-Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the mercedes_benz_design_ philosophy.txt file.
+Provides an analysis of four public advertisements for Mercedes-Benz vehicles using the Mercedes-Benz "Our design philosophy." website's content as reference for the analysis, which can be found in the mercedes*benz_design* philosophy.txt file.
 
 Upload (4) JPEGs:
 
@@ -395,15 +406,25 @@ Based on the following headline, ad copy, call to action, and description of ima
 Write the response in a format that will be an effective prompt for generating an image of the advertisement with Midjourney. Important, include the flags '--ar 1:2 --q 2 --v 6.1' at the end of the response.
 ```
 
-Example Output:
+Example Output (Midjourney):
 
 ```text
 A compelling online digital advertisement for PayPal in a 300x600 pixel portrait format: 1. Background: Use a gradient background transitioning from PayPal's signature blue at the top to a light, fresh teal at the bottom. This creates a modern, youthful feel that appeals to the target audience of teenagers. 2. Header: At the top of the ad, place the PayPal logo in white, making it stand out against the blue background. 3. Main Image: In the center of the ad, feature a close-up of a teenager's hand holding a smartphone. The phone should display the PayPal app interface, showcasing its clean, user-friendly design. This image should take up about 40% of the ad space. 4. Headline: Above the main image, place the headline "Your Money, Your Control" in bold, white text. Use a modern, sans-serif font that appeals to younger audiences. 5. Ad Copy: Below the main image, include the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." in smaller, easy-to-read white text. 6. Call-to-Action: At the bottom of the ad, create a bright, eye-catching button in PayPal's secondary color (likely a shade of yellow or orange) with the text "Download the App" in contrasting dark text. 7. Visual Elements: Incorporate subtle, modern graphic elements like thin lines or small geometric shapes in white or light colors to add visual interest without cluttering the design. These can be used to separate different sections of the ad. 8. Social Proof: If space allows, include small icons of popular social media platforms or logos of well-known brands that work with PayPal to reinforce trust and relevance. This design aligns with the creative brief by emphasizing PayPal as a virtual wallet that gives users control over their money, appealing to teenagers' desire for independence and simplicity in managing their finances. The smartphone imagery and modern design elements cater to the tech-savvy nature of the target audience, while the clear call-to-action encourages immediate engagement with the app. --ar 1:2 --q 2 --v 6.1
 ```
 
-Example Images from Midjourney v6.1 (Aug. 2024):
+Example Images from Midjourney v6.1 (August 2024):
 
 ![layouts](/paypal_creative_brief/midjourney_layouts_v3.png)
+
+Example Output (Flux):
+
+```text
+A compelling online digital advertisement for PayPal in a 300 x 400 pixel tall, portrait format: 1. Background: Use a gradient background transitioning from PayPal's signature blue at the top to a light, fresh teal at the bottom. This creates a modern, youthful feel that appeals to the target audience of teenagers. 2. Header: At the top of the ad, place the PayPal logo in white, making it stand out against the blue background. 3. Main Image: In the center of the ad, features a close-up of a teenager's hand holding a smartphone. The phone should display the PayPal app interface, showcasing its clean, user-friendly design. This image should take up about 40% of the ad space. 4. Headline: Above the main image, place the headline "Your Money, Your Control" in bold, white text. Use a modern, sans-serif font that appeals to younger audiences. 5. Ad Copy: Below the main image, include the ad copy "Take charge of your finances with PayPal. No complexities, just convenience." in smaller, easier-to-read white text. 6. Call-to-Action: At the bottom of the ad, create a bright, eye-catching button in PayPal's secondary color (likely a shade of yellow or orange) with the text "Download the App" in contrasting dark text. 7. Visual Elements: Incorporate subtle, modern graphic elements like thin lines or small geometric shapes in white or light colors to add visual interest without cluttering the design. These can be used to separate different sections of the ad. 8. Social Proof: If space allows, include small icons of popular social media platforms or logos of well-known brands that work with PayPal to reinforce trust and relevance. This design aligns with the creative brief by emphasizing PayPal as a virtual wallet that gives users control over their money, appealing to teenagers' desire for independence and simplicity in managing their finances. The smartphone imagery and modern design elements cater to the tech-savvy nature of the target audience, while the clear call-to-action encourages immediate engagement with the app.
+```
+
+Example Images from Black Forest Labs FLUX1.1 [pro] (November 2024):
+
+![layouts](/paypal_creative_brief/flux_layouts.jpg)
 
 ### 10. Generate Ads Programmatically Based on Generated Creative Concepts
 
@@ -435,12 +456,15 @@ Write a Python program using the PILLOW package to create a compelling online di
 
 #### Examples Ads Built from Generated Python Program
 
-All images were created on Amazon Bedrock using the recently announced Amazon Titan Image Generator G1 foundation model.
+All images were created on Amazon Bedrock using the Amazon Titan Image Generator G1 v2 foundation model.
 
 Scripts:
+
 - [sample_genai_ad_program_v1.py](/paypal_creative_brief/sample_genai_ad_program_v1.py)
 - [sample_genai_ad_program_v2.py](/paypal_creative_brief/sample_genai_ad_program_v2.py)
 - [sample_genai_ad_program_v3.py](/paypal_creative_brief/sample_genai_ad_program_v3.py)
+
+Examples of Final Digital Ads:
 
 ![Ads](/paypal_creative_brief/nine_up_ads.png)
 
