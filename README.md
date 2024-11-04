@@ -20,7 +20,8 @@ Currently, this app supports the following media-types for uploading:
 - image/gif - natively supported by Bedrock/Anthropic
 - text/plain - content of file is added into prompt as raw text (uses StringIO)
 - text/csv - content of file is added into prompt as raw text (uses StringIO - a bit hacky!)
-- application/pdf - content of file is added into prompt as raw text (uses PyMuPDF - a bit hacky!)
+- application/pdf (document-based) - content of PDF is added into prompt as raw text (uses PyMuPDF)
+- application/pdf (image-based) - content of PDF is converted to PNG images (uses PyMuPDF)
 
 ## Configure Environment and Start Application
 
@@ -47,6 +48,10 @@ Install Python package dependencies:
 ```sh
 python -m pip install pip -U
 python -m pip install -r requirements.txt -U
+
+# fixes loading issues...
+deactivate
+source .venv/bin/activate
 
 streamlit --version
 ```
