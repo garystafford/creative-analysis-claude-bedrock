@@ -1,7 +1,10 @@
 boto3
 botocore
+docling
 Pillow
 PyMuPDF
 pyperclip
 streamlit
+torch
+torchvision
 watchdog
