@@ -1,8 +1,8 @@
 # Creative Intelligence: Generative AI-powered Multimodal Analysis with Anthropic Claude on Amazon Bedrock
 
-_The ability to find new solutions to problems and make new skills automatic._ - Robert Sternberg (Triarchic Theory of Intelligence, 1985)
+_Creative Intelligence: The ability to find new solutions to problems and make new skills automatic._ - Robert Sternberg (Triarchic Theory of Intelligence, 1985)
 
-_The capacity to be intellectually flexible and innovative._ - Robert Sternberg (Triarchic Theory of Intelligence, 1985)
+_Creative Intelligence: The capacity to be intellectually flexible and innovative._ - Robert Sternberg (Triarchic Theory of Intelligence, 1985)
 
 This repository contains a Streamlit [application](app.py) used for demonstrating the latest [Anthropic Claude 3](https://www.anthropic.com/news/claude-3-family) family of multimodal models, Haiku, Sonnet, and Opus, on [Amazon Bedrock](https://aws.amazon.com/bedrock). The app was originally created for AdTech, MarTech, and Advertising Agencies that need to analyze advertising and generate new creative concepts. To start, describe the analysis task you wish to perform and optionally upload the content to be analyzed. The app currently supports uploading multiple JPG, PNG, GIF, WebP, PDF, CSV, MD, or TXT files. The Streamlit application calls Amazon Bedrock's [Anthropic Claude Messages API](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html). Refer to this link for all inference parameters.
 
@@ -24,6 +24,7 @@ Currently, this app supports the following media-types for uploading:
 - image/gif - natively supported by Bedrock/Anthropic
 - text/plain - content of file is added into prompt as raw text (uses StringIO)
 - text/csv - content of file is added into prompt as raw text (uses StringIO - a bit hacky!)
+- application/octet-stream (Markdown) - content of file is added into prompt as raw text (uses StringIO)
 - application/pdf (document-based) - content of PDF is added into prompt as raw text (uses PyMuPDF)
 - application/pdf (image-based) - content of PDF is converted to PNG images (uses PyMuPDF)
 
