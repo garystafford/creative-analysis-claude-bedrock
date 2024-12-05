@@ -5,6 +5,4 @@ Pillow
 PyMuPDF
 pyperclip
 streamlit
-torch
-torchvision
 watchdog
